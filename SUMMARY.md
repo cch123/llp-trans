@@ -34,9 +34,9 @@
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
 * [Part 2 C 编程语言](part2.md)
   * [Chapter 8 Basics](part2/basics.md)
-  * Type System
-  * Code Structure
-  * Memory
+  * [Chapter 9 Type System](part2/type-system.md)
+  * [Chapter 10 Code Structure](part2/chapter-10-code-structure.md)
+  * Chapter 11 Memory
   * Syntax, Semantics and Pragmatics
   * [Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
