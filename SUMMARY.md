@@ -6,7 +6,7 @@
     * [The Core Architecture](part1/basic-computer-architecture/the-core-architecture.md)
     * [Evolution](part1/basic-computer-architecture/evolution.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
-    * [Protection Rings](part1/chapter-1-basic-computer-architecture/protection-rings.md)
+    * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
     * [Hardware Stack](part1/chapter-1-basic-computer-architecture/hardware-stack.md)
     * [Summary](part1/chapter-1-basic-computer-architecture/summary.md)
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
