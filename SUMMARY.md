@@ -27,7 +27,7 @@
     * [Efficiency](part1/virtual-memory/efficiency.md)
     * [Implementation](part1/virtual-memory/implementation.md)
     * [Memory Mapping](part1/virtual-memory/memory-mapping.md)
-    * Example: Mapping File into Memory
+    * [Example: Mapping File into Memory](part1/virtual-memory/example-mapping-file-into-memory.md)
     * Summary
 * [Part 2 C 编程语言](part2.md)
 * [Part 3 C 和汇编](part3.md)
