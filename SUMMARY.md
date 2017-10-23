@@ -19,7 +19,7 @@
     * [Accessing Parts of Registers](part1/legacy/accessing-parts-of-registers.md)
     * [Summary](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
-    * Caching
+    * [Caching](part1/virtual-memory/caching.md)
     * Motivation
     * Address Spaces
     * Features
