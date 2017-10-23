@@ -49,5 +49,5 @@
   * [Appendix B. Using Make](part4/appendix-b-using-make.md)
   * [Appendix C. System Calls](part4/appendix-c-system-calls.md)
   * [Appendix D. Performance Tests Information](part4/appendix-d-performance-tests-information.md)
-  * Bibliography
+  * [Bibliography](part4/bibliography.md)
 
