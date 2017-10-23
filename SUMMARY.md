@@ -15,7 +15,7 @@
   * [Chapter 3 Legacy](part1/legacy.md)
     * [Real Mode](part1/legacy/real-mode.md)
     * [Protected Mode](part1/legacy/protected-mode.md)
-    * Minimal Segmentation in Long Mode
+    * [Minimal Segmentation in Long Mode](part1/legacy/minimal-segmentation-in-long-mode.md)
     * Accessing Parts of Registers
     * Summary
 * [Part 2 C 编程语言](part2.md)
