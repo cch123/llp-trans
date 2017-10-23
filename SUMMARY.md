@@ -26,7 +26,7 @@
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
     * [Efficiency](part1/virtual-memory/efficiency.md)
     * [Implementation](part1/virtual-memory/implementation.md)
-    * Memory Mapping
+    * [Memory Mapping](part1/virtual-memory/memory-mapping.md)
     * Example: Mapping File into Memory
     * Summary
 * [Part 2 C 编程语言](part2.md)
