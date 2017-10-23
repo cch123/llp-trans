@@ -35,7 +35,7 @@
 * [Part 2 C 编程语言](part2.md)
   * [Chapter 8 Basics](part2/basics.md)
   * [Chapter 9 Type System](part2/type-system.md)
-  * [Chapter 10 Code Structure](part2/chapter-10-code-structure.md)
+  * [Chapter 10 Code Structure](part2/code-structure.md)
   * [Chapter 11 Memory](part2/chapter-11-memory.md)
   * [Chapter 12 Syntax, Semantics and Pragmatics](part2/chapter-12-syntax-semantics-and-pragmatics.md)
   * [Chapter 13 Good Code Practices](part2/good-code-practices.md)
