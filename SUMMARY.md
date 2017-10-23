@@ -12,6 +12,12 @@
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
     * [Setting Up the Environment](part1/assembly-language/setting-up-the-environment.md)
     * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
+  * [Chapter 3 Legacy](part1/legacy.md)
+    * [Real Mode](part1/legacy/real-mode.md)
+    * [Protected Mode](part1/legacy/protected-mode.md)
+    * Minimal Segmentation in Long Mode
+    * Accessing Parts of Registers
+    * Summary
 * [Part 2 C 编程语言](part2.md)
 * [Part 3 C 和汇编](part3.md)
 * [Part 4 附录](part4.md)
