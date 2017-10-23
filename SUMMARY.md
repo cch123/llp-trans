@@ -47,7 +47,7 @@
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
   * Appendix B. Using Make
-  * Appendix C. System Calls
+  * [Appendix C. System Calls](part4/appendix-c-system-calls.md)
   * [Appendix D. Performance Tests Information](part4/appendix-d-performance-tests-information.md)
   * Bibliography
 
