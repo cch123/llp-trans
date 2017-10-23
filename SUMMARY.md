@@ -20,7 +20,7 @@
     * [Summary](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
     * [Caching](part1/virtual-memory/caching.md)
-    * Motivation
+    * [Motivation](part1/virtual-memory/motivation.md)
     * Address Spaces
     * Features
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
