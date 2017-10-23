@@ -25,7 +25,7 @@
     * [Features](part1/virtual-memory/features.md)
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
     * [Efficiency](part1/virtual-memory/efficiency.md)
-    * Implementation
+    * [Implementation](part1/virtual-memory/implementation.md)
     * Memory Mapping
     * Example: Mapping File into Memory
     * Summary
