@@ -41,7 +41,7 @@
   * [Chapter 13 Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
   * Chapter 14 Translation Details
-  * Shared Objects and Code Models
+  * [Chapter 15 Shared Objects and Code Models](part3/chapter-15-shared-objects-and-code-models.md)
   * Performance
   * Multithreading
 * [Part 4 附录](part4.md)
