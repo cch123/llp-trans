@@ -42,7 +42,7 @@
 * [Part 3 C 和汇编](part3.md)
   * [Chapter 14 Translation Details](part3/translation-details.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
-  * [Chapter 16 Performance](part3/chapter-16-performance.md)
+  * [Chapter 16 Performance](part3/performance.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
