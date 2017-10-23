@@ -12,7 +12,7 @@
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
     * [Setting Up the Environment](part1/assembly-language/setting-up-the-environment.md)
     * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
-    * Example: Output Register Contents
+    * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
   * [Chapter 3 Legacy](part1/legacy.md)
     * [Real Mode](part1/legacy/real-mode.md)
