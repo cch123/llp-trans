@@ -40,9 +40,14 @@
   * [Chapter 12 Syntax, Semantics and Pragmatics](part2/chapter-12-syntax-semantics-and-pragmatics.md)
   * [Chapter 13 Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
-  * Chapter 14 Translation Details
+  * [Chapter 14 Translation Details](part3/chapter-14-translation-details.md)
   * [Chapter 15 Shared Objects and Code Models](part3/chapter-15-shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/chapter-16-performance.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
 * [Part 4 附录](part4.md)
+  * Appendix A. Using gdb
+  * Appendix B. Using Make
+  * Appendix C. System Calls
+  * Appendix D. Performance Tests Information
+  * Bibliography
 
