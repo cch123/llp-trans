@@ -1,4 +1,4 @@
-# LOP translation
+# LLP translation
 
-translate LOP into Chinese.
+translate LLP into Chinese.
 
