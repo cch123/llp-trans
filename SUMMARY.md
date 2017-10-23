@@ -14,6 +14,7 @@
     * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
     * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
+    * [Working with Data](part1/assembly-language/working-with-data.md)
   * [Chapter 3 Legacy](part1/legacy.md)
     * [Real Mode](part1/legacy/real-mode.md)
     * [Protected Mode](part1/legacy/protected-mode.md)
