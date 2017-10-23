@@ -40,5 +40,9 @@
   * [Chapter 12 Syntax, Semantics and Pragmatics](part2/chapter-12-syntax-semantics-and-pragmatics.md)
   * [Chapter 13 Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
+  * Chapter 14 Translation Details
+  * Shared Objects and Code Models
+  * Performance
+  * Multithreading
 * [Part 4 附录](part4.md)
 
