@@ -18,6 +18,17 @@
     * [Minimal Segmentation in Long Mode](part1/legacy/minimal-segmentation-in-long-mode.md)
     * [Accessing Parts of Registers](part1/legacy/accessing-parts-of-registers.md)
     * [Summary](part1/legacy/summary.md)
+  * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
+    * Caching
+    * Motivation
+    * Address Spaces
+    * Features
+    * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
+    * Efficiency
+    * Implementation
+    * Memory Mapping
+    * Example: Mapping File into Memory
+    * Summary
 * [Part 2 C 编程语言](part2.md)
 * [Part 3 C 和汇编](part3.md)
 * [Part 4 附录](part4.md)
