@@ -45,7 +45,7 @@
   * [Chapter 16 Performance](part3/chapter-16-performance.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
 * [Part 4 附录](part4.md)
-  * Appendix A. Using gdb
+  * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
   * Appendix B. Using Make
   * Appendix C. System Calls
   * Appendix D. Performance Tests Information
