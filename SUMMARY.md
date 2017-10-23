@@ -31,6 +31,7 @@
     * [Summary](part1/virtual-memory/summary.md)
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
+  * [Chapter 7 Models of Computation](part1/models-of-computation.md)
 * [Part 2 C 编程语言](part2.md)
 * [Part 3 C 和汇编](part3.md)
 * [Part 4 附录](part4.md)
