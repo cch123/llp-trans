@@ -36,7 +36,7 @@
   * [Chapter 8 Basics](part2/basics.md)
   * [Chapter 9 Type System](part2/type-system.md)
   * [Chapter 10 Code Structure](part2/chapter-10-code-structure.md)
-  * Chapter 11 Memory
+  * [Chapter 11 Memory](part2/chapter-11-memory.md)
   * Syntax, Semantics and Pragmatics
   * [Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
