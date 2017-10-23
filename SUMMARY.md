@@ -22,7 +22,7 @@
     * [Caching](part1/virtual-memory/caching.md)
     * [Motivation](part1/virtual-memory/motivation.md)
     * [Address Spaces](part1/virtual-memory/address-spaces.md)
-    * Features
+    * [Features](part1/virtual-memory/features.md)
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
     * Efficiency
     * Implementation
