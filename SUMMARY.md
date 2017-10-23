@@ -11,6 +11,7 @@
     * [Summary](part1/basic-computer-architecture/summary.md)
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
     * [Setting Up the Environment](part1/assembly-language/setting-up-the-environment.md)
+    * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
 * [Part 2 C 编程语言](part2.md)
 * [Part 3 C 和汇编](part3.md)
 * [Part 4 附录](part4.md)
