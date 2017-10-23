@@ -33,6 +33,12 @@
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
 * [Part 2 C 编程语言](part2.md)
+  * [Chapter 8 Basics](part2/basics.md)
+  * Type System
+  * Code Structure
+  * Memory
+  * Syntax, Semantics and Pragmatics
+  * [Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
 * [Part 4 附录](part4.md)
 
