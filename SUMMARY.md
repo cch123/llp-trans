@@ -17,7 +17,7 @@
     * [Working with Data](part1/assembly-language/working-with-data.md)
     * [Example: Calculating String Length](part1/assembly-language/example-calculating-string-length.md)
     * [Assignment: Input/Output Library](part1/assembly-language/assignment-inputoutput-library.md)
-    * Summary
+    * [Summary](part1/assembly-language/summary.md)
   * [Chapter 3 Legacy](part1/legacy.md)
     * [Real Mode](part1/legacy/real-mode.md)
     * [Protected Mode](part1/legacy/protected-mode.md)
