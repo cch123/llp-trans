@@ -1,4 +1,4 @@
-在本章中我们学习了虚拟内存实现的概念。我们详细地以 cache 的 case 对其进行了说明。然后回顾了不同类型的地址空间\(物理地址空间、虚拟地址空间\)和它们之间的联系\(几组地址翻译表\)。然后深入到虚拟内存的实现细节当中。
+在本章中我们学习了虚拟内存实现的概念。我们以 cache 的 case 对其进行了详细说明。然后回顾了不同类型的地址空间\(物理地址空间、虚拟地址空间\)和它们之间的联系\(几组地址翻译表\)。然后深入到虚拟内存的实现细节当中。
 
 最后我们提供了一个最小可工作的样例，使用 linux 系统调用来演示内存映射。我们会在 Chapter 13 重新用到它，但在那个章节中会基于这个工具来实现我们的动态内存分配器。下一章节中我们将会学习在翻译和链接过程，操作系统如何使用虚拟内存技术来载入并执行程序。
 
@@ -74,17 +74,15 @@ Question 67
 
 Write the following programs, which all map a text file input.txt containing an integer x in memory using a mmap system call, and output the following:
 
-1.	x! \(factorial, x! = 1 · 2 · · · · · \(x − 1\) · x\). It is guaranteed that x ≥ 0. 
+1. x! \(factorial, x! = 1 · 2 · · · · · \(x − 1\) · x\). It is guaranteed that x ≥ 0.
 
-2.	0 if the input number is prime, 1 otherwise.
+2. 0 if the input number is prime, 1 otherwise.
 
-3.	Sum of all number’s digits.”	
+3. Sum of all number’s digits.”
 
-4.    x-th Fibonacci number.
+4. x-th Fibonacci number.
 
-5.	Checks if x is a Fibonacci number.
-
- 
+5. Checks if x is a Fibonacci number.
 
 Footnotes
 
@@ -93,6 +91,4 @@ Footnotes
 2 To find the process identifier, use such standard programs as ps or top.
 
 3 Theoretically we could support all 64 bits of physical addresses, but we do not need that many addresses yet.”
-
-
 
