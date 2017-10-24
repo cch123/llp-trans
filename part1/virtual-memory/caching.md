@@ -4,17 +4,13 @@
 
 硬盘相比内存来说，空间要大很多，但同时访问也慢很多。这也就是为什么一般在把数据加载到内存中时硬盘的任务一般也就完成了的原因。因为主存对于外部存储来说就是一种缓存。
 
-A hard drive is much bigger than RAM but also a great deal slower. This is why all work with data is done after preloading it in RAM. Thus main memory is being used as a cache for data from external storage.
+但实际上磁盘内部也有自己的缓存...
 
-Anyway, a hard drive also has a cache on its own...”
+在 CPU 的晶体上同样存在几个不同级别的数据缓存\(一般是三级：L1，L2，L3\)。这些缓存的大小要比主存小得多。另外，CPU 拥有至少一个指令缓存\(一个存储指令的队列\)和一个 TLB\(Translation Lookaside Buffer 来提升虚拟内存的性能。
 
-“On CPU crystal there are several levels of data caches \(usually three: L1, L2, L3\). Their size is ”
+寄存器相比缓存访问速度则更加的快\(和小\)，所以实际上寄存器也可以认为是独立的缓存。
 
-“much smaller than the size of main memory, but they are much faster too \(the closest level to the CPU is almost as close as registers\). Additionally, CPUs possess at least an instruction cache \(queue storing instructions\) and a Translation Lookaside Buffer to improve virtual memory performance.
+为什么缓存的场景无处不在呢？信息系统并不需要对其性能级别提供严格保证，引入缓存往往会降低平均访问时间\(从请求到响应的时间\)。而使这样的系统正常运转我们需要我们的老朋友“局部性”：每时每刻我们都只需要访问一小部分的数据。
 
-Registers are even faster than caches \(and smaller\) so they are a cache on their own.
-
-Why is this situation so pervasive? In information system, which does not need to give strict guarantees about its performance levels, introducing caches often decreases the average access time \(the time between a request and a response\). To make it work we need our old friend locality: in each moment of time we only have a small working set of data.
-
-The virtual memory mechanism allows us, among other things, to use physical memory as a cache for chunks of program code and data.”
+虚拟内存的策略可以允许我们使用物理内存作为程序代码块和数据块的缓存。
 
