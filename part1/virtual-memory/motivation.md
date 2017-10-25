@@ -9,7 +9,7 @@
   程序还能和响应缓慢的外部设备交互。这些缓慢的交互过程可能会持续成千上万个 cpu 时钟周期，我们希望能够把宝贵的 CPU 资源借给其它程序使用。而程序间的快速切换只有当程序都已经在内存中时才可能实现；否则的话还要花费大量的时间从外部存储中把要切换的程序读取进来。.
 
 * 程序可以存储到内存的任意位置。  
-  如果我们实现这个目标的话，就可以将程序分离存储在任意的空闲内存区域了。即使程序内部使用的是绝对地址也没关系。
+  如果我们实现这个目标的话，就可以在任意的空闲内存位置加载程序了。即使程序内部使用的是绝对地址也没关系。
 
 * In case of absolute addressing, likemov rax, \[0x1010ffba\], all addresses including starting address become fixed: all exact address values are written into machine code.
 
