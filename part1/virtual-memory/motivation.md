@@ -11,16 +11,19 @@
 * 程序可以存储到内存的任意位置。  
   如果我们实现这个目标的话，就可以在任意的空闲内存位置加载程序了。即使程序内部使用的是绝对地址也没关系。
 
-* In case of absolute addressing, likemov rax, \[0x1010ffba\], all addresses including starting address become fixed: all exact address values are written into machine code.
+  使用绝对地址的情况可能类似这样，mov rax \[0x1010ffba\]，包括起始地址的所有地址都是固定的。并且这些准确的地址值已经被写入到了机器码中。
 
-* Freeing programmers from memory management tasks as much as possible.
+* 把程序员从内存管理的任务中尽量解放出来。
 
-  While programming, we do not want to think about how different memory chips on our target architectures can function, what is the amount of physical memory available, etc. Programmers should pay closer attention to program logic instead.
+  当编程时，我们并不希望思考我们的目标机器迥异的内存芯片如何工作，机器上还有多少可用的内存等等。程序员应该把精力聚集在程序逻辑上。
 
-* Effective usage of shared data and code.  
-   Whenever several programs want to access the same data or code \(libraries\) files, it
+* Effective usage of shared data and code.
 
-  is a waste to duplicate them in memory for each additional user. Virtual memory usage addresses these challenges.
+* 有效地使用共享数据和代码
+
+* 无论什么时候，多个程序想要访问内存中的同一份数据或者代码\(库\)文件，对这些内容进行复制都是一种浪费，要尽量避免。
+
+虚拟内存的使用将应对这些挑战。
 
 
 
