@@ -36,7 +36,7 @@
     * [Example: Mapping File into Memory](part1/virtual-memory/example-mapping-file-into-memory.md)
     * [Summary](part1/virtual-memory/summary.md)
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
-    * Preprocessor
+    * [Preprocessor](part1/compilation-pipeline/preprocessor.md)
     * Translation
     * Linking
     * Assignment: Dictionary
