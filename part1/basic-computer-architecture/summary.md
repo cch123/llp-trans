@@ -2,43 +2,43 @@
 
 Question 2
 
-What are the key principles of von Neumann architecture?
+冯诺伊曼架构的关键原则有哪些？
 
 Question 3
 
-What are registers?
+寄存器是什么？
 
 Question 4
 
-What is the hardware stack?
+硬件栈是什么？
 
 Question 5
 
-What are the interrupts?
+什么是中断？
 
 Question 6
 
-What are the main problems that the modern extensions of the von Neumann model are trying to solve?
+对冯诺伊曼的现代扩展主要是为了解决什么问题？
 
 Question 7
 
-What are the main general purpose registers of Intel 64?
+Intel 64 上主要的通用寄存器有哪些？
 
 Question 8
 
-What is the purpose of the stack pointer?
+栈指针的功能是什么？
 
 Question 9
 
-Can the stack be empty?
+栈可以为空么？
 
 Question 10
 
-Can we count elements in a stack?
+可以在栈上对元素进行计数么？
 
 Footnotes
 
-1 Note how often solutions the engineers come up with are dictated by economic reasons rather than technical limitation
+1 注意工程师们的好主意是怎么被经济问题而非技术限制所制约的
 
-2 Also known as x86\_64 and AMD64.”
+2 也经常被熟知为 x86\_64 和 AMD64
 
