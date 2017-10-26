@@ -36,8 +36,21 @@
     * [Example: Mapping File into Memory](part1/virtual-memory/example-mapping-file-into-memory.md)
     * [Summary](part1/virtual-memory/summary.md)
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
+    * Preprocessor
+    * Translation
+    * Linking
+    * Assignment: Dictionary
+    * Summary
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
+    * Input and Output
+    * Interrupts
+    * System Calls
+    * Summary
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
+    * Finite State Machines
+    * Forth Machine
+    * Assignment: Forth Compiler and Interpreter
+    * Summary
 * [Part 2 C 编程语言](part2.md)
   * [Chapter 8 Basics](part2/basics.md)
   * [Chapter 9 Type System](part2/type-system.md)
