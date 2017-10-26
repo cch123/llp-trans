@@ -27,7 +27,7 @@
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
     * [Caching](part1/virtual-memory/caching.md)
     * [Motivation](part1/virtual-memory/motivation.md)
-    * [Address Spaces](part1/virtual-memory/address-spaces.md)
+    * [地址空间](part1/virtual-memory/address-spaces.md)
     * [Features](part1/virtual-memory/features.md)
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
     * [Efficiency](part1/virtual-memory/efficiency.md)
