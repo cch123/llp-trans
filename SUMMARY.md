@@ -38,7 +38,7 @@
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
     * [Preprocessor](part1/compilation-pipeline/preprocessor.md)
     * [Translation](part1/compilation-pipeline/translation.md)
-    * Linking
+    * [Linking](part1/compilation-pipeline/linking.md)
     * Assignment: Dictionary
     * Summary
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
