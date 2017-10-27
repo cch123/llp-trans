@@ -37,7 +37,7 @@
     * [Summary](part1/virtual-memory/summary.md)
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
     * [Preprocessor](part1/compilation-pipeline/preprocessor.md)
-    * Translation
+    * [Translation](part1/compilation-pipeline/translation.md)
     * Linking
     * Assignment: Dictionary
     * Summary
