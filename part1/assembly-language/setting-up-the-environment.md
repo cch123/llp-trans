@@ -9,8 +9,7 @@
 * GDB 7.7.1 作为调试器
 * 任意文本编辑器\(最好能有语法高亮的那种\)。我们推荐使用 ViM
 
-如果你希望搭建自己的系统，可以安装任意的 Linux 发行版并确保上面列表的程序都安装过一遍。以我们的经验而言，Windows 提供的 Subsystem for Linux 也可以适配这些工作。你可以安装上它，再用 apt-get 装好需要的工具。具体参考官方指引：[https://msdn.microsoft.com/en-us/commandline/wsl/install\_guide。](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide。)  
-
+如果你希望搭建自己的系统，可以安装任意的 Linux 发行版并确保上面列表的程序都安装过一遍。以我们的经验而言，Windows 提供的 Subsystem for Linux 也可以适配这些工作。你可以安装上它，再用 apt-get 装好需要的工具。具体参考官方指引：[https://msdn.microsoft.com/en-us/commandline/wsl/install\_guide。](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide。)
 
 在本书的 Apress 网站上 [http://www.apress.com/us/book/9781484224021](http://www.apress.com/us/book/9781484224021) 可以找到以下资源：
 
