@@ -4,6 +4,8 @@
 * [Part 1 汇编语言与计算机架构](part1.md)
   * [Chapter 1: Basic Computer Architecture](part1/basic-computer-architecture.md)
     * [The Core Architecture](part1/basic-computer-architecture/the-core-architecture.md)
+      * [Model of Computation](part1/basic-computer-architecture/the-core-architecture/model-of-computation.md)
+      * von Neumann Architecture
     * [Evolution](part1/basic-computer-architecture/evolution.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
     * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
@@ -48,10 +50,10 @@
     * System Calls
     * Summary
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
-    * Finite State Machines
-    * Forth Machine
-    * Assignment: Forth Compiler and Interpreter
-    * Summary
+    * [Finite State Machines](part1/models-of-computation/finite-state-machines.md)
+    * [Forth Machine](part1/models-of-computation/forth-machine.md)
+    * [Assignment: Forth Compiler and Interpreter](part1/models-of-computation/assignment-forth-compiler-and-interpreter.md)
+    * [Summary](part1/models-of-computation/summary.md)
 * [Part 2 C 编程语言](part2.md)
   * [Chapter 8 Basics](part2/basics.md)
   * [Chapter 9 Type System](part2/type-system.md)
