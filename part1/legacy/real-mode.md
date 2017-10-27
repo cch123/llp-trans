@@ -14,19 +14,17 @@
 
 * 物理内存地址由 20 位组成\(5 个十六进制数\)
 
-* 每个逻辑地址都由两部分组成。一部分从段寄存器中取，用来标识段的起始位置。另一部分记录的是地址在段内的偏移量。硬件用这两个寄存器来计算物理地址： 
+* 每个逻辑地址都由两部分组成。一部分从段寄存器中取，用来标识段的起始位置。另一部分记录的是地址在段内的偏移量。硬件用这两个寄存器来计算物理地址：
 
   物理地址 = 段基址  \* 16 + 偏移量
 
   你可能经常看到以段地址加偏移量来表示的地址，例如：4a40:0002， ds:0001，7bd3:ah。
 
+我们已经提到过，程序员希望将代码和数据\(以及栈\)分离开，比如他们希望能为代码中的内容使用不同的代码段\(section\)。段\(Segment\)寄存器 cs 就是为这个目的打造的。cs 中存储了代码段的起始地址，ds 则对应数据，ss 对应栈段。其它的段寄存器用来存储其它的数据段。
+
+严格意义上说，段寄存器并不是存储的段的起始地址，而只是地址的一部分\(四个主要的十六进制数\)。给这个数值乘以 16 然后再加上一个 0 才能拿到真正的段起始地址。
+
+每一条汇编指令都隐式地假定了会使用一个段寄存器来组成地址的一部分。在文档中会对每条指令默认使用了哪些寄存器进行说明。不过常识已经可以帮助我们进行判断了。例如 mov 指令是操作数据的，所以地址一定是和数据段\(ds\)有关系。
 
 
-
-
-As we already stated, programmers want to separate code from data \(and stack\), so they intend to use different segments for these code sections. Segment registers are specialized for that:csstores the code segment start address,dscorresponds to data segment, andssto stack segment. Other segment registers are used to store additional data segments.
-
-Note that strictly speaking, the segment registers do not hold segments’ starting addresses but rather their parts \(the four most significant hexadecimal digits\). By adding another zero digit to multiply it by 1610we get the real segment starting address.
-
-Each instruction referencing memory implicitly assumes usage of one of segment registers. Documentation clarifies the default segment registers for each instruction. However, common sense can help as well. For instance,movis used to manipulate data, so the address is relative to the data segment.
 
