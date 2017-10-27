@@ -11,6 +11,7 @@
     * [Summary](part1/basic-computer-architecture/summary.md)
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
     * [Setting Up the Environment](part1/assembly-language/setting-up-the-environment.md)
+      * [Working with Code Examples](part1/assembly-language/setting-up-the-environment/working-with-code-examples.md)
     * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
     * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
