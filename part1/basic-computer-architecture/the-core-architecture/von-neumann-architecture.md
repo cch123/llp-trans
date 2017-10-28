@@ -21,13 +21,13 @@
 
 图 1-1.冯诺伊曼架构--总览
 
-Assembly language for a chosen processor is a programming language consisting of mnemonics for each possible binary encoded instruction \(machine code\). It makes programming in machine codes much easier, because the programmer then does not have to memorize the binary encoding of instructions, only their names and parameters.
+**汇编语言**是处理器相关的一种特殊语言，汇编语言对每一条具体的机器码都做了助记处理。有了汇编之后进行机器码的编程容易了很多，程序员不需要去记住那些二进制的机器码，而只需要知道其在汇编中的指令名字和参数就可以了。
 
-Note, that instructions can have parameters of different sizes and formats.
+需要注意，指令之间的参数，大小和格式都可以彼此不同。
 
-An architecture does not always define a precise instruction set, unlike a model of computation.
+架构并不总会对精确的指令进行定义，而不像计算模型。
 
-A common modern personal computer have evolved from old von Neumann architecture computers,so we are going to investigate this evolution and see what distinguishes a modern computer from the simple schematic in Figure1-2.
+常见的现代计算就是从传统的冯诺伊曼架构进化而来，所以我们就来研究研究现代的计算机和图 1-2 中的简单模型有什么样的不同。
 
 ![](/assets/1-2.jpg)
 
@@ -35,11 +35,11 @@ A common modern personal computer have evolved from old von Neumann architecture
 
 ---
 
-■Note memory state and values of registers fully describe the Cpu state \(from a programmer’s point of
-
-view\). understanding an instruction means understanding its effects on memory and registers.
+■注意 内存状态和寄存器的值完整地描述了 CPU 的状态\(从程序员的视角来看\)。理解一条指令，需要同时理解其对寄存器和内存分别产生了什么影响。
 
 ---
+
+ 
 
 
 
