@@ -12,15 +12,10 @@
 
 下面是该架构的几个核心特性：
 
-内存只存储比特\(一个信息单元，取值范围是 0 或者 1\)
-
-Memory stores both encoded instructions and data to operate on. There are no means to distinguish data from code: both are in fact bit strings.
-
-* Memory is organized into cells, which are labeled with their respective indices in  
-   a natural way \(e.g., cell \#43 follows cell \#42\). The indices start at 0. Cell size may  
-   vary \(John von Neumann thought that each bit should have its address\); modern computers take one byte \(eight bits\) as a memory cell size. So, the 0-th byte holds the first eight bits of the memory, etc.
-
-* The program consists of instructions that are fetched one after another. Their execution is sequential unless a special jump instruction is executed.
+* 内存只存储 bit \(一个信息单元，取值范围是 0 或者 1\)
+* 内存既存储编码后的指令，也存储需要操作的数据。从表现形式上没有办法区分数据和代码：因为二者皆是以 bit 串的形式存储
+* 内存以单元进行组织，这些单元以其相对位置进行自然标记\(e.g. 单元 \#43 跟在单元 \#42 之后\)。索引是从 0 开始，单元的大小不一\(冯诺伊曼认为每一个 bit 都有对应的地址\)；不过现代计算机实际上是以 byte \(8 bit\) 作为内存单元大小的。因此，第 0 个字节指向的位置也是内存中的最前面 8 个 bit 的内存
+* 程序由指令组成，指令是一条一条按顺序获取。指令的的执行也是按顺序进行，除非有 jump 这样的指令被执行
 
 ![](/assets/1-1.jpg)
 
