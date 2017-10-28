@@ -1,6 +1,6 @@
-Protection rings are one of the mechanisms designed to limit the applications’ capabilities for security and robustness reasons. They were invented for Multics OS, a direct predecessor of Unix. Each ring corresponds to a certain privilege level. Each instruction type is linked with one or more privilege levels and is not executable on others. The current privilege level is stored somehow \(e.g., inside a special register\).
+Protection ring 是一种为了限制应用程序能力，而设计的保护策略。目的是为了提升系统的安全和稳定性。这个概念原先是在 Multics OS 上发明的，Multics OS 是 Unix 的爹。每一个 ring 都代表一个特殊的权限级别。每一条指令类型都会和一个或多个特权级别相关联，且在其它的特权级别下无法被执行。系统当前的特权级别会被存在某个地方\(e.g. 某个特殊寄存器中\)。
 
-Intel 64 has four privilege levels, of whichonly twoare used in practice: ring-0 \(the most privileged\) and ring-3 \(the least privileged\). The middle rings were planned to be used for drivers and OS services, but popular OSs did not adopt this approach.
+Intel 64 有四个特权级别，不过实际上只用到了其中的两个：ring-0\(最多权限\) 和 ring-3\(最少权限\)。中间的 ring 本来计划是为驱动程序和 OS 服务用，不过流行的 OS 们都没有接受这个方案。
 
-In long mode, the current protection ring number is stored in the lowest two bits of registercs\(and duplicated in those ofss\). It can only be changed when handling an interrupt or a system call. So an application cannot execute an arbitrary code with elevated privilege levels: it can only call an interrupt handler or perform a system call. See Chapter3“Legacy” for more information.
+在长模式中，当前的 protection ring 值被保存在寄存器 cs 的最低两 bit 中\(而且在 ss 中也有一份副本\)。只有在处理中断和系统调用时才可以修改其值。因此一个应用程序是不可能提权来执行任意代码的，只能通过中断处理或者一个系统调用来执行特权操作。第三章中有这方面更详细的信息。
 
