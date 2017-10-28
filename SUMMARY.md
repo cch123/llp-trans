@@ -7,7 +7,7 @@
       * [Model of Computation](part1/basic-computer-architecture/the-core-architecture/model-of-computation.md)
       * [von Neumann Architecture](part1/basic-computer-architecture/the-core-architecture/von-neumann-architecture.md)
     * [Evolution](part1/basic-computer-architecture/evolution.md)
-      * Drawbacks of von Neumann Architecture
+      * [Drawbacks of von Neumann Architecture](part1/basic-computer-architecture/evolution/drawbacks-of-von-neumann-architecture.md)
       * [Intel 64 Architecture](part1/basic-computer-architecture/evolution/intel-64-architecture.md)
       * [Architecture Extensions](part1/basic-computer-architecture/evolution/architecture-extensions.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
