@@ -9,7 +9,7 @@
     * [Evolution](part1/basic-computer-architecture/evolution.md)
       * Drawbacks of von Neumann Architecture
       * [Intel 64 Architecture](part1/basic-computer-architecture/evolution/intel-64-architecture.md)
-      * Architecture Extensions
+      * [Architecture Extensions](part1/basic-computer-architecture/evolution/architecture-extensions.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
     * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
     * [Hardware Stack](part1/basic-computer-architecture/hardware-stack.md)
