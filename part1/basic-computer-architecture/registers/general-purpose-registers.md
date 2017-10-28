@@ -7,15 +7,16 @@
 | Name | Alias | Description |
 | :--- | :--- | :--- |
 | r0 | rax | Kind of an “accumulator,” used in arithmetic instructions. For example, an instruction div is used to divide two integers. It accepts one operand and uses rax implicitly as thesecondone.Afterexecutingdiv rcxabig128-bitwidenumber,storedinpartsin two registers rdx and rax is divided by rcx and the result is stored again in rax. |
-| r3 | rbx |  |
-| r1 | rcx |  |
-| r2 | rdx |  |
-| r4 | rsp |  |
-| r5 | rbp |  |
-| r6 | rsi |  |
-| r7 | rdi |  |
+| r3 | rbx | Base register. Was used for base addressing in early processor models.
+ |
+| r1 | rcx | Used for cycles (e.g., in loop). |
+| r2 | rdx | Stores data during input/output operations. |
+| r4 | rsp | Stores the address of the topmost element in the hardware stack. See section 1.5 “Hardware stack”. |
+| r5 | rbp | Stack frame’s base. See section 14.1.2 “Calling convention”. |
+| r6 | rsi | Source index in string manipulation commands (such as movsd) |
+| r7 | rdi | Destination index in string manipulation commands (such as movsd) |
 | r8 |  |  |
-| r9 ... r15 | no |  |
+| r9 ... r15 | no | Appeared later. Used mostly to store temporal variables (but sometimes used implicitly, like r10, which saves the CPU flags when syscall instruction is executed. See Chapter 6 “Interrupts and system calls”). |
 
 
 
