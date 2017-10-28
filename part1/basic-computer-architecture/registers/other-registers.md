@@ -24,7 +24,7 @@
 
 ---
 
-![](/assets/A418868_1_En_1_Fig4_HTML.gif)
+![](/assets/1-4.gif)
 
 图 1-4.rax 分解
 
