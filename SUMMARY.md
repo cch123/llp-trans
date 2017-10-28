@@ -52,8 +52,8 @@
     * Summary
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
     * Input and Output
-    * Interrupts
-    * System Calls
+    * [Interrupts](part1/interrupts-and-system-calls/interrupts.md)
+    * [System Calls](part1/interrupts-and-system-calls/system-calls.md)
     * [Summary](part1/interrupts-and-system-calls/summary.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
     * [Finite State Machines](part1/models-of-computation/finite-state-machines.md)
