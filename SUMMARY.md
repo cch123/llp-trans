@@ -48,7 +48,7 @@
     * Input and Output
     * Interrupts
     * System Calls
-    * Summary
+    * [Summary](part1/interrupts-and-system-calls/summary.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
     * [Finite State Machines](part1/models-of-computation/finite-state-machines.md)
     * [Forth Machine](part1/models-of-computation/forth-machine.md)
