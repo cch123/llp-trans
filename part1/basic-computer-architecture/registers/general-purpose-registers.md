@@ -6,7 +6,16 @@
 
 | Name | Alias | Description |
 | :--- | :--- | :--- |
-| r0 | rax | an “accumulator,” used in arithmetic instructions. For example, an instruction div is used to divide two integers. It accepts one operand and uses rax implicitly as thesecondone.Afterexecutingdiv rcxabig128-bitwidenumber,storedinpartsin two registers rdx and rax is divided by rcx and the result is stored again in rax. |
+| r0 | rax | Kind of an “accumulator,” used in arithmetic instructions. For example, an instruction div is used to divide two integers. It accepts one operand and uses rax implicitly as thesecondone.Afterexecutingdiv rcxabig128-bitwidenumber,storedinpartsin two registers rdx and rax is divided by rcx and the result is stored again in rax. |
+| r3 | rbx |  |
+| r1 | rcx |  |
+| r2 | rdx |  |
+| r4 | rsp |  |
+| r5 | rbp |  |
+| r6 | rsi |  |
+| r7 | rdi |  |
+| r8 |  |  |
+| r9 ... r15 | no |  |
 
 
 
