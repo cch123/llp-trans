@@ -11,9 +11,9 @@
       * [Intel 64 Architecture](part1/basic-computer-architecture/evolution/intel-64-architecture.md)
       * [Architecture Extensions](part1/basic-computer-architecture/evolution/architecture-extensions.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
-      * General Purpose Registers
-      * Other Registers
-      * System Registers
+      * [General Purpose Registers](part1/basic-computer-architecture/registers/general-purpose-registers.md)
+      * [Other Registers](part1/basic-computer-architecture/registers/other-registers.md)
+      * [System Registers](part1/basic-computer-architecture/registers/system-registers.md)
     * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
     * [Hardware Stack](part1/basic-computer-architecture/hardware-stack.md)
     * [Summary](part1/basic-computer-architecture/summary.md)
