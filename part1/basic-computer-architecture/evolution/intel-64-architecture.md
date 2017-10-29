@@ -1,4 +1,4 @@
-1.2.2 Intel 64 Architecture
+1.2.2 Intel 64 架构
 
 本书我们只会介绍 Intel 64 架构。
 
