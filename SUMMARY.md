@@ -5,7 +5,7 @@
   * [Chapter 1: Basic Computer Architecture](part1/basic-computer-architecture.md)
     * [The Core Architecture](part1/basic-computer-architecture/the-core-architecture.md)
       * [计算模型](part1/basic-computer-architecture/the-core-architecture/model-of-computation.md)
-      * [von Neumann Architecture](part1/basic-computer-architecture/the-core-architecture/von-neumann-architecture.md)
+      * [冯诺伊曼架构](part1/basic-computer-architecture/the-core-architecture/von-neumann-architecture.md)
     * [Evolution](part1/basic-computer-architecture/evolution.md)
       * [Drawbacks of von Neumann Architecture](part1/basic-computer-architecture/evolution/drawbacks-of-von-neumann-architecture.md)
       * [Intel 64 Architecture](part1/basic-computer-architecture/evolution/intel-64-architecture.md)
