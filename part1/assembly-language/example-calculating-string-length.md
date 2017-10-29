@@ -19,6 +19,7 @@ _**Listing 2-13**.false.asm_
 
 ```
 global _start
+
 section .text
 _start:
     mov rdi, 1
@@ -32,13 +33,18 @@ _**Listing 2-14**.String Length:strlen.asm_
 
 ```
 global _start
+
 section .data
+
 test_string: db "abcdef", 0
+
 section .text
+
 strlen:                   ; by our convention, first and the only argument
                           ; is taken from rdi
     xor rax, rax          ; rax will hold string length. If it is not
                           ; zeroed first, its value will be totally random
+
 .loop:                    ; main loop starts here
     cmp byte [rdi+rax], 0 ; Check if the current symbol is null-terminator.
                           ; We absolutely need that 'byte' modifier since
@@ -51,14 +57,19 @@ strlen:                   ; by our convention, first and the only argument
     inc rax               ; Otherwise go to next symbol and increase
                           ; counter
     jmp .loop
+
 .end:
     ret                   ; When we hit 'ret', rax should hold return value
+
 _start:
+
     mov rdi, test_string
     call strlen
     mov rdi, rax
+    
     mov rax, 60
     syscall
+
 ```
 
 重要的 strlen 函数我们暂时先留着。请注意：
@@ -71,6 +82,34 @@ _start:
 **■Question 19** 你能指出列表 2-15 中的一到两个 bug 么？什么情况下会触发?
 
 ---
+
+_**Listing 2-15**. strlen 的另一个版本：strlen\_bug1.asm_
+
+```
+global _start
+
+section .data
+test_string: db "abcdef", 0
+
+section .text
+
+strlen:
+.loop:
+    cmp byte [rdi+r13], 0
+    je .end
+    inc r13
+    jmp .loop
+.end:
+    mov rax, r13
+ret
+
+_start:
+    mov rdi, test_string
+    call strlen
+    mov rdi, rax
+    mov rax, 60
+    syscall
+```
 
 
 
