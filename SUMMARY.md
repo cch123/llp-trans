@@ -13,7 +13,7 @@
     * [寄存器](part1/basic-computer-architecture/registers.md)
       * [通用寄存器](part1/basic-computer-architecture/registers/general-purpose-registers.md)
       * [其它寄存器](part1/basic-computer-architecture/registers/other-registers.md)
-      * [System Registers](part1/basic-computer-architecture/registers/system-registers.md)
+      * [系统寄存器](part1/basic-computer-architecture/registers/system-registers.md)
     * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
     * [Hardware Stack](part1/basic-computer-architecture/hardware-stack.md)
     * [Summary](part1/basic-computer-architecture/summary.md)
