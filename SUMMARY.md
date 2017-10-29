@@ -23,7 +23,7 @@
     * [Writing Hello World](part1/assembly-language/writing-hello-world.md)
       * [Basic Input and Output](part1/assembly-language/writing-hello-world/basic-input-and-output.md)
       * [Program Structure](part1/assembly-language/writing-hello-world/program-structure.md)
-      * Basic Instructions
+      * [Basic Instructions](part1/assembly-language/writing-hello-world/basic-instructions.md)
     * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
     * [Working with Data](part1/assembly-language/working-with-data.md)
