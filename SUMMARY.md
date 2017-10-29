@@ -25,8 +25,8 @@
       * [Program Structure](part1/assembly-language/writing-hello-world/program-structure.md)
       * [Basic Instructions](part1/assembly-language/writing-hello-world/basic-instructions.md)
     * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
-      * Local Labels
-      * Relative Addressing
+      * [Local Labels](part1/assembly-language/example-output-register-contents/local-labels.md)
+      * [Relative Addressing](part1/assembly-language/example-output-register-contents/relative-addressing.md)
       * [Order of Execution](part1/assembly-language/example-output-register-contents/order-of-execution.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
     * [Working with Data](part1/assembly-language/working-with-data.md)
