@@ -16,9 +16,9 @@
 
 ![](/assets/1-5.gif)
 
-图 1-5.rsi 和 dsi 分解
+_**图 1-5**.rsi 和 dsi 分解_
 
 ![](/assets/1-6.gif)
 
-图 1-6.rsp 和 rbp 分解
+_**图 1-6**.rsp 和 rbp 分解_
 
