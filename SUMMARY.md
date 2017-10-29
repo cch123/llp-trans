@@ -27,6 +27,10 @@
     * [Example: Output Register Contents](part1/assembly-language/example-output-register-contents.md)
     * [Function Calls](part1/assembly-language/function-calls.md)
     * [Working with Data](part1/assembly-language/working-with-data.md)
+      * [Endianness](part1/assembly-language/working-with-data/endianness.md)
+      * [Strings](part1/assembly-language/working-with-data/strings.md)
+      * Constant Precomputation
+      * Pointers and Different Addressing Types
     * [Example: Calculating String Length](part1/assembly-language/example-calculating-string-length.md)
     * [Assignment: Input/Output Library](part1/assembly-language/assignment-inputoutput-library.md)
     * [Summary](part1/assembly-language/summary.md)
