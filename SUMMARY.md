@@ -30,7 +30,7 @@
       * [Endianness](part1/assembly-language/working-with-data/endianness.md)
       * [Strings](part1/assembly-language/working-with-data/strings.md)
       * [Constant Precomputation](part1/assembly-language/working-with-data/constant-precomputation.md)
-      * Pointers and Different Addressing Types
+      * [Pointers and Different Addressing Types](part1/assembly-language/working-with-data/pointers-and-different-addressing-types.md)
     * [Example: Calculating String Length](part1/assembly-language/example-calculating-string-length.md)
     * [Assignment: Input/Output Library](part1/assembly-language/assignment-inputoutput-library.md)
     * [Summary](part1/assembly-language/summary.md)
