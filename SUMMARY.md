@@ -36,6 +36,7 @@
       * [Pointers and Different Addressing Types](part1/assembly-language/working-with-data/pointers-and-different-addressing-types.md)
     * [Example: Calculating String Length](part1/assembly-language/example-calculating-string-length.md)
     * [Assignment: Input/Output Library](part1/assembly-language/assignment-inputoutput-library.md)
+      * [Self-Evaluation](part1/assembly-language/assignment-inputoutput-library/self-evaluation.md)
     * [Summary](part1/assembly-language/summary.md)
   * [Chapter 3 Legacy](part1/legacy.md)
     * [Real Mode](part1/legacy/real-mode.md)
