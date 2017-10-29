@@ -16,7 +16,7 @@
       * [系统寄存器](part1/basic-computer-architecture/registers/system-registers.md)
     * [Protection Rings](part1/basic-computer-architecture/protection-rings.md)
     * [硬件栈](part1/basic-computer-architecture/hardware-stack.md)
-    * [Summary](part1/basic-computer-architecture/summary.md)
+    * [小结](part1/basic-computer-architecture/summary.md)
   * [Chapter 2 Assembly Language](part1/assembly-language.md)
     * [Setting Up the Environment](part1/assembly-language/setting-up-the-environment.md)
       * [Working with Code Examples](part1/assembly-language/setting-up-the-environment/working-with-code-examples.md)
