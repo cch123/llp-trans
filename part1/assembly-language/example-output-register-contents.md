@@ -7,56 +7,53 @@ _**Listing 2-5.**打印 rax 的值：print\_rax.asm_
 ```
 section .data
 codes:
-    db      '0123456789ABCDEF'
+    db      '0123456789ABCDEF'
 
 section .text
 global _start
 _start:
-    ; number 1122... in hexadecimal format
-    mov rax, 0x1122334455667788
+    ; number 1122... in hexadecimal format
+    mov rax, 0x1122334455667788
 
-    mov rdi, 1
-    mov rdx, 1
-    mov rcx, 64
-   ; Each 4 bits should be output as one hexadecimal digit
-   ; Use shift and bitwise AND to isolate them
-   ; the result is the offset in 'codes' array
+    mov rdi, 1
+    mov rdx, 1
+    mov rcx, 64
+   ; Each 4 bits should be output as one hexadecimal digit
+   ; Use shift and bitwise AND to isolate them
+   ; the result is the offset in 'codes' array
 .loop:
-    push rax
-    sub rcx, 4
-   ; cl is a register, smallest part of rcx
-   ; rax -- eax -- ax -- ah + al
-   ; rcx -- ecx -- cx -- ch + cl
-    sar rax, cl
-    and rax, 0xf
+    push rax
+    sub rcx, 4
+   ; cl is a register, smallest part of rcx
+   ; rax -- eax -- ax -- ah + al
+   ; rcx -- ecx -- cx -- ch + cl
+    sar rax, cl
+    and rax, 0xf
 
-    lea rsi, [codes + rax]
-    mov rax, 1
-   ; syscall leaves rcx and r11 changed
-    push rcx
-    syscall
-    pop rcx
+    lea rsi, [codes + rax]
+    mov rax, 1
+   ; syscall leaves rcx and r11 changed
+    push rcx
+    syscall
+    pop rcx
 
-    pop rax
-   ; test can be used for the fastest 'is it a zero?' check
-   ; see docs for 'test' command
-    test rcx, rcx
-    jnz .loop
-    mov     rax, 60 ;          invoke 'exit' system call
-    xor      rdi, rdi
-    syscall
-
+    pop rax
+   ; test can be used for the fastest 'is it a zero?' check
+   ; see docs for 'test' command
+    test rcx, rcx
+    jnz .loop
+    mov     rax, 60 ;          invoke 'exit' system call
+    xor      rdi, rdi
+    syscall
 ```
 
-By shiftingraxvalue and logical ANDing it with mask0xFwe transform the whole number into one of its hexadecimal digits. Each digit is a number from 0 to 15. Use it as an index and add it to the address of the labelcodesto get the representing character.
+通过对 rax 的值进行移位以及将其与 0xF 进行位与运算，可以将整个数字转换成它的十六进制数形式。每一个十六进制字符都是 0 到 15 的数字。使用这个数字作为索引即可在字符串中查询到其对应的字符。
 
-For example, givenrax = 0x4Awe will use indices0x4 =4 and0xA =104The first one will give us a10 10.
-
-character'4'whose code is0x34. The second one will result into character'a'whose code is0x61.
+例如，rax = 0x4A。我们使用 0x4 = 4 和 0xA = 10，第一个索引查到的字符是 '4'，值是 0x34。第二个字符是 'a'，值为 0x61。
 
 ---
 
-■Question 14Check that the asCII codes mentioned in the last example are correct.
+ ■Question 14 检查例子中用到的 ASCII 代码是否正确。
 
 ---
 
