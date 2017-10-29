@@ -1,2 +1,2 @@
-1.1 The Core Architecture
+1.1 核心架构
 
