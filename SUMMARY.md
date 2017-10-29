@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Part 1 汇编语言与计算机架构](part1.md)
   * [Chapter 1: Basic Computer Architecture](part1/basic-computer-architecture.md)
-    * [The Core Architecture](part1/basic-computer-architecture/the-core-architecture.md)
+    * [核心架构](part1/basic-computer-architecture/the-core-architecture.md)
       * [计算模型](part1/basic-computer-architecture/the-core-architecture/model-of-computation.md)
       * [冯诺伊曼架构](part1/basic-computer-architecture/the-core-architecture/von-neumann-architecture.md)
     * [Evolution](part1/basic-computer-architecture/evolution.md)
