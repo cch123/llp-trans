@@ -66,10 +66,9 @@ _start:
     mov rdi, test_string
     call strlen
     mov rdi, rax
-    
+
     mov rax, 60
     syscall
-
 ```
 
 重要的 strlen 函数我们暂时先留着。请注意：
