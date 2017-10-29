@@ -66,11 +66,11 @@ _start:
 1. strlen 修改了寄存器的值，所有调用 strlen 之后寄存器的值就发生变化了。
 2. strlen 没有修改 rbx 或者其它 callee-saved 寄存器。
 
+---
 
+**■Question 19** 你能指出列表 2-15 中的一到两个 bug 么？什么情况下会触发?
 
-
-
-
+---
 
 
 
