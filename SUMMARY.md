@@ -9,7 +9,7 @@
     * [进化](part1/basic-computer-architecture/evolution.md)
       * [冯诺伊曼架构的缺陷](part1/basic-computer-architecture/evolution/drawbacks-of-von-neumann-architecture.md)
       * [Intel 64 架构](part1/basic-computer-architecture/evolution/intel-64-architecture.md)
-      * [Architecture Extensions](part1/basic-computer-architecture/evolution/architecture-extensions.md)
+      * [架构扩展](part1/basic-computer-architecture/evolution/architecture-extensions.md)
     * [Registers](part1/basic-computer-architecture/registers.md)
       * [General Purpose Registers](part1/basic-computer-architecture/registers/general-purpose-registers.md)
       * [Other Registers](part1/basic-computer-architecture/registers/other-registers.md)
