@@ -24,10 +24,6 @@ mov，mOV，Mov 是没什么区别的，但 `global start`_ 和 _`global _START`
 
 db 伪指令用来创建字节数据。想定义数据一般用下面这些伪指令之一，具体用哪个需要根据数据的格式确定：
 
-The db directive is used to create byte data. Usually data is defined using one of these directives, which
-
-differ by data format:
-
 * db---字节；
 * dw---words，每个 word 等于两个字节；
 * dd---double words，每个double words 等于四个字节；
@@ -65,8 +61,6 @@ message: db 'hello, world!', 10
 在 Intel 架构的语境下汇编编程中的词 word 则是表示 16 位的数据条目，因为在老的机器上 word 就是那时候的机器字长。不幸的是，考虑到历史遗产问题，现在依然沿用了 word 为 16 位的做法，这也就是为什么 32 位的数据被称为 double words 而 64 位的数据被称为 quad words。
 
 ---
-
- 
 
 
 
