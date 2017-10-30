@@ -60,11 +60,13 @@ message: db 'hello, world!', 10
 
 ---
 
-**■Terminological chaos** 术语混乱：It is quite common to refer to the integer format most native to the computer asmachine word. as we are programming a 64-bit computer, where addresses are 64-bit, general purpose registers are 64-bit, it is pretty convenient to take the machine word size as 64 bits or 8 bytes.
+**■Terminological chaos** 术语混乱：通常人们认为 integer 的长度即是计算机的字长。因为我们写代码的平台是 64 位计算机，地址是 64 位，通用寄存器也是 64 位，因此认为机器字长是 64 位或者  8 字节是比较方便的。
 
-In assembly programming for Intel architecture the termwordwas indeed used to describe a 16-bit data entry, because on the older machines it was exactly the machine word. unfortunately, for legacy reasons, it is still used as in old times. that’s why 32-bit data is called double words and 64-bit data is referred to as quad words.
+在 Intel 架构的语境下汇编编程中的词 word 则是表示 16 位的数据条目，因为在老的机器上 word 就是那时候的机器字长。不幸的是，考虑到历史遗产问题，现在依然沿用了 word 为 16 位的做法，这也就是为什么 32 位的数据被称为 double words 而 64 位的数据被称为 quad words。
 
 ---
+
+ 
 
 
 
