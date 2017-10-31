@@ -53,7 +53,7 @@ _start:
 
 ---
 
- ■Question 14 检查例子中用到的 ASCII 代码是否正确。
+■Question 14 检查例子中用到的 ASCII 代码是否正确。
 
 ---
 
