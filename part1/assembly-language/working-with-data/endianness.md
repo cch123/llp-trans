@@ -2,7 +2,7 @@
 
 让我们用刚刚写的方法来输出内存中存储的值。我们会用两种不同的方法来达到这个目的：第一个种会分开输出它的各个字节，第二种则是按照正常整体输出。参见列表 2-11：
 
-Listing 2-11.endianness.asm
+_**Listing 2-11**.endianness.asm_
 
 ```
 section .data
