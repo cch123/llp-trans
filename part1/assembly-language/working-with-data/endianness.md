@@ -1,6 +1,5 @@
 2.5.1 大小端
 
-  
 让我们用刚刚写的方法来输出内存中存储的值。我们会用两种不同的方法来达到这个目的：第一个种会分开输出它的各个字节，第二种则是按照正常整体输出。参见列表 2-11：
 
 Listing 2-11.endianness.asm
@@ -16,15 +15,14 @@ _start:
     mov rdi, [demo1]
     call print_hex
     call print_newline
-    
+
     mov rdi, [demo2]
     call print_hex
     call print_newline
-    
+
     mov rax, 60
     xor rdi, rdi
     syscall
-    
 ```
 
 运行这个程序，输出的结果可能让我们有点儿意外，我们在 demo1 和 demo2 中得到了完全不同的结果。
@@ -48,13 +46,11 @@ _start:
 
 上面的约定和字符串或者数组的存储方式没有什么关系。不过如果每一个字符都是由两个而不是一个字节编码而成的话，这些字节会被以反序存储。
 
+小端模式有一些优点，我们可以直接丢弃掉数字的高位来把数字从大范围数转为小范围数，例如 8 字节数转为 4 字节数。
 
+例如，demo3：dq 0x1234。然后为了把这个数字转成 dw，我们需要从 demo3 相同的地址读取一个 dword 数字。参见表 2-1，该数字在内存中的布局详情。
 
-The advantage of little endian is that we can discard the most significant bytes effectively converting the number from a wider format to a narrower one, like 8 bytes.
-
-For example,demo3: dq 0x1234. Then, to convert this number intodwwe have to read a dword number starting at the same addressdemo3. See Table2-1for a complete memory layout.
-
-Table 2-1.Little Endian and Big Endian for quad word number 0x1234
+_**Table 2-1.**小端和大端模式下 qword 数字 0x1234 的内存布局情况_
 
 | ADDRESS | VALUE-LE | VALUE-BE |
 | :--- | :--- | :--- |
@@ -67,19 +63,9 @@ Table 2-1.Little Endian and Big Endian for quad word number 0x1234
 | demo3 + 6 | 0x00 | 0x12 |
 | demo3 + 7 | 0x00 | 0x32 |
 
-Big endian is a native format often used inside network packets \(e.g., TCP/IP\). It is also an internal number format for Java Virtual Machine.
+大端比较常用的是网络包的传输场景\(e.g. TCP/IP\)。同时大端还是 JAVA 虚拟机的内部数字格式。
 
-Middle endianis a not very well-known notion. Assume we want to create a set of routines to perform arithmetic with 128-bit numbers. Then the bytes can be stored as follows: first will be the 8 least significant bytes in reversed order and then the 8 most significant bytes also in reverse order:
+**中端模式**这个概念比较少见。假设我们现在有一些算术过程，需要对 128 位的数值进行计算。那么其字节是像这样存储：先是 8 个倒序的低位字节，然后是 8 个倒序的高位字节：
 
 7 6 5 4 3 2 1 0, 16 15 14 13 12 11 10 9 8
-
-
-
-
-
-
-
-
-
-
 
