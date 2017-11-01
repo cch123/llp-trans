@@ -43,6 +43,9 @@
     * [Protected Mode](part1/legacy/protected-mode.md)
     * [Minimal Segmentation in Long Mode](part1/legacy/minimal-segmentation-in-long-mode.md)
     * [Accessing Parts of Registers](part1/legacy/accessing-parts-of-registers.md)
+      * [An Unexpected Behavior](part1/legacy/accessing-parts-of-registers/an-unexpected-behavior.md)
+      * CISC and RISC
+      * Explanation
     * [Summary](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
     * [缓存](part1/virtual-memory/caching.md)
