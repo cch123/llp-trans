@@ -20,7 +20,7 @@
 
 ■Question 21 尝试不拷贝代码且调用 `print_uint`的前提下重写 `print_int`。提示：阅读尾递归/调用优化的资料。
 
-■Question 22 尝试不拷贝代码，不调用 `print_uint`，且不使用 jmp 指令，来实现  printint。你可能只需要一条指令，且需要注意正确的代码位置。
+■Question 22 尝试不拷贝代码，不调用 `print_uint`，且不使用 jmp 指令，来实现  print int。你可能只需要一条指令，且需要注意正确的代码位置。
 
 阅读 co-routines 的资料。
 
