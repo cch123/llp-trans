@@ -39,8 +39,12 @@ _**Table 2-2**.Input/Output Library Functions_
 | print\_newline | Prints a character with code 0xA. |
 | print\_uint | Outputs an unsigned 8-byte integer in decimal format.We suggest you create a buffer on the stack6 and store the division results there. Each time you divide the last value by 10 and store the corresponding digit inside the buffer. Do not forget, that you should transform each digit into its ASCII code \(e.g., 0x04 becomes 0x34\). |
 | print\_int | Output a signed 8-byte integer in decimal format. |
-|  |  |
-|  |  |
+| read_char | Read one character from stdin and return it. If the end of input stream occurs, return 0. |
+| read_word | Accepts a buffer address and size as arguments. Reads next word from stdin (skipping whitespaces7 into buffer). Stops and returns 0 if word is too big for the buffer specified; otherwise returns a buffer address. This function should null-terminate the accepted string. |
+| parse_uint | Accepts a null-terminated string and tries to parse an unsigned number from its start. Returns the number parsed in rax, its characters count in rdx. |
+| parse_int | Accepts a null-terminated string and tries to parse a signed number from its start. Returns the number parsed in rax; its characters count in rdx (including sign if any). No spaces between sign and digits are allowed. |
+| string_equals | Accepts two pointers to strings and compares them. Returns 1 if they are equal, otherwise 0. |
+| string_copy | Accepts a pointer to a string, a pointer to a buffer, and buffer’s length. Copies string to the destination. The destination address is returned if the string fits the buffer; otherwise zero is returned. |
 
 用 test.py 来自动化测试代码正确性。只要 run 一发脚本，剩下的脚本会帮你搞定。
 
