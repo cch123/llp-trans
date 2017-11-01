@@ -37,8 +37,7 @@ _**Table 2-2**.Input/Output Library Functions_
 | print_string | Accepts a pointer to a null-terminated string and prints it to stdout. |
 | print_char | Accepts a character code directly as its first argument and prints it to stdout. |
 | print_newline | Prints a character with code 0xA. |
-| print_uint | Outputs an unsigned 8-byte integer in decimal format.
- We suggest you create a buffer on the stack6 and store the division results there. Each time you divide the last value by 10 and store the corresponding digit inside the buffer. Do not forget, that you should transform each digit into its ASCII code
+| print_uint | Outputs an unsigned 8-byte integer in decimal format.We suggest you create a buffer on the stack6 and store the division results there. Each time you divide the last value by 10 and store the corresponding digit inside the buffer. Do not forget, that you should transform each digit into its ASCII code
 (e.g., 0x04 becomes0x34). |
 | print_int | Output a signed 8-byte integer in decimal format. |
 |  |  |
