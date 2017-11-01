@@ -1,13 +1,12 @@
 3.4.3 Explanation
 
-Now back to the example shown in Listing3-3. Let’s think about instruction decoding. The part of a CPU called instruction decoder is constantly translating commands from an older CISC system to a more convenient RISC one. Pipelines allow for a simultaneous execution of up to six smaller instructions.  
+现在回到列表 3-3 的示例。我们思考一下指令的解码。CPU 中负责解码的指令解码器会一直将命令从老系统的 CISC 指令翻译为更方便的 RISC 指令。流水线允许最多同时执行六条指令。
 
+为了达成上面这些效果，寄存器的概念实际上是一个虚拟概念。在微代码执行期间，解码器从一个物理寄存器的“银行”选择一个可用的寄存器。一条大指令一结束，效果就立刻对上层程序员可见了：某些物理寄存器的值可能被拷贝到了，现在被赋值到的这一个，让我们叫它 rax。
 
-To achieve that, however, the notion of registers should be virtualized. During microcode execution, the decoder chooses an available register from a large bank of physical registers. As soon as the bigger instruction ends, the effects become visible to programmer: the value of some physical registers may be copied to those, currently assigned to be, let’s say,rax.
+数据之间的相互依赖会拖累流水线，降低性能。最差的场合可能同一个寄存器会被几条连续的指令先后读取和修改\(想想 rflags 寄存器\)。
 
-The data interdependencies between instructions stall the pipeline, decreasing performance. The worst cases occur when the same register is read and modified by several consecutive instructions \(think aboutrflags!\).
+如果修改 eax 需要保证寄存器的高位原封不动，那么就会引入多余的依赖，即当前指令与任何其它修改过 rax 或者 rax 一部分的指令会构成依赖。在每次写 eax 时，如果我们忽略掉高 32 位，我们就可以消灭这种依赖，因为我们不再在乎之前 rax 或者 rax 的一部分的值。
 
-If modifying eax means keeping upper bits of rax intact, it introduces an additional dependency between current instruction and whatever instruction modifiedraxor its parts before. By discarding upper 32 bits on each write toeaxwe eliminate this dependency, because we do not care anymore about previousraxvalue or its parts.
-
-This kind of a new behavior was introduced with the latest general purpose registers’ growth to 64 bits and does not affect operations with their smaller parts for the sake of compatibility. Otherwise, most older binaries would have stopped working because assigning to, for example,bl, would have modified the entireebx, which was not true back when 64-bit registers had not yet been introduced.
+这种行为是在寄存器涨到 64 位的时期才被引入的，为了和以前的行为兼容，不会影响寄存器的低位操作。如果不做这种兼容的话可能一些老的二进制程序在赋值的时候就没法工作了，例如，bl 寄存器在被修改时会修改整个 ebx 寄存器，这在 64 位寄存器还没被引入时显然是不正确的。
 
