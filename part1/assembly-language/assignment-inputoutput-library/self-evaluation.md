@@ -2,36 +2,37 @@
 
 为了避免在测试的时候碰到意料之外的结果，先快速检查一下下面的 checklist：
 
+标识函数的 label 应该是 global 的；其它标签都应该是局部的。
+
+你没有在使用寄存器之前假设它已经被清零了。
+
+如果你使用了 callee-saved 寄存器，那么你对这些寄存器进行了保存和恢复。
+
+在调用函数之前，你保存了 caller-saved 寄存器，且在调用之后对它们进行了恢复。
+
+没有在 .data 段使用缓冲区。把缓冲区数据分配在了栈上，因为栈上的空间可以按照你的需求对多线程进行适配。
+
+你的函数参数是通过 rdi，rsi，rdx，rcx，r8 和 r9 依次传入。
+
+没有直接用数字打印数字，而是把数字转换成成字符串，再调用 print\_string 来打印。
+
+``parseint 和 `parse_uint``\` 都正确地设置了 rdx。这一点对于之后的作业至关重要。
+
+当输入以 Ctrl-D 结尾时，`read_word` 和其它的 parse 函数都可以正常工作。
+
+如果做法正确的话，代码应该不会超过 250 行。
+
+---
+
+■Question 20 尝试在不调用 `print_char`且不复制其代码前提下重写 `print_new` 。提示：阅读尾递归/调用优化的资料。
+
+■Question 21 尝试不拷贝代码且调用 `print_uint`的前提下重写 `print_int`。提示：阅读尾递归/调用优化的资料。
+
+■Question 22 尝试不拷贝代码，不调用 `print_uint`，且不使用 jmp 指令，来实现  printint。你可能只需要一条指令，且需要注意正确的代码位置。
+
+阅读 co-routines 的资料。
+
+---
 
 
-1.Labels denoting functions should be global; others should be local.
-
-2.Youdonotassumethatregistersholdzero“bydefault.”  
-3.Yousaveandrestorecallee-savedregistersifyouareusingthem.
-
-1. Yousavecaller-savedregistersyouneedbeforecallandrestorethemafter.
-
-2. Youdonotusebuffersin.data.Instead,youallocatethemonthestack,which allows you to adapt multithreading if needed.
-
-3. Yourfunctionsacceptargumentsinrdi,rsi,rdx,rcx,r8,andr9.
-
-4. Youdonotprintnumbersdigitafterdigit.Insteadyoutransformthemintostringsof
-
-   characters and useprint\_string.
-
-5. parse\_intandparse\_uintaresettingrdxcorrectly.Itwillbereallyimportantinthe
-
-   next assignment.
-
-6. All parsing functions andread\_wordwork when the input is terminated via Ctrl-D.
-
-Done right, the code will not take more than 250 lines.
-
-■Question 20try to rewriteprint\_newlinewithout callingprint\_charor copying its code. hint: read about tail call optimization.
-
-■Question 21try to rewriteprint\_intwithout callingprint\_uintor copying its code. hint: read about tail call optimization.
-
-■Question 22try to rewriteprint\_intwithout callingprint\_uint, copying its code, or usingjmp. you will only need one instruction and a careful code placement.
-
-read about co-routines.
 
