@@ -44,7 +44,7 @@
     * [Minimal Segmentation in Long Mode](part1/legacy/minimal-segmentation-in-long-mode.md)
     * [Accessing Parts of Registers](part1/legacy/accessing-parts-of-registers.md)
       * [An Unexpected Behavior](part1/legacy/accessing-parts-of-registers/an-unexpected-behavior.md)
-      * CISC and RISC
+      * [CISC and RISC](part1/legacy/accessing-parts-of-registers/cisc-and-risc.md)
       * [Explanation](part1/legacy/accessing-parts-of-registers/explanation.md)
     * [Summary](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
