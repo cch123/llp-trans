@@ -45,7 +45,7 @@
     * [Accessing Parts of Registers](part1/legacy/accessing-parts-of-registers.md)
       * [An Unexpected Behavior](part1/legacy/accessing-parts-of-registers/an-unexpected-behavior.md)
       * CISC and RISC
-      * Explanation
+      * [Explanation](part1/legacy/accessing-parts-of-registers/explanation.md)
     * [Summary](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
     * [缓存](part1/virtual-memory/caching.md)
