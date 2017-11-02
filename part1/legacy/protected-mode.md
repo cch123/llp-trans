@@ -72,11 +72,9 @@ higher privilege levels? \(if code segment\)
 jmp 0x08:addr
 ```
 
-Listing3-1shows a small snippet of how we can turn on protected mode \(assuming start32 is a label
+列表 3-1 展示了我们如何开启保护模式的代码片断\(假设 start32 是 32 位代码启动时的一个 label\)。
 
-on 32-bit code start\).
-
-Listing 3-1.Enabling Protected Mode loader\_start32.asm
+_**Listing 3-1.**开启保护模式 loader\_start32.asm_
 
 ```
 lgdt cs:[_gdtr]
