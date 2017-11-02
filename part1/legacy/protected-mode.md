@@ -8,7 +8,9 @@ Intel 80386 是第一个实现了 32 位保护模式的处理器。
 
 相比实模式，获得段的起始地址的方式也改变了。现在起始地址是根据一个特别的表的条目计算得到的，而不是直接通过段寄存器的直接乘法得到的。
 
-                       线性地址 = 段基址 \(从系统表中读取\) + 偏移量
+```
+                   线性地址 = 段基址 \(从系统表中读取\) + 偏移量
+```
 
 段寄存器 cs，ds，ss，es，gs，fs 中存储的内容叫做段选择器，寄存器中存储的是一个指向特殊段描述符表的索引和一点附加信息。“段描述符表”分为两种类型：可能有数不清的 LDT\(Local Descriptor Table\) 和一个 GDT\(Global Descriptor Table\)。
 
@@ -17,6 +19,8 @@ LDT 们是为了给硬件的任务切换策略设计的；然而操作系统制�
 GDTR 是一个寄存器，存储了 GDT 的地址和大小。
 
 段选择器的结构如图 3-1 所示：
+
+![](/assets/3-1.gif)
 
 _**图 3-1**.段选择器\(任意一个段寄存器的内容\)_
 
@@ -42,6 +46,8 @@ ds 寄存器的使用也可以很容易地验证这一点，只消修改几个 b
 
 图 3-2 展示了 GDT 描述符的格式。
 
+![](/assets/3-2.gif)
+
 _**图 3-2**.段描述符 \(在 GDT 或 LDT 内\)_
 
 G—Granularity, e.g., size is in 0 = bytes, 1 = pages of size 4096 bytes each. D—Default operand size \(0 = 16 bit, 1 = 32 bit\).  
@@ -60,22 +66,15 @@ higher privilege levels? \(if code segment\)
  A—Was it accessed?  
  DPL—Descriptor Privilege Level \(to which ring is it attached?\)
 
-
-
 The processor always \(even today\) starts in real mode. To enter protected mode one has to create GDT and set up gdtr; set a special bit in cr0 and make a so-called far jump. Far jump means that the segment \(or segment selector\) is explicitly given \(and thus can be different from default\), as follows:
-
-
 
 ```
 jmp 0x08:addr
 ```
 
-
-
 Listing3-1shows a small snippet of how we can turn on protected mode \(assuming start32 is a label
 
-on 32-bit code start\).  
-
+on 32-bit code start\).
 
 Listing 3-1.Enabling Protected Mode loader\_start32.asm
 
@@ -113,11 +112,7 @@ Align directives control alignment, the essence of which we explain later in thi
 
 ---
 
-
-
 You might think that every memory transaction needs another one now to read GDT contents. This is not true: for each segment register there is a so-called **shadow register**, which cannot be directly referenced. It serves as a cache for GDT contents. It means that once a segment selector is changed, the corresponding shadow register is loaded with the corresponding descriptor from GDT. Now this register will serve as a source of all information needed about this segment.
-
-
 
 The D flag needs a little explanation, because it depends on segment type.
 
@@ -127,11 +122,7 @@ The D flag needs a little explanation, because it depends on segment type.
 
 * For data segments, growing toward low addresses, it denotes their limits \(0 for 64 KB, 1 for 4 GB\). This bit should always be set in long mode.
 
-
-
 As you see, the segmentation is quite a cumbersome beast. There are reasons it was not largely adopted by operating systems and programmers alike \(and is now pretty much abandoned\).
-
-
 
 * No segmentation is easier for programmers;
 
@@ -144,8 +135,4 @@ As you see, the segmentation is quite a cumbersome beast. There are reasons it w
   amount efficiently?
 
 After the introduction of long mode segmentation was purged from processor, but not completely. It is still used for protection rings and thus a programmer should understand it.
-
-
-
-
 
