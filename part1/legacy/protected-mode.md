@@ -66,7 +66,7 @@ higher privilege levels? \(if code segment\)
  A—Was it accessed?  
  DPL—Descriptor Privilege Level \(to which ring is it attached?\)
 
-The processor always \(even today\) starts in real mode. To enter protected mode one has to create GDT and set up gdtr; set a special bit in cr0 and make a so-called far jump. Far jump means that the segment \(or segment selector\) is explicitly given \(and thus can be different from default\), as follows:
+处理器总是\(即使是今天\)从实模式启动的。为了进入保护模式，需要创建 GDT 然后设置好 gdtr，在 cr0 设置一个特殊的标识位，然后执行一个叫做 far jump 的操作。Far jump 意思是段\(或者段选择器\)已经显式地给出\(并且可以和默认的不同\)，像下面这样：
 
 ```
 jmp 0x08:addr
