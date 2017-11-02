@@ -1,0 +1,151 @@
+3.2 Protected Mode
+
+Intel 80386 是第一个实现了 32 位保护模式的处理器。
+
+它提供了更广泛的寄存器\(eax，ebx，...，esi，edi\) 和新的保护策略：protection rings，虚拟内存，和改善的分段。
+
+这些策略实现了程序之间的彼此隔离，所以程序异常结束不会再影响到其它程序。更进一步，程序没有办法破坏掉其所在处理器的内存了。
+
+相比实模式，获得段的起始地址的方式也改变了。现在起始地址是根据一个特别的表的条目计算得到的，而不是直接通过段寄存器的直接乘法得到的。
+
+                       线性地址 = 段基址 \(从系统表中读取\) + 偏移量
+
+段寄存器 cs，ds，ss，es，gs，fs 中存储的内容叫做段选择器，寄存器中存储的是一个指向特殊段描述符表的索引和一点附加信息。“段描述符表”分为两种类型：可能有数不清的 LDT\(Local Descriptor Table\) 和一个 GDT\(Global Descriptor Table\)。
+
+LDT 们是为了给硬件的任务切换策略设计的；然而操作系统制造商们没有对 LDT 进行适配。今时今日程序是使用虚拟内存进行隔离的，LDT 没有被使用。
+
+GDTR 是一个寄存器，存储了 GDT 的地址和大小。
+
+段选择器的结构如图 3-1 所示：
+
+_**图 3-1**.段选择器\(任意一个段寄存器的内容\)_
+
+Index 表示描述符在 GDT 或者 LDT 中的位置。T 位表示到底是 LDT 还是 GDT。因为 LDT 没人用了，所以无论啥时候，T 这一位始终都是 0。
+
+GDT/LDT 表中的条目还会存储段被赋予了哪种特权级别。当通过段选择器来访问一个段时，会进行一次请求特权级别\(在选择器=段寄存器中存储\) 和描述符特权级别\(在描述符表中存储\)的检查。如果请求特权级别不够访问高特权级别的段，那么就会发生错误。这样我们就可以创建无数权限不一样的段，并用存储在段选择器中的请求特权级别值来定义哪些对我们来说是可访问的了\(在给出我们自己的特权级别的情况下\)。
+
+特权级别和 protection ring 是一回事。
+
+比较稳妥的一种说法是当前的特权级别\(e.g.当前的 ring\)存储在 cs 和 ss 寄存器的低两个 bit\(这两个数值应该是相等的\)。这个值会影响到我们执行特定关键指令的能力\(e.g. 修改 GDT 自身\)。
+
+ds 寄存器的使用也可以很容易地验证这一点，只消修改几个 bit 使我们能覆盖当前的数据访问的特权级别为更低的级别，甚至只能访问一个选定的段。
+
+例如当前我们在 ring-0 模式下，且 ds = 0x02。即使 cs 和 ss 最低的两位都是 0\(因为我们在 ring-0 下\)，我们依然不能访问特权级别比 2 高的段\(例如 1 或者 0 模式下\)。
+
+换句话说，当我们访问段时，请求的特权级别字段保存了我们到底有多大的权限。段会被依次赋予四种 protection ring 的其中一种。当请求访问一个特定的特权级别时，请求的特权级别必须比段的特权级别属性要高。
+
+---
+
+**■Note** 你无法直接修改 cs 寄存器
+
+---
+
+图 3-2 展示了 GDT 描述符的格式。
+
+_**图 3-2**.段描述符 \(在 GDT 或 LDT 内\)_
+
+G—Granularity, e.g., size is in 0 = bytes, 1 = pages of size 4096 bytes each. D—Default operand size \(0 = 16 bit, 1 = 32 bit\).  
+L—Is it a 64-bit mode segment?  
+V—Available for use by system software.
+
+P—Present in memory right now.  
+ S—Is it data/code \(1\) or is it just some system information holder \(0\).  
+ X—Data \(0\) or code \(1\).  
+ RW—For data segment, is writing allowed? \(reading is always allowed\); for code segment, is reading
+
+allowed? \(writing is always prohibited\).  
+ DC—Growth direction: to lower or to higher addresses? \(for data segment\); can it be executed from
+
+higher privilege levels? \(if code segment\)  
+ A—Was it accessed?  
+ DPL—Descriptor Privilege Level \(to which ring is it attached?\)
+
+
+
+The processor always \(even today\) starts in real mode. To enter protected mode one has to create GDT and set up gdtr; set a special bit in cr0 and make a so-called far jump. Far jump means that the segment \(or segment selector\) is explicitly given \(and thus can be different from default\), as follows:
+
+
+
+```
+jmp 0x08:addr
+```
+
+
+
+Listing3-1shows a small snippet of how we can turn on protected mode \(assuming start32 is a label
+
+on 32-bit code start\).  
+
+
+Listing 3-1.Enabling Protected Mode loader\_start32.asm
+
+```
+lgdt cs:[_gdtr]
+
+mov eax, cr0                  ; !! Privileged instruction
+or al, 1                      ; this is the bit responsible for protected mode
+mov cr0, eax                  ; !! Privileged instruction
+
+    jmp (0x1 << 3):start32    ; assign first seg selector to cs
+
+align 16
+_gdtr:                        ; stores GDT's last entry index + GDT address
+dw 47
+dq _gdt
+
+align 16
+
+_gdt:
+; Null descriptor (should be present in any GDT)
+dd 0x00, 0x00
+; x32 code descriptor:
+db 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x9A, 0xCF,     0x00 ; differ by exec bit
+; x32 data descriptor:
+db 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x92, 0xCF,     0x00 ; execution off (0x92)
+;  size  size  base  base  base  util  util|size  base
+```
+
+Align directives control alignment, the essence of which we explain later in this book.
+
+---
+
+■Question 45 解析一下这个段选择器：0x08
+
+---
+
+
+
+You might think that every memory transaction needs another one now to read GDT contents. This is not true: for each segment register there is a so-called **shadow register**, which cannot be directly referenced. It serves as a cache for GDT contents. It means that once a segment selector is changed, the corresponding shadow register is loaded with the corresponding descriptor from GDT. Now this register will serve as a source of all information needed about this segment.
+
+
+
+The D flag needs a little explanation, because it depends on segment type.
+
+* It is a code segment: default address and operand sizes. One means 32-bit addresses and 32-bit or 8-bit operands; zero corresponds to 16-bit addresses and 16-bit or 8-bit operands. We are talking about encoding of machine instructions here. This behavior can be altered by preceding an instruction by a prefix0x66\(to alter operand size\) or0x67\(to alter address size\).
+
+* Stack segment \(it is a data segment AND we are talking about one selected by ss\).2It is again default operand size forcall,ret,push/pop, etc. If the flag is set, operands are 32-bit wide and instructions affectesp; otherwise operands are 16-bit wide andspis affected.
+
+* For data segments, growing toward low addresses, it denotes their limits \(0 for 64 KB, 1 for 4 GB\). This bit should always be set in long mode.
+
+
+
+As you see, the segmentation is quite a cumbersome beast. There are reasons it was not largely adopted by operating systems and programmers alike \(and is now pretty much abandoned\).
+
+
+
+* No segmentation is easier for programmers;
+
+* No commonly used programming language includes segmentation in its memory model. It is always flat memory. So it is a compiler’s job to set up segments \(which is hard to implement\).
+
+* Segments make memory fragmentation a disaster.
+
+* A descriptor table can hold up to 8192 segment descriptors. How can we use this small
+
+  amount efficiently?
+
+After the introduction of long mode segmentation was purged from processor, but not completely. It is still used for protection rings and thus a programmer should understand it.
+
+
+
+
+
