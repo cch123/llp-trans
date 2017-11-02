@@ -104,7 +104,7 @@ db 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x92, 0xCF,     0x00 ; execution off (0x92)
 ;  size  size  base  base  base  util  util|size  base
 ```
 
-Align directives control alignment, the essence of which we explain later in this book.
+Align 伪指令控制对齐，本书稍后会对它进行说明。
 
 ---
 
