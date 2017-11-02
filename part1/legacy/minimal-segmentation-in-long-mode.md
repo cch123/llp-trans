@@ -1,28 +1,22 @@
 3.3 Minimal Segmentation in Long Mode
 
-Even in long mode each time an instruction is selected, the processor is using segmentation. It provides us with a flat linear virtual address, which is then turned into a physical one by virtual memory routines \(see section4.2\).
+即使在长模式下每次选择一条指令，处理也会使用到分段。系统提供给我们一维线性虚拟地址，然后再将虚拟地址转换为物理地址\(参考 4.2 节\)。
 
-LDT is a part of a hardware context-switching mechanism that no one really adopted; for this reason it was disabled in long mode completely.
+LDT 是没有被任何人接受的上下文切换策略；正因为此，在长模式中 LDT 被完全抛弃了。
 
+所有通过主要的段寄存器\(cs，ds，es，ss\)来进行寻址都不再考虑 GDT 中的 base 和 offset 了。无论 descriptor 内容是什么，段的起始地址始终是从 0x0 开始；段的大小没有任何限制。除此以外其它的 descriptor 字段不会被忽略。
 
-
-All memory addressing through main segment registers \(cs,ds,es, andss\) do not consider the GDT values of base and offset anymore. The segment base is always fixed at 0x0 no matter the descriptor contents; the segment sizes are not limited at all. The other descriptor fields, however, are not ignored.
-
-
-
-It means, that in long modeat least three descriptors should be present in GDT: the null descriptor \(should be always present in any GDT\), code, and data segments. If you want to use protection rings to implement privileged and user modes, you need also code and data descriptors for user-level code.
+这么说的意思是，在长模式下 _GDT 中还至少需要三个描述符_：null descriptor\(GDT 中这个字段一定要有\)，代码和数据段。如果你要用 protection ring 来实现特权模式和用户模式，你还需要代码和数据描述符来为用户级代码服务。
 
 ---
 
-■Why do we need separate descriptors for code and data?No combination of descriptor flags allows a programmer to set up read/write permissions and execution permission simultaneously.
+ **■Why do we need separate descriptors for code and data?** 没有描述符 flag 组合能允许程序员能同时设置读/写和执行权限。
 
 ---
 
-Even with the very small experience in assembly language we already have, it is not hard to decipher this loader fragment, showing an exemplary GDT. It is taken from Pure64, an open source operating system loader. As it is executed before the operating system, it does not contain user-level code or data descriptors \(see Listing3-2\).
+现在即使我们在汇编上只有微不足道的经验， 对我们来说破译一段展示典型GDT 的 loader 的代码片段也不是什么难事了。这段代码摘自 Pure64，一个开源的操作系统 loader。由于其是在操作系统启动之前执行的，所以不包括用户级的代码和数据描述符\(见列表 3-2\)。
 
-
-
-_**Listing 3-2**.A Sample GDTgdt64.asm_
+_**Listing 3-2**.A Sample GDT gdt64.asm_
 
     align 16  ; This ensures that the next command or data element is
     ; stored starting at an address divisible by 16 (even if we need
