@@ -43,7 +43,7 @@
     * [保护模式](part1/legacy/protected-mode.md)
     * [Minimal Segmentation in Long Mode](part1/legacy/minimal-segmentation-in-long-mode.md)
     * [访问寄存器局部](part1/legacy/accessing-parts-of-registers.md)
-      * [An Unexpected Behavior](part1/legacy/accessing-parts-of-registers/an-unexpected-behavior.md)
+      * [一个意外的行为](part1/legacy/accessing-parts-of-registers/an-unexpected-behavior.md)
       * [CISC and RISC](part1/legacy/accessing-parts-of-registers/cisc-and-risc.md)
       * [Explanation](part1/legacy/accessing-parts-of-registers/explanation.md)
     * [Summary](part1/legacy/summary.md)

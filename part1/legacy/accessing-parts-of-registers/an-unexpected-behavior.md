@@ -1,4 +1,4 @@
-3.4.1 An Unexpected Behavior
+3.4.1 一个意外的行为
 
 我们一般会认为 eax，rax，ax 等等，是同一个物理寄存器的不同部分。从观察过程中得到的结果一般是支撑得住这个假想的，直到我们往一个 64 位寄存器里写入一个 32 位的值的时候，事情才变得不太对劲了。我们来看看列表 3-3 中的代码示例：
 
@@ -8,11 +8,11 @@ _**Listing 3-3.**The Land of Registry Wonders risc\_cisc.asm_
 mov rax, 0x1122334455667788      ; rax = 0x1122334455667788
 mov eax, 0x42                    ; !rax = 0x00 00 00 00 00 00 00 42
                                  ; why not rax = 0x1122334400000042 ??
-                                 
+
 mov rax, 0x1122334455667788      ; rax = 0x1122334455667788
 mov ax, 0x9999                   ; rax = 0x1111222233339999, as expected
                                  ; this works as expected
-                                 
+
 mov rax, 0x1122334455667788      ; rax = 0x1122334455667788
 xor eax, eax                     ; rax = 0x0000000000000000
                                  ; why not rax = 0x1122334400000000?
