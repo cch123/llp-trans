@@ -1,2 +1,2 @@
-3.4 Accessing Parts of Registers
+3.4 访问寄存器局部
 
