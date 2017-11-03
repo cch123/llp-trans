@@ -120,17 +120,17 @@ D flag 标记需要一点说明，因为它依赖于段的类型。
 
 * For data segments, growing toward low addresses, it denotes their limits \(0 for 64 KB, 1 for 4 GB\). This bit should always be set in long mode.
 
-As you see, the segmentation is quite a cumbersome beast. There are reasons it was not largely adopted by operating systems and programmers alike \(and is now pretty much abandoned\).
+就像你看到的一样，分段实在是麻烦的玩艺儿。所以没有被操作系统和程序员广泛接受也是有原因的\(现在也基本上被抛弃了\)。
 
-* No segmentation is easier for programmers;
+对于程序员来说，不分段更为简单。
 
-* No commonly used programming language includes segmentation in its memory model. It is always flat memory. So it is a compiler’s job to set up segments \(which is hard to implement\).
+广泛使用的程序语言都没有在内存模型上对分段进行支持。而是平整的一块内存。所以安排段的分配是编译器的工作了\(实际上实现起来也比较难\)。
 
-* Segments make memory fragmentation a disaster.
+程序分段会造成内存碎片的灾难。
 
-* A descriptor table can hold up to 8192 segment descriptors. How can we use this small
+描述符表最多可以保存 8192 个描述符。我们怎么能有效地使用这么小丁点的配额啊。
 
-  amount efficiently?
+* After the introduction of long mode segmentation was purged from processor, but not completely. It is still used for protection rings and thus a programmer should understand it.
 
-After the introduction of long mode segmentation was purged from processor, but not completely. It is still used for protection rings and thus a programmer should understand it.
+
 
