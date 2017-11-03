@@ -54,12 +54,10 @@ G—Granularity, e.g., size is in 0 = bytes, 1 = pages of size 4096 bytes each. 
 L—Is it a 64-bit mode segment?  
 V—Available for use by system software.
 
-P—Present in memory right now.  
- S—Is it data/code \(1\) or is it just some system information holder \(0\).  
- X—Data \(0\) or code \(1\).  
- RW—For data segment, is writing allowed? \(reading is always allowed\); for code segment, is reading
-
-allowed? \(writing is always prohibited\).  
+P—Present in memory right now.现在是否在内存中。  
+S—Is it data/code \(1\) or is it just some system information holder \(0\).是数据/代码或者还是系统信息。  
+X—Data \(0\) or code \(1\). 数据\(0\)或代码\(1\)。  
+RW—For data segment, is writing allowed? \(reading is always allowed\); for code segment, is reading allowed? \(writing is always prohibited\).对于数据段来说，是否允许写？\(读始终是允许\)  
  DC—Growth direction: to lower or to higher addresses? \(for data segment\); can it be executed from
 
 higher privilege levels? \(if code segment\)  
@@ -122,13 +120,10 @@ D flag 标记需要一点说明，因为它依赖于段的类型。
 
 就像你看到的一样，分段实在是麻烦的玩艺儿。所以没有被操作系统和程序员广泛接受也是有原因的\(现在也基本上被抛弃了\)。
 
-对于程序员来说，不分段更为简单。
-
-广泛使用的程序语言都没有在内存模型上对分段进行支持。而是平整的一块内存。所以安排段的分配是编译器的工作了\(实际上实现起来也比较难\)。
-
-程序分段会造成内存碎片的灾难。
-
-描述符表最多可以保存 8192 个描述符。我们怎么能有效地使用这么小丁点的配额啊。
+* 对于程序员来说，不分段更为简单。
+* 广泛使用的程序语言都没有在内存模型上对分段进行支持。而是平整的一块内存。所以安排段的分配是编译器的工作了\(实际上实现起来也比较难\)。
+* 程序分段会造成内存碎片的灾难。
+* 描述符表最多可以保存 8192 个描述符。我们怎么能有效地使用这么小丁点的配额啊。
 
 在引入长模式之后，分段就从处理器的实现中消失了，不过并不完全。在 protection ring 中还会有所使用，不过程序员不再需要了解这些了。
 
