@@ -112,7 +112,7 @@ Align 伪指令控制对齐，本书稍后会对它进行说明。
 
 You might think that every memory transaction needs another one now to read GDT contents. This is not true: for each segment register there is a so-called **shadow register**, which cannot be directly referenced. It serves as a cache for GDT contents. It means that once a segment selector is changed, the corresponding shadow register is loaded with the corresponding descriptor from GDT. Now this register will serve as a source of all information needed about this segment.
 
-The D flag needs a little explanation, because it depends on segment type.
+D flag 标记需要一点说明，因为它依赖于段的类型。
 
 * It is a code segment: default address and operand sizes. One means 32-bit addresses and 32-bit or 8-bit operands; zero corresponds to 16-bit addresses and 16-bit or 8-bit operands. We are talking about encoding of machine instructions here. This behavior can be altered by preceding an instruction by a prefix0x66\(to alter operand size\) or0x67\(to alter address size\).
 
