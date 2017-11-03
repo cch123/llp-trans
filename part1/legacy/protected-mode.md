@@ -130,7 +130,5 @@ D flag 标记需要一点说明，因为它依赖于段的类型。
 
 描述符表最多可以保存 8192 个描述符。我们怎么能有效地使用这么小丁点的配额啊。
 
-* After the introduction of long mode segmentation was purged from processor, but not completely. It is still used for protection rings and thus a programmer should understand it.
-
-
+在引入长模式之后，分段就从处理器的实现中消失了，不过并不完全。在 protection ring 中还会有所使用，不过程序员不再需要了解这些了。
 
