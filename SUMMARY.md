@@ -58,6 +58,7 @@
     * [Memory Mapping](part1/virtual-memory/memory-mapping.md)
     * [Example: Mapping File into Memory](part1/virtual-memory/example-mapping-file-into-memory.md)
       * [Mnemonic Names for Constants](part1/virtual-memory/example-mapping-file-into-memory/mnemonic-names-for-constants.md)
+      * [Complete Example](part1/virtual-memory/example-mapping-file-into-memory/complete-example.md)
     * [Summary](part1/virtual-memory/summary.md)
   * [Chapter 5 Compilation Pipeline](part1/compilation-pipeline.md)
     * [Preprocessor](part1/compilation-pipeline/preprocessor.md)
