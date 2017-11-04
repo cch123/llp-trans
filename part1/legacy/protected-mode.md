@@ -117,15 +117,13 @@ Align 伪指令控制对齐，本书稍后会对它进行说明。
 
 ---
 
-You might think that every memory transaction needs another one now to read GDT contents. This is not true: for each segment register there is a so-called **shadow register**, which cannot be directly referenced. It serves as a cache for GDT contents. It means that once a segment selector is changed, the corresponding shadow register is loaded with the corresponding descriptor from GDT. Now this register will serve as a source of all information needed about this segment.
+你可能会认为每次内存事务都需要其它程序立刻去读取  GDT 的内容。实际上并不是这样：对每个段寄存器来说有一个叫 **shadow 寄存器**的东西，这个寄存器不能够直接被引用。该寄存器扮演的角色是 GDT 内容的缓存。也就是说一段一个段选择器被修改了，那么对应的 shadow 寄存器就载入 GDT 中对应的描述符。这样需要获取这个段所有的信息就可以直接把该寄存器当作数据源了。
 
 D flag 标记需要一点说明，因为它依赖于段的类型。
 
-* It is a code segment: default address and operand sizes. One means 32-bit addresses and 32-bit or 8-bit operands; zero corresponds to 16-bit addresses and 16-bit or 8-bit operands. We are talking about encoding of machine instructions here. This behavior can be altered by preceding an instruction by a prefix0x66\(to alter operand size\) or0x67\(to alter address size\).
-
-* Stack segment \(it is a data segment AND we are talking about one selected by ss\).2It is again default operand size forcall,ret,push/pop, etc. If the flag is set, operands are 32-bit wide and instructions affectesp; otherwise operands are 16-bit wide andspis affected.
-
-* For data segments, growing toward low addresses, it denotes their limits \(0 for 64 KB, 1 for 4 GB\). This bit should always be set in long mode.
+* 代码段的情况：默认地址和操作数大小。一表示 32 位地址并且是 32 位或者 8 位的操作数；零代表 16 位的地址并且是 16 位或 8 位的操作数。这里我们探讨的是机器指令的编码。这种行为可以在指令前加 0x66 的前缀来修改\(修改操作数的大小\)，或者 0x67 的前缀\(修改地址大小\)。
+* 栈段\(是一种数据段并且我们讨论的是使用 ss 来选择的段\)的情况：也是表示操作数的大小，不过是指 call，ret，push/pop 等指令的操作数大小。如果设置了这个 flag，那么操作数就是 32 位宽，指令操作会影响的是 esp 寄存器；否则的话操作数是 16 位宽度，影响 sp 寄存器。
+* 数据段的情况：向低地址增长时，代表其大小限制\(0 表示 64 KB，1 表示 4 GB\)。这一位在长模式的时候应该总是被标记为 1。
 
 就像你看到的一样，分段实在是麻烦的玩艺儿。所以没有被操作系统和程序员广泛接受也是有原因的\(现在也基本上被抛弃了\)。
 
