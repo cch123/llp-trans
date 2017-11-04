@@ -4,23 +4,23 @@
 
 Question 50
 
-What is virtual memory region?
+什么是虚拟内存 region？
 
 Question 51
 
-What will happen if you try to modify the program execution code during its execution?
+如果在程序运行时尝试修改程序代码会发生什么事情？
 
 Question 52
 
-What are forbidden addresses?
+什么是禁用地址？
 
 Question 53
 
-What is a canonical address?
+什么是权威地址？
 
 Question 54
 
-What are the translation tables?
+什么是翻译表？
 
 Question 55
 
@@ -28,11 +28,11 @@ What is a page frame?
 
 Question 56
 
-What is a memory region?
+什么是内存 region？
 
 Question 57
 
-What is the virtual address space? How is it different from the physical one?
+虚拟内存空间是什么？和物理的有啥不同？
 
 Question 58
 
