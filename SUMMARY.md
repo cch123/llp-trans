@@ -57,6 +57,7 @@
     * [Implementation](part1/virtual-memory/implementation.md)
       * [Virtual Address Structure](part1/virtual-memory/implementation/virtual-address-structure.md)
       * [Address Translation in Depth](part1/virtual-memory/implementation/address-translation-in-depth.md)
+      * [Page Sizes](part1/virtual-memory/implementation/page-sizes.md)
     * [Memory Mapping](part1/virtual-memory/memory-mapping.md)
     * [Example: Mapping File into Memory](part1/virtual-memory/example-mapping-file-into-memory.md)
       * [Mnemonic Names for Constants](part1/virtual-memory/example-mapping-file-into-memory/mnemonic-names-for-constants.md)
