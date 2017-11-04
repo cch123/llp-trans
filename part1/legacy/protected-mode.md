@@ -50,19 +50,28 @@ ds 寄存器的使用也可以很容易地验证这一点，只消修改几个 b
 
 _**图 3-2**.段描述符 \(在 GDT 或 LDT 内\)_
 
-G—Granularity, e.g., size is in 0 = bytes, 1 = pages of size 4096 bytes each. D—Default operand size \(0 = 16 bit, 1 = 32 bit\).  
-L—Is it a 64-bit mode segment?  
-V—Available for use by system software.
+G—粒度，e.g. 0 = 字节，1 = 4096 字节的页。
 
-P—Present in memory right now.现在是否在内存中。  
-S—Is it data/code \(1\) or is it just some system information holder \(0\).是数据/代码或者还是系统信息。  
-X—Data \(0\) or code \(1\). 数据\(0\)或代码\(1\)。  
-RW—For data segment, is writing allowed? \(reading is always allowed\); for code segment, is reading allowed? \(writing is always prohibited\).对于数据段来说，是否允许写？\(读始终是允许\)  
- DC—Growth direction: to lower or to higher addresses? \(for data segment\); can it be executed from
+D—默认操作数大小 \(0 = 16 位，1 = 32 位\)
 
-higher privilege levels? \(if code segment\)  
- A—Was it accessed?  
- DPL—Descriptor Privilege Level \(to which ring is it attached?\)
+L—是否是 64 位模式的段？
+
+V—是否对系统软件可用。
+
+P—现在在内存中。  
+S—是数据/代码\(1\) 还是系统信息 \(0\)。
+
+X—数据 \(0\) 或者代码 \(1\)
+
+RW—对于数据段来说，是否允许写？\(读总是允许的\)；对于代码段来说，是否可以读？\(写永远是禁止的\)。
+
+DC—增长方向：\(对 data 段来说\)向低地址还是高地址？\(对于代码段来说\)是否可以在更高的特权级别下执行？
+
+（对数据段来说）；
+
+A—是否被访问过？
+
+DPL—Descriptor Privilege Level \(和 protection ring 中的哪一级 ring 绑定?\)
 
 处理器总是\(即使是今天\)从实模式启动的。为了进入保护模式，需要创建 GDT 然后设置好 gdtr，在 cr0 设置一个特殊的标识位，然后执行一个叫做 far jump 的操作。Far jump 意思是段\(或者段选择器\)已经显式地给出\(并且可以和默认的不同\)，像下面这样：
 
