@@ -51,7 +51,7 @@
     * [缓存](part1/virtual-memory/caching.md)
     * [动机](part1/virtual-memory/motivation.md)
     * [地址空间](part1/virtual-memory/address-spaces.md)
-    * [Features](part1/virtual-memory/features.md)
+    * [特性](part1/virtual-memory/features.md)
     * [示例：访问禁用地址](part1/virtual-memory/example-accessing-forbidden-address.md)
     * [Efficiency](part1/virtual-memory/efficiency.md)
     * [实现](part1/virtual-memory/implementation.md)
