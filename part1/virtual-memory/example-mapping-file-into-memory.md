@@ -1,18 +1,16 @@
-4.9 Example: Mapping File into Memory
+4.9 示例：映射文件到内存
 
-We need another system call, namely,open. It is used to open a file by name and to acquire itsdescriptor.
+我们现在需要另一个叫 open 的系统调用。该系统调用使用名字打开文件，并获取到其描述符。
 
-See Table4-2for details.
+参见表 4-2 来获取细节：
 
+_**Table 4-2**.open 系统调用_
 
+文件映射到内存需要三个简单步骤：
 
-Table 4-2.openSystem Call
+使用 open 系统调用打开文件，描述符会被放入 rax 寄存器。
 
-Mapping file in memory is done in three simple steps:
+调用 mmap，并传入相应的参数。其中的一个参数就是步骤一获取到的文件描述符。
 
-Open file usingopensystem call.raxwill hold file descriptor.
-
-Call mmap with relevant arguments. One of them will be the file descriptor, acquired at step 1.
-
-Useprint\_stringroutine we have created in Chapter2. For the sake of brevity we omit file closing and error checks.
+使用我们在第二章写的 `print_string` 子过程来打印内容。为了简洁我们暂时省略关闭和错误检查过程。
 
