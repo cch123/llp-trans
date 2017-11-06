@@ -53,7 +53,7 @@
     * [地址空间](part1/virtual-memory/address-spaces.md)
     * [特性](part1/virtual-memory/features.md)
     * [示例：访问禁用地址](part1/virtual-memory/example-accessing-forbidden-address.md)
-    * [Efficiency](part1/virtual-memory/efficiency.md)
+    * [效率](part1/virtual-memory/efficiency.md)
     * [实现](part1/virtual-memory/implementation.md)
       * [虚拟地址结构](part1/virtual-memory/implementation/virtual-address-structure.md)
       * [Address Translation in Depth](part1/virtual-memory/implementation/address-translation-in-depth.md)
