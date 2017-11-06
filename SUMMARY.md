@@ -55,7 +55,7 @@
     * [示例：访问禁用地址](part1/virtual-memory/example-accessing-forbidden-address.md)
     * [Efficiency](part1/virtual-memory/efficiency.md)
     * [实现](part1/virtual-memory/implementation.md)
-      * [Virtual Address Structure](part1/virtual-memory/implementation/virtual-address-structure.md)
+      * [虚拟地址结构](part1/virtual-memory/implementation/virtual-address-structure.md)
       * [Address Translation in Depth](part1/virtual-memory/implementation/address-translation-in-depth.md)
       * [Page Sizes](part1/virtual-memory/implementation/page-sizes.md)
     * [内存映射](part1/virtual-memory/memory-mapping.md)
