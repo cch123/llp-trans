@@ -70,7 +70,7 @@
     * Assignment: Dictionary
     * Summary
   * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
-    * Input and Output
+    * [Input and Output](part1/interrupts-and-system-calls/input-and-output.md)
     * [Interrupts](part1/interrupts-and-system-calls/interrupts.md)
     * [System Calls](part1/interrupts-and-system-calls/system-calls.md)
     * [Summary](part1/interrupts-and-system-calls/summary.md)
