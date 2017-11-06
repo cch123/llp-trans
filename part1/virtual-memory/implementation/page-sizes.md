@@ -1,17 +1,10 @@
 4.7.3 Page Sizes
 
-The structure of tables of a different hierarchy level is very much alike. The page size may be tuned to be 4KB, 2MB, or 1GB. Depending on the structure, this hierarchy can shrink to a minimum of two levels. In this case PDP will function as a page table and will store part of a 1GB frame. See Figure4-4to see how the entry format changes depending on page size.
-
-
+不同层级的表的结构是非常相似的。页大小可能会被调整为 4KB，2MB 或者 1GB。依赖于表的结构，这种层级可以收缩至最少两个级别。这种情况下 PDP 会像页表一样工作，并且会存储 1GB 帧的一部分。参考图 4-4 来查看表条目的格式如何随着页大小的变化而变化。
 
 这里有两张图
 
+Figure 4-4.Page Directory Pointer table and Page Directory table entry format
 
-
-Figure 4-4.Page Directory Pointer table and Page Directory table entry format  
-
-
-This is controlled by the 7-th bit in the respective PDP or PD entry. If it is set, the respective table maps
-
-pages; otherwise, it stores addresses of the next level tables.
+这种行为是被第 7 位对应的 PDP 或者 PD 条目来控制的。如果设置了该位的话，对应的表会映射页；否则的话，它会存储下一级表的地址。
 
