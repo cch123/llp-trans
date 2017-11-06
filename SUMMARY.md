@@ -49,7 +49,7 @@
     * [小结](part1/legacy/summary.md)
   * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
     * [缓存](part1/virtual-memory/caching.md)
-    * [Motivation](part1/virtual-memory/motivation.md)
+    * [动机](part1/virtual-memory/motivation.md)
     * [地址空间](part1/virtual-memory/address-spaces.md)
     * [Features](part1/virtual-memory/features.md)
     * [Example: Accessing Forbidden Address](part1/virtual-memory/example-accessing-forbidden-address.md)
