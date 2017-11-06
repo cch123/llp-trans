@@ -24,46 +24,27 @@ PROT_EXEC Pages may be executed.
 PROT_READ Pages may be read.
 PROT_WRITE Pages may be written.
 PROT_NONE  Pages may not be accessed.
-
 ```
 
 PROT\_NONE 和其它的几个参数就是上面提到的助记名的例子，每一个助记名都代表了一个 integer 值，这些值用来控制 mmap 的行为。C 和 NASM 都允许你在编译期执行一些常量的值计算，包括按位与/按位或操作。下面是这种计算的一个例子。
 
-
-
 ```
 %define PROT_EXEC 0x4
 %define PROT_READ 0x1
-mov rdx, PROT_READ | PROT_EXEC
+    mov rdx, PROT_READ | PROT_EXEC
 ```
-
-
-
-
 
 Unless you are writing in C or C++, you will have to check these predefined values somewhere and copy them to your program.
 
-
-
 Following is how to know the specific values of these constants for Linux:
-
-
 
 Search them in header files of the Linux API in/usr/include.
 
-Use one of the Linux Cross Reference \(lxr\) online, like:http://lxr.free-electrons.com.
-
-
+Use one of the Linux Cross Reference \(lxr\) online, like:[http://lxr.free-electrons.com](http://lxr.free-electrons.com).
 
 We do recommend the second way for now, as we do not know C yet. You may even use a search engine like Google and type lxr  PROT\_READ as a search query to get relevant results immediately after following the first link.
 
-
-
-
-
 For example, here is what LXR shows when being queriedPROT\_READ:
-
-
 
 PROT\_READ
 
@@ -77,16 +58,13 @@ arch/xtensa/include/uapi/asm/mman.h, line 25
 arch/alpha/include/uapi/asm/mman.h, line 4
 arch/parisc/include/uapi/asm/mman.h, line 4
 include/uapi/asm-generic/mman-common.h, line 9
-
 ```
 
 By following one of these links you will see
 
-18 \#define PROT\_READ 0x01 /\* page can be read \*/  
-
+18 \#define PROT\_READ 0x01 /\* page can be read \*/
 
 So, we can type%define PROT\_READ 0x01in the beginning of the assembly file to use this constant
 
-without memorizing its value.  
-
+without memorizing its value.
 
