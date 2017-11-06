@@ -57,7 +57,7 @@
     * [实现](part1/virtual-memory/implementation.md)
       * [虚拟地址结构](part1/virtual-memory/implementation/virtual-address-structure.md)
       * [Address Translation in Depth](part1/virtual-memory/implementation/address-translation-in-depth.md)
-      * [Page Sizes](part1/virtual-memory/implementation/page-sizes.md)
+      * [页大小](part1/virtual-memory/implementation/page-sizes.md)
     * [内存映射](part1/virtual-memory/memory-mapping.md)
     * [示例：映射文件到内存](part1/virtual-memory/example-mapping-file-into-memory.md)
       * [常量的助记名](part1/virtual-memory/example-mapping-file-into-memory/mnemonic-names-for-constants.md)
