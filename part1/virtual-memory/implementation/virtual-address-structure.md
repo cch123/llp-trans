@@ -4,9 +4,9 @@
 
 _**Figure 4-1**.虚拟地址结构_
 
-The address itself is in fact only 48 bits wide; it is sign-extended to a 64-bit **canonical address**. Its characteristic is that its 17 left bits are equal. If the condition is not satisfied, the address gets rejected immediately when used.
+地址自身实际上只有 48 位宽；使用符号位扩展到了 64 位的**权威地址**。这样扩展的特性使得地址的左边 17 位是相等的。如果不满足前述条件，那么使用该地址时会立刻被系统拒绝。
 
-Then 48 bits of virtual address are transformed into 52 bits of physical address with the help of special tables.3
+48 位的虚拟地址在一个特殊表格的帮助下被转换为了 52 位的物理地址。
 
 ---
 
@@ -14,9 +14,9 @@ Then 48 bits of virtual address are transformed into 52 bits of physical address
 
 ---
 
-Physical address space is divided into slots to be filled with virtual pages. These slots are called **page frames**. There are no gaps between them, so they always start from an address ending with 12 zero bits.
+物理地址空间被划分为多个槽，这些槽可以被虚拟页所填充。这些槽叫作**页帧**。在页帧之间没有空间间隔，所以页帧地址总是从一个末尾 12 位是零的地址开始的。
 
-The least significant 12 bits of virtual address and of physical page correspond to the address offset inside page, so they are equal.
+虚拟地址的最低 12 位和物理页的最低 12 位对应了页内的地址偏移，所以这 12 位是在两者中是相等的。
 
-The other four parts of virtual address represent indexes in translation tables. Each table occupies exactly 4KB to fill an entire memory page. Each record is 64 bits wide; it stores a part of the next table’s starting address as well as some service flags.
+虚拟地址的另外四个部分代表了地址翻译表中的索引位置。每一个表负责 4KB，这 4KB 会填满一整个内存的页。翻译表中的每条记录都是 64 位宽；条目中保存了下一个表的起始地址和其它的一些服务 flags。
 
