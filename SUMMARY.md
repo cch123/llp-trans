@@ -56,7 +56,7 @@
     * [效率](part1/virtual-memory/efficiency.md)
     * [实现](part1/virtual-memory/implementation.md)
       * [虚拟地址结构](part1/virtual-memory/implementation/virtual-address-structure.md)
-      * [Address Translation in Depth](part1/virtual-memory/implementation/address-translation-in-depth.md)
+      * [深入地址翻译](part1/virtual-memory/implementation/address-translation-in-depth.md)
       * [页大小](part1/virtual-memory/implementation/page-sizes.md)
     * [内存映射](part1/virtual-memory/memory-mapping.md)
     * [示例：映射文件到内存](part1/virtual-memory/example-mapping-file-into-memory.md)
