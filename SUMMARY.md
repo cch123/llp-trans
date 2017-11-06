@@ -47,7 +47,7 @@
       * [CISC 和 RISC](part1/legacy/accessing-parts-of-registers/cisc-and-risc.md)
       * [解读](part1/legacy/accessing-parts-of-registers/explanation.md)
     * [小结](part1/legacy/summary.md)
-  * [Chapter 4 Virtual Memory](part1/virtual-memory.md)
+  * [Chapter 4 虚拟内存](part1/virtual-memory.md)
     * [缓存](part1/virtual-memory/caching.md)
     * [动机](part1/virtual-memory/motivation.md)
     * [地址空间](part1/virtual-memory/address-spaces.md)
