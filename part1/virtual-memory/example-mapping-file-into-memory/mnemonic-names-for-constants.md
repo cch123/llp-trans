@@ -34,37 +34,31 @@ PROT\_NONE 和其它的几个参数就是上面提到的助记名的例子，每
     mov rdx, PROT_READ | PROT_EXEC
 ```
 
-Unless you are writing in C or C++, you will have to check these predefined values somewhere and copy them to your program.
+除非你是在写 C 或者 C++，否则你都需要在什么地方先找到这些预定义的值，然后拷贝到你的程序里。
 
-Following is how to know the specific values of these constants for Linux:
+下面是如何在 Linux 获取这些特定值的方法：
 
-Search them in header files of the Linux API in/usr/include.
+1. 在 /usr/include 的 Linux  API 目录下的头文件中搜索这些字符串。
+2. 使用 Linux Cross Reference \(lxr\) 在线查询，例如 http://lxr.free-electrons.com。
 
-Use one of the Linux Cross Reference \(lxr\) online, like:[http://lxr.free-electrons.com](http://lxr.free-electrons.com).
+目前我们推荐第二种方式，因为我们还不懂 C 语言。你甚至也可以直接通过 Google 之类的搜索引擎直接搜索 `PROT_READ` 关键字马上搜索到相关的结果。当然，是要做上面链接的站内搜索。
 
-We do recommend the second way for now, as we do not know C yet. You may even use a search engine like Google and type lxr  PROT\_READ as a search query to get relevant results immediately after following the first link.
-
-For example, here is what LXR shows when being queriedPROT\_READ:
-
-PROT\_READ
+举个例子，`PROT_READ` 可以在 LXR 里搜索到下面这内容：
 
 ```
+PROT_READ
 Defined as a preprocessor macro in:
-```
-
-```
 arch/mips/include/uapi/asm/mman.h, line 18
-arch/xtensa/include/uapi/asm/mman.h, line 25
 arch/alpha/include/uapi/asm/mman.h, line 4
 arch/parisc/include/uapi/asm/mman.h, line 4
 include/uapi/asm-generic/mman-common.h, line 9
 ```
 
-By following one of these links you will see
+这些链接一路点下去，你会看到：
 
-18 \#define PROT\_READ 0x01 /\* page can be read \*/
+```
+18 #define PROT_READ 0x01 /* page can be read */
+```
 
-So, we can type%define PROT\_READ 0x01in the beginning of the assembly file to use this constant
-
-without memorizing its value.
+所以我们可以在汇编文件开头输入 `%define PROT_READ 0x01`来使用这个常量，而不用特意记住它的值了。
 
