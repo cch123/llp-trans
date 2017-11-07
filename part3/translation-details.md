@@ -1,4 +1,4 @@
-Chapter 14 Translation Details
+Chapter 14 翻译细节
 
-In this chapter we are going to revisit the notion of calling convention to deepen our understanding and work through translation details. This process requires both understanding program functioning on the assembly level and a certain degree of familiarity with C. We are also going to review some classic low-level security vulnerabilities that might be opened by a careless programmer. Understanding these low-level translation details is sometimes crucial for eradicating very subtle bugs that do not reveal themselves at every execution.
+本章我们会复习调用约定的概念并加深理解，在此基础上研究翻译的细节。这个学习过程需要我们对程序在汇编层面的执行和 C 语言都有一定的了解。我们也将会回顾一些经典的可能被粗心程序员引起的底层安全漏洞。理解这些底层的翻译细节有时也能够帮助我们消除掉一些诡异的 bug，这些 bug 可能不会在每次执行的时候都复现。
 
