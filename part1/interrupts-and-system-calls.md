@@ -1,4 +1,4 @@
-Chapter 6 Interrupts and System Calls
+Chapter 6 中断和系统调用
 
 本章会在讨论两个方面的主题。
 
