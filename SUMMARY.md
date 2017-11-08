@@ -74,6 +74,8 @@
       * [TR register and Task State Segment](part1/interrupts-and-system-calls/input-and-output/tr-register-and-task-state-segment.md)
     * [Interrupts](part1/interrupts-and-system-calls/interrupts.md)
     * [System Calls](part1/interrupts-and-system-calls/system-calls.md)
+      * Model-Specific Registers
+      * syscall and sysret
     * [Summary](part1/interrupts-and-system-calls/summary.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
     * [Finite State Machines](part1/models-of-computation/finite-state-machines.md)
