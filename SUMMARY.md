@@ -69,7 +69,7 @@
     * [Linking](part1/compilation-pipeline/linking.md)
     * Assignment: Dictionary
     * Summary
-  * [Chapter 6 Interrupts and System Calls](part1/interrupts-and-system-calls.md)
+  * [Chapter 6 中断和系统调用](part1/interrupts-and-system-calls.md)
     * [Input and Output](part1/interrupts-and-system-calls/input-and-output.md)
       * [TR register and Task State Segment](part1/interrupts-and-system-calls/input-and-output/tr-register-and-task-state-segment.md)
     * [Interrupts](part1/interrupts-and-system-calls/interrupts.md)
