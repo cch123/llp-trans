@@ -1,7 +1,8 @@
-6.3.1 Model-Specific Registers
+6.3.1 特殊模块寄存器
 
-Sometimes when a new CPU appears it has additional registers, which other, more ancient ones, do not have. Quite often these are so-called **Model-Specific Registers**. When these registers are rarely modified, their manipulation is performed via two commands:rdmsrto read them andwrmsrto change them. These two commands operate on the registeridentifying number.
+有时新的 CPU 被开发出来时，会有一些额外的寄存器，这些寄存器可能老的 CPU 没有。这些寄存器经常被称为**特殊模块寄存器\(Model-Specific Registers\)**。由于这些寄存器很少被修改，若要修改的话只能使用两条指令：rdmsr 读取，wrmsr 写入。这两条指令操作对象是寄存器的编号。
 
-rdmsr accepts the MSR number inecx, returns the register value inedx:eax.  
-wrmsr accepts the MSR number inecxand stores the value taken fromedx:eaxin it.
+rdmsr 接收 ecx 寄存器中的 MSR 编号，在 eax 中返回寄存器中的值。
+
+wrmsr 接收 ecx 寄存器中的 MSR 编号，并将 edx:eax 的值写入到这个特殊寄存器中。
 
