@@ -1,25 +1,26 @@
 6.3 System Calls
 
-System calls are, as you already know, functions that an OS provides for user applications. This section describes the mechanism that allows their secure execution with higher privilege level.
+系统调用是操作系统提供给用户应用的函数。本节将分析这种使用户程序可以在更高特权级别安全执行代码的机制。
 
-The mechanisms used to implement system calls vary in different architectures. Overall, any instruction resulting in an interrupt will do, for example, division by zero or any incorrectly encoded instruction.  
- The interrupt handler will be called and then the CPU will handle the rest. In protected mode on Intel architecture, the interrupt with code 0x80 was used by \*nix operating systems. Each time a user executedint 0x80, the interrupt handler checked the register contents for system call number and arguments.
+不同的架构下，实现系统调用的手段并不相同。总的来说，一条会引发中断的指令可以执行系统调用，例如，做除法时除数为零或者碰到了编码后错误的汇编指令。
 
-System calls are quite frequent, and you cannot perform any interaction with the outside world without them. Interrupts, however, can be slow, especially in Intel 64, since they require memory accesses toIDT.
+中断处理器这时候会处理触发的中断，然后 CPU 完成剩下的工作。在 Intel 架构的保护模式下，0x80 号的中断被用来实现 \*nix 操作系统的系统调用。用户执行 `int 0x80` 时，中断处理器会检查寄存器的内容，并执行对应编号的系统调用，传入对应的参数。
 
-So in Intel 64 there is a new mechanism to perform system calls, which usessyscallandsysretinstructions to implement them.
+系统调用发生的很频繁，如果没有它的话，你难以在计算机中与外界进行交互。不过中断是一种非常缓慢的操作，尤其在 Intel 64 架构下如此，由于执行中断时需要访问 **IDT**\(中断描述符表\)。
 
-Compared to interrupts, this mechanism has some key differences:
+所以在 Intel 64 中，有一种新的方法来执行系统调用。Intel 64 引入了叫 syscall 和 sysret 的两条指令来实现系统调用。
 
-* The transition can only happen between ring0 and ring3.As pretty much no one uses ring1 and ring2, this limitation is not considered important.
+和中断比起来，新的机制有一些关键性的不同：
 
-* Interrupt handlers differ, but all system calls are handled by the same code with only one entry point.
+* 特权只会在 ring0 和 ring3 间进行转换。因为也没人使用 ring1 和 ring2，这个限制也没什么影响。
 
-* Some general purpose registers are now implicitly used during system call.
+* 中断的处理和其它中断处理不一样了，所有的系统调用都被同一个入口的同样的代码所处理。
 
-  * – rcxis used to store oldrip
+* 一些通用寄存器在执行系统调用的时候会隐式地被使用。
 
-  * – r11is used to store oldrflags
+  * rcx 用来存储调用之前的 rip
+
+  * r11 用来存储调用之前的 rflags
 
 
 
