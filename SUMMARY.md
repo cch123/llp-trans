@@ -74,7 +74,7 @@
       * [TR register and Task State Segment](part1/interrupts-and-system-calls/input-and-output/tr-register-and-task-state-segment.md)
     * [Interrupts](part1/interrupts-and-system-calls/interrupts.md)
     * [System Calls](part1/interrupts-and-system-calls/system-calls.md)
-      * [Model-Specific Registers](part1/interrupts-and-system-calls/system-calls/model-specific-registers.md)
+      * [特殊模块寄存器](part1/interrupts-and-system-calls/system-calls/model-specific-registers.md)
       * [syscall and sysret](part1/interrupts-and-system-calls/system-calls/syscall-and-sysret.md)
     * [Summary](part1/interrupts-and-system-calls/summary.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
