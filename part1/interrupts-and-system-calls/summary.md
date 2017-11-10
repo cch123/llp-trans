@@ -28,10 +28,11 @@
 
 ■Question 109 Intel 64 提供了什么类型的输入/输出机制？
 
-■Question 110 What is a model-specific register?  
+■Question 110 什么是特殊模块寄存器？
+
 ■Question 111 什么是 shadow 寄存器？
 
-■Question 112 how are the model-specific registers used in the system call mechanism?
+■Question 112 特殊模块寄存器在系统调用机制中是如何被使用的？
 
 ■Question 113 syscall 指令使用了哪些寄存器？
 
