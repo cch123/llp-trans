@@ -1,4 +1,4 @@
-6.2 Interrupts
+1. 6.2 Interrupts
 
 Interrupts allow us to change the program control flow at an arbitrary moment in time. While the program is executing, external events \(device requires CPU attention\) or internal events \(division by zero, insufficient privilege level to execute an instruction, a non-canonical address\) may provoke an interrupt, which results in some other code being executed. This code is called an **interrupt handler **and is a part of an operating system or driver software.
 
@@ -12,15 +12,13 @@ _**Figure 6-2**.idtr 寄存器_
 
 Each entry in IDT takes 16 bytes, and then-th entry corresponds to then-th interrupt. The entry incorporates some utility information as well as an address of the interrupt handler. Figure6-3describes the interrupt descriptor format.
 
-
-
 _**Figure 6-3**.中断描述符_
-
-
 
 DPL Descriptor Privilege Level
 
-            Current privilege level should be less or equal to DPL in order to call this handler using int instruction. Otherwise the check does not occur.
+```
+        Current privilege level should be less or equal to DPL in order to call this handler using int instruction. Otherwise the check does not occur.
+```
 
 Type 1110 \(interrupt gate,IFis automatically cleared in the handler\) or 1111 \(trap gate,IFis not cleared\).
 
@@ -40,29 +38,17 @@ The application code is executed with low privileges \(in ring3\). Direct device
 
 What about the stack? The stack should also be switched. Here we have several options based on how we set up the IST field of interrupt descriptor.
 
-
-
 * If the IST is 0, the standard mechanism is used. When an interrupt occurs,ssis loaded with 0, and the newrspis loaded from TSS. The RPL field ofssthen is set to an appropriate privilege level. Thenoldssandrspare saved in this new stack.
 
 * If an IST is set, one of seven ISTs defined in TSS is used. The reason ISTs are created is that some serious faults \(non-maskable interrupts, double fault, etc.\) might profit from being executed on a known good stack. So, a system programmer might create several stacks even for ring0 and use some of them to handle specific interrupts.
 
-
-
 There is a specialintinstruction, which accepts the interrupt number. It invokes an interrupt handler manually with respect to its descriptor contents. It ignores theIFflag: whether it is set or cleared, the handler will be invoked. To control execution of privileged code usingintinstruction, a DPL field exists.
-
-
 
 Before an interrupt handler starts its execution, some registers are automatically saved into stack. These aress,rsp,rflags,cs, and rip.See a stack diagram in Figure6-4. Note how segment selectors are padded to 64 bit with zeros.
 
-
-
 Figure 6-4.中断处理器开始时的栈情况
 
-
-
 Sometimes an interrupt handler needs additional information about the event. An **interrupt error code** is then pushed into stack. This code contains various information specific for this type of interrupt.
-
-
 
 Many interrupts are described using special mnemonics in Intel documentation. For example, the 13-th interrupt is referred to as **\#GP**\(general protection\).1You will find the short description of the some interesting interrupts in the Table6-1.
 
@@ -89,21 +75,11 @@ The debuggers rely heavily on the \#BP interrupt. When theTFis set inrflags, the
 
 To sum up, when an n-th interrupt occurs, the following actions are performed from a programmer’s point of view:
 
-The IDT address is taken from idtr.
-
-The interrupt descriptor is located starting from 128 ×n-th byte of IDT.
-
-The segment selector and the handler address are loaded from the IDT entry intocsandrip, possibly changing privilege level. The oldss,rsp,rflags,cs, andripare stored into stack as shown in Figure6-4.
-
-For some interrupts, an error code is pushed on top of handler’s stack. It provides additional information about interrupt cause.
-
-If the descriptor’stypefield defines it as an Interrupt Gate, the interrupt flagIFis cleared. The Trap Gate, however, does not clear it automatically, allowing nested interrupt handling.
-
-
-
-
-
-
+1. The IDT address is taken from idtr.
+2. The interrupt descriptor is located starting from 128 ×n-th byte of IDT.
+3. The segment selector and the handler address are loaded from the IDT entry intocsandrip, possibly changing privilege level. The oldss,rsp,rflags,cs, andripare stored into stack as shown in Figure6-4.
+4. For some interrupts, an error code is pushed on top of handler’s stack. It provides additional information about interrupt cause.
+5. If the descriptor’stypefield defines it as an Interrupt Gate, the interrupt flagIFis cleared. The Trap Gate, however, does not clear it automatically, allowing nested interrupt handling.
 
 If the interrupt flag is not cleared immediately after the interrupt handler start, we cannot have any kind of guarantees that we will execute even its first instruction without another interrupt appearing asynchronously and requiring our attention.
 
@@ -112,8 +88,6 @@ If the interrupt flag is not cleared immediately after the interrupt handler sta
 ■Question 97 TF flag 会在进入中断处理器时自动被 clear 么？参考 \[15\]。
 
 ---
-
- 
 
 The interrupt handler is ended by a iretq instruction, which restores all registers saved in the stack, as
 
