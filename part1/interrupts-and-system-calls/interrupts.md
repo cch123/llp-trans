@@ -1,4 +1,4 @@
-1. 6.2 Interrupts
+6.2 中断
 
 Interrupts allow us to change the program control flow at an arbitrary moment in time. While the program is executing, external events \(device requires CPU attention\) or internal events \(division by zero, insufficient privilege level to execute an instruction, a non-canonical address\) may provoke an interrupt, which results in some other code being executed. This code is called an **interrupt handler **and is a part of an operating system or driver software.
 
