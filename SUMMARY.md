@@ -91,14 +91,14 @@
   * [Chapter 13 Good Code Practices](part2/good-code-practices.md)
 * [Part 3 C 和汇编](part3.md)
   * [Chapter 14 Translation Details](part3/translation-details.md)
-    * Function Calling Sequence
-    * volatile
-    * Non-Local jumps–setjmp
-    * inline
-    * restrict
-    * Strict Aliasing
-    * Security Issues
-    * Protection Mechanisms
+    * [Function Calling Sequence](part3/translation-details/function-calling-sequence.md)
+    * [volatile](part3/translation-details/volatile.md)
+    * [Non-Local jumps–setjmp](part3/translation-details/non-local-jumpssetjmp.md)
+    * [inline](part3/translation-details/inline.md)
+    * [restrict](part3/translation-details/restrict.md)
+    * [Strict Aliasing](part3/translation-details/strict-aliasing.md)
+    * [Security Issues](part3/translation-details/security-issues.md)
+    * [Protection Mechanisms](part3/translation-details/protection-mechanisms.md)
     * [Summary](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
