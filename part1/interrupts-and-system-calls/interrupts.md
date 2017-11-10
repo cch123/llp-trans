@@ -18,7 +18,7 @@ DPL 描述符特权级别\(Descriptor Privilege Level\)
 
 * 当前特权级别应该要小于等于 DPL 才能使用 int 指令调用中断处理器。否则 check 行为都不会进行。
 
-.1110 类型\(中断门，interrupt gate，IF 标记会在中断处理器中被自动 clear 掉\) 或者 1111 类型\(陷阱门，trap gate，IF 标记不会被 clear\)。
+1110 类型\(中断门，interrupt gate，IF 标记会在中断处理器中被自动 clear 掉\) 或者 1111 类型\(陷阱门，trap gate，IF 标记不会被 clear\)。
 
 前 30 个中断是被保留的。也就是说你不能自己提供这几个中断的中断处理处理程序，但 CPU 会使用这些保留的中断来处理其内部的一些事件，例如非法的指令编码。除保留中断以外的中断可以被系统程序员使用。
 
@@ -48,7 +48,7 @@ Sometimes an interrupt handler needs additional information about the event. An 
 
 Many interrupts are described using special mnemonics in Intel documentation. For example, the 13-th interrupt is referred to as **\#GP**\(general protection\).1You will find the short description of the some interesting interrupts in the Table6-1.
 
-Table 6-1.Some Important Interrupts
+_**Table 6-1**.一些重要的中断_
 
 | VECTOR | MNEMONIC | DESCRIPTION |
 | :--- | :--- | :--- |
@@ -69,15 +69,15 @@ The \#PF interrupt is generated when addressing a page which has its present fla
 The debuggers rely heavily on the \#BP interrupt. When theTFis set inrflags, the interrupt with  
  this code is generated aftereachinstruction is executed, allowing a step-by-step program execution. Evidently, this interrupt is handled by an OS. It is thus an OS’s responsibility to provide an interface for user applications that allows programmers to write their own debuggers.
 
-To sum up, when an n-th interrupt occurs, the following actions are performed from a programmer’s point of view:
+总结一下，当第 n 个中断发生时，在程序员看来会有下面的一些行为发生：
 
-1. The IDT address is taken from idtr.
-2. The interrupt descriptor is located starting from 128 ×n-th byte of IDT.
-3. The segment selector and the handler address are loaded from the IDT entry intocsandrip, possibly changing privilege level. The oldss,rsp,rflags,cs, andripare stored into stack as shown in Figure6-4.
-4. For some interrupts, an error code is pushed on top of handler’s stack. It provides additional information about interrupt cause.
-5. If the descriptor’stypefield defines it as an Interrupt Gate, the interrupt flagIFis cleared. The Trap Gate, however, does not clear it automatically, allowing nested interrupt handling.
+1. 从 idtr 寄存器中取出 IDT 地址。
+2. 用 IDT 的第 128 × n 个字节开始定位到中断描述符。
+3. 从 IDT 条目中加载段选择器和中断处理程序的地址，并保存到 cs 和 rip 寄存器，可能还会切换特权级别。旧的 ss，rsp，rflags，cs 和 rip 像图 6-4 展示的一样保存到栈上。
+4. 对于某些中断来说，错误码会被推到中断处理程序的栈顶。这样可以提供中断原因的更多信息。
+5. 如果描述符类型字段将其定义为中断门\(Interrupt Gate\)，那么 IF flag 就会被清零。如果是陷阱门\(Trap Gate\)，则不会自动清零，这样允许嵌套的中断处理。
 
-If the interrupt flag is not cleared immediately after the interrupt handler start, we cannot have any kind of guarantees that we will execute even its first instruction without another interrupt appearing asynchronously and requiring our attention.
+如果中断 flag 在中断处理程序开始之后没有被立即清零，我们没有任何办法保证中断处理甚至是其第一条指令被执行，因为这期间可能还会有其它的异步中断出现，这一点需要我们格外注意。
 
 ---
 
