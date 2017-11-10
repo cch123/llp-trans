@@ -1,16 +1,18 @@
-6.1.1 TR register and Task State Segment
+6.1.1 TR 寄存器和 Task State 段
 
-There are some artifacts from the protected mode that are still somehow used in long mode. A segmentation is an example, now mostly used to implement protection rings. Another is a pair of atrregister and **Task State Segment **control structure.
+有一些保护模式中的工件在长模式中依然会以某种形式进行使用。分段就是一个例子。只是现在被用来实现 protection ring 了。另一个例子是 tr 寄存器和 **Task State 段**控制结构。
 
-The tr register holds the segment selector to the TSS descriptor. The latter resides in the GDT \(Global Descriptor Table\) and has a format similar to segment descriptors.
+tr 寄存器持有 TSS 描述符的段选择器。TSS 属于 GDT\(全局描述符表\)，其结构和段描述符的格式相似。
 
-Likewise for segment registers, there is a shadow register, which is updated fromGDTwhentris updated vialtr\(load task register\) instruction.
+对于段寄存器，同样有一个 shadow 寄存器，该寄存器在 tr 被 ltr\(load task register\) 指令更新时会被同时更新。
 
-The TSS is a memory region used to hold information about a task in the presence of a hardware task-switching mechanism. Since no popular OS has used it in protected mode, this mechanism was removed from long mode. However, TSS in long mode is still used, albeit with a completely different structure and purpose.
+TSS 是一段内存区域，持有一些任务信息，这里的任务指硬件开关机制打开时一种特殊任务。由于流行的操作系统都没有在保护模式中使用这种策略，所以长模式直接移除了这种机制。不过长模式下的 TSS 依然被使用了，只是结构和目的与之前完全不同了。
 
-These days there is only one TSS used by an operating system, with the structure described in Figure6-1.
+多年前在操作系统中只有一个 TSS 可以被使用，其结构如图6-1 所述。
+
+![](/assets/6-1.gif)
 
 _**Figure 6-1**.长模式下的 Task State 段_
 
-The first 16 bits store an offset to an Input/Output Port Permission Map, which we already discussed in section 6.1. The TSS then holds eight pointers to specialinterrupt stack tables\(ISTs\) and stack pointers for different rings. Each time a privilege level changes, the stack is automatically changed accordingly. Usually, the newrspvalue will be taken from the TSS field corresponding to the new protection ring. The meaning of ISTs is explained in section 6.2.
+前 16 位保存了输入/输出端口权限映射 map 中的偏移量，在 6.1 节中会介绍这方面的知识。TSS 还持有八个指向特殊中断栈表\(IST Interrupt stack table\) 的指针，以及为不同特权模式服务的栈指针。每次特权模式变动时，栈都会相应地自动变化。一般情况下，新的 rsp 值会从 TSS 字段中，根据新的 protection ring 取得。IST 的含义在 6.2 节中阐述。
 
