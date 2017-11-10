@@ -1,7 +1,6 @@
 6.4 小结
 
-In this chapter we have provided an overview of interrupts and system call mechanisms. We have studied their implementation down to the system data structures residing in memory. In the next chapter we  
- are going to review different models of computation, including stack machines akin to Forth and finite automatons, and finally work on a Forth interpreter and compiler in assembly language.
+本章我们对中断和系统调用机制有了整体的了解。学习了它们的实现方式，并深入到系统的内存的数据结构级别中。下一章我们将回顾不同的计算模型，包括类似于前向自动机的堆栈机器\(stack machines\)，并最终研究汇编语言的前向翻译器和编译器。
 
 ---
 
