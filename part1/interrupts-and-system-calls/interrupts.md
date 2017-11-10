@@ -1,6 +1,6 @@
 6.2 中断
 
-Interrupts allow us to change the program control flow at an arbitrary moment in time. While the program is executing, external events \(device requires CPU attention\) or internal events \(division by zero, insufficient privilege level to execute an instruction, a non-canonical address\) may provoke an interrupt, which results in some other code being executed. This code is called an **interrupt handler **and is a part of an operating system or driver software.
+中断使我们可以在任意时刻修改程序的控制流。当程序正在执行时，外部事件\(设备需要 CPU 来处理\) 或者内部事件\(除数为零，执行指令的特权级别不够，访问非权威地址\)都会引起中断，而中断会使原本控制流程之外的代码被执行。这段代码叫作**中断处理器**，中断处理器一般是操作系统或者驱动程序的一部分。
 
 In \[15\], Intel separates external asynchronous interrupts from internal synchronous exceptions, but both are handled alike.
 
