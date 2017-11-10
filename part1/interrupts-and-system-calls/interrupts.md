@@ -16,9 +16,7 @@ _**Figure 6-3**.中断描述符_
 
 DPL Descriptor Privilege Level
 
-```
-        Current privilege level should be less or equal to DPL in order to call this handler using int instruction. Otherwise the check does not occur.
-```
+* Current privilege level should be less or equal to DPL in order to call this handler using int instruction. Otherwise the check does not occur.
 
 Type 1110 \(interrupt gate,IFis automatically cleared in the handler\) or 1111 \(trap gate,IFis not cleared\).
 
