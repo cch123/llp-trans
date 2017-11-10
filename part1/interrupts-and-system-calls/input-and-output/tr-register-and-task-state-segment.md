@@ -10,7 +10,7 @@ The TSS is a memory region used to hold information about a task in the presence
 
 These days there is only one TSS used by an operating system, with the structure described in Figure6-1.
 
-Figure 6-1.长模式下的 Task State 段
+_**Figure 6-1**.长模式下的 Task State 段_
 
 The first 16 bits store an offset to an Input/Output Port Permission Map, which we already discussed in section 6.1. The TSS then holds eight pointers to specialinterrupt stack tables\(ISTs\) and stack pointers for different rings. Each time a privilege level changes, the stack is automatically changed accordingly. Usually, the newrspvalue will be taken from the TSS field corresponding to the new protection ring. The meaning of ISTs is explained in section 6.2.
 
