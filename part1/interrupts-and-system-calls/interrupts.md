@@ -44,9 +44,9 @@ DPL 描述符特权级别\(Descriptor Privilege Level\)
 
 _**Figure 6-4**.中断处理器开始时的栈情况_
 
-Sometimes an interrupt handler needs additional information about the event. An **interrupt error code** is then pushed into stack. This code contains various information specific for this type of interrupt.
+有时中断处理程序需要事件更多的信息。这时候一个**中断错误码**会被推到其栈顶。这个错误码包含了这种类型的中断的各种各样的信息。
 
-Many interrupts are described using special mnemonics in Intel documentation. For example, the 13-th interrupt is referred to as **\#GP**\(general protection\).1You will find the short description of the some interesting interrupts in the Table6-1.
+很多中断在 Intel 的文档中都有特殊的助记符。例如，第 13 号中断被称为\#GP\(general protection\)。你可以在表 6-1 中找到一些有趣的中断的简短描述。
 
 _**Table 6-1**.一些重要的中断_
 
@@ -60,14 +60,13 @@ _**Table 6-1**.一些重要的中断_
 | 13 | \#GP | General protection |
 | 14 | \#PF | Page fault |
 
-Not all binary code corresponds to correctly encoded machine instructions. Whenripis not addressing a valid instruction, the CPU generates the \#UD interrupt.
+并不是所有的二进制代码中的指令都被正确编码了。当 rip 没有指向一个有效的指令地址时，CPU 会产生一个 \#UD 中断。
 
-The \#GP interrupt is very common. It is generated when you try to dereference a forbidden address \(which does not correspond to any allocated page\), when trying to perform an action, requiring a higher privilege level, and so on.
+\#GP 中断使用非常普遍。当你解引用一个禁用地址\(没有指向任意已分配页\)时就会触发这种中断，或者当执行需要更高特权级别的操作时也会触发这种中断，还有很多其它情况。
 
-The \#PF interrupt is generated when addressing a page which has its present flag cleared in the corresponding page table entry. This interrupt is used to implement the swapping mechanism and file mapping in general. The interrupt handler can load missing pages from disk.
+当访问一个内存页，且内存页的页表条目的 present flag 被清零时，就会产生 \#PF 中断。该中断用来实现内存交换策略以及文件映射功能。中断处理程序将未命中的页从磁盘加载到内存中。
 
-The debuggers rely heavily on the \#BP interrupt. When theTFis set inrflags, the interrupt with  
- this code is generated aftereachinstruction is executed, allowing a step-by-step program execution. Evidently, this interrupt is handled by an OS. It is thus an OS’s responsibility to provide an interface for user applications that allows programmers to write their own debuggers.
+debugger 会强依赖于 \#BP 中断。当 rflags 中的 TF 被标记时，这个中断就会在每一次执行指令时被触发，这样就允许程序的一步步执行了。显然，这种中断默认会被操作系统所处理。因此，给用户程序提供操作这种中断的接口就是操作系统的责任了，这样才能让程序员去编写它们自己的 debugger。
 
 总结一下，当第 n 个中断发生时，在程序员看来会有下面的一些行为发生：
 
