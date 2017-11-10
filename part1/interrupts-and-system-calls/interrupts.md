@@ -42,8 +42,6 @@ DPL 描述符特权级别\(Descriptor Privilege Level\)
 
 在中断处理程序开始执行之前，一些寄存器被自动保存进栈。这些寄存器包括 ss，rsp，rflags，cs 和 rip。参见图 6-4 中的栈图。注意段选择器是如何使用零填充到 64 位的。
 
-
-
 _**Figure 6-4**.中断处理器开始时的栈情况_
 
 Sometimes an interrupt handler needs additional information about the event. An **interrupt error code** is then pushed into stack. This code contains various information specific for this type of interrupt.
@@ -87,7 +85,5 @@ If the interrupt flag is not cleared immediately after the interrupt handler sta
 
 ---
 
-The interrupt handler is ended by a iretq instruction, which restores all registers saved in the stack, as
-
-shown in Figure6-4, compared to the simplecallinstruction, which restores onlyrip.
+中断处理程序使用 iretq 指令来结束，该指令会恢复之前保存在栈里的所有寄存器，这些寄存器在图 6-4 中有所体现。而简单的 call 指令只会恢复 rip 寄存器。
 
