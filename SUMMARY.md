@@ -71,7 +71,7 @@
     * Summary
   * [Chapter 6 中断和系统调用](part1/interrupts-and-system-calls.md)
     * [输入和输出](part1/interrupts-and-system-calls/input-and-output.md)
-      * [TR register and Task State Segment](part1/interrupts-and-system-calls/input-and-output/tr-register-and-task-state-segment.md)
+      * [TR 寄存器和 Task State 段](part1/interrupts-and-system-calls/input-and-output/tr-register-and-task-state-segment.md)
     * [中断](part1/interrupts-and-system-calls/interrupts.md)
     * [系统调用](part1/interrupts-and-system-calls/system-calls.md)
       * [特殊模块寄存器](part1/interrupts-and-system-calls/system-calls/model-specific-registers.md)
