@@ -75,7 +75,7 @@
     * [中断](part1/interrupts-and-system-calls/interrupts.md)
     * [系统调用](part1/interrupts-and-system-calls/system-calls.md)
       * [特殊模块寄存器](part1/interrupts-and-system-calls/system-calls/model-specific-registers.md)
-      * [syscall and sysret](part1/interrupts-and-system-calls/system-calls/syscall-and-sysret.md)
+      * [syscall 和 sysret](part1/interrupts-and-system-calls/system-calls/syscall-and-sysret.md)
     * [Summary](part1/interrupts-and-system-calls/summary.md)
   * [Chapter 7 Models of Computation](part1/models-of-computation.md)
     * [Finite State Machines](part1/models-of-computation/finite-state-machines.md)

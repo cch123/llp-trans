@@ -1,4 +1,4 @@
-6.3.2 syscall and sysret
+6.3.2 syscall 和 sysret
 
 syscall 指令依赖于几个 MSR\(特殊模块寄存器\) 寄存器。
 
