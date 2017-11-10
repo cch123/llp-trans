@@ -2,41 +2,45 @@
 
 中断使我们可以在任意时刻修改程序的控制流。当程序正在执行时，外部事件\(设备需要 CPU 来处理\) 或者内部事件\(除数为零，执行指令的特权级别不够，访问非权威地址\)都会引起中断，而中断会使原本控制流程之外的代码被执行。这段代码叫作**中断处理器**，中断处理器一般是操作系统或者驱动程序的一部分。
 
-In \[15\], Intel separates external asynchronous interrupts from internal synchronous exceptions, but both are handled alike.
+在 \[15\] 中，Intel 把外部的异步中断和内部的同步异常进行了分离，不过这两种情况的处理方式是类似的。
 
-Each interrupt is labeled with a fixed number, which serves as its identifier. For us it is not important exactly how the processor acquires the interrupt number from the interrupt controller.
+每一个中断都会被标记一个固定的数值，这个数值就是它的身份标志。对于我们来说处理器是怎么从中断 controller 中拿到这个中断编号的并不重要。
 
-When then-th interrupt occurs, the CPU checks the Interrupt Descriptor Table\(IDT\), which resides in memory. Analogously to GDT, its address and size are stored inidtr. Figure6-2describes the idtr.
+当第 n 个中断发生时，CPU 会检查内存中的中断描述符表\(IDT\)。和 GDT 类似，其地址和大小是在 idtr 中存储的，图 6-2 描述了这个特殊的寄存器：
+
+
 
 _**Figure 6-2**.idtr 寄存器_
 
-Each entry in IDT takes 16 bytes, and then-th entry corresponds to then-th interrupt. The entry incorporates some utility information as well as an address of the interrupt handler. Figure6-3describes the interrupt descriptor format.
+IDT 的每一个条目都有 16 字节，第 n 个条目对应第 n 个中断。该条目包含的信息中有例如中断处理器的地址之类。图 6-3 描述了中断描述符的格式。
+
+
 
 _**Figure 6-3**.中断描述符_
 
-DPL Descriptor Privilege Level
+DPL 描述符特权级别\(Descriptor Privilege Level\)
 
-* Current privilege level should be less or equal to DPL in order to call this handler using int instruction. Otherwise the check does not occur.
+* 当前特权级别应该要小于等于 DPL 才能使用 int 指令调用中断处理器。否则 check 行为都不会进行。
 
-Type 1110 \(interrupt gate,IFis automatically cleared in the handler\) or 1111 \(trap gate,IFis not cleared\).
+.1110 类型\(中断门，interrupt gate，IF 标记会在中断处理器中被自动 clear 掉\) 或者 1111 类型\(陷阱门，trap gate，IF 标记不会被 clear\)。
 
-The first 30 interrupts are reserved. It means that you can provide interrupt handlers for them, but the CPU will use them for its internal events such as invalid instruction encoding. Other interrupts can be used by the system programmer.
+前 30 个中断是被保留的。也就是说你不能自己提供这几个中断的中断处理器，但 CPU 会使用这些保留的中断来处理其内部的一些事件，例如非法的指令编码。除保留中断以外的中断可以被系统程序员使用。
 
-When the IF flag is set, the interrupts are handled; otherwise they are ignored.
-
----
-
-■Question 96 What are non-maskable interrupts? What is their connection with the interrupt with code 2
-
-and IF flag?
+当 IF 标记位被设置时，中断就会被处理；否则中断则会被忽略。
 
 ---
 
-The application code is executed with low privileges \(in ring3\). Direct device control is only possible on higher privilege levels. When a device requires attention by sending an interrupt to the CPU, the handler should be executed in a higher privilege ring, thus requiring altering the segment selector.
+ ■Question 96 什么是 non-maskable 中断？这种中断和编码为 2 的中断和 IF flag 有什么关系？
 
-What about the stack? The stack should also be switched. Here we have several options based on how we set up the IST field of interrupt descriptor.
+---
 
-* If the IST is 0, the standard mechanism is used. When an interrupt occurs,ssis loaded with 0, and the newrspis loaded from TSS. The RPL field ofssthen is set to an appropriate privilege level. Thenoldssandrspare saved in this new stack.
+应用程序代码在较低的权限下执行\(ring3\)。直接的设备控制只能在高级的特权级别下执行。当设备需要 CPU 响应并发送中断给 CPU 时，处理程序需要在高特权级别下进行执行，因此需要修改段选择器。
+
+那栈的话呢？这时候栈也应该被切换啊。下面是我们在设置中断描述符的 IST 字段时需要的一些选项：
+
+如果 IST 是 0，那么标准机制会被采用。
+
+If the IST is 0, the standard mechanism is used. When an interrupt occurs,ssis loaded with 0, and the newrspis loaded from TSS. The RPL field ofssthen is set to an appropriate privilege level. Thenoldssandrspare saved in this new stack.
 
 * If an IST is set, one of seven ISTs defined in TSS is used. The reason ISTs are created is that some serious faults \(non-maskable interrupts, double fault, etc.\) might profit from being executed on a known good stack. So, a system programmer might create several stacks even for ring0 and use some of them to handle specific interrupts.
 
