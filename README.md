@@ -7,7 +7,7 @@ translate LLP into Chinese.
 3. [x] Chapter 3
 4. [x] Chapter 4
 5. [ ] Chapter 5
-6. [ ] Chapter 6
+6. [x] Chapter 6
 7. [ ] Chapter 7
 8. [ ] Chapter 8
 9. [ ] Chapter 9
@@ -23,4 +23,6 @@ translate LLP into Chinese.
 19. [ ] Appendix B
 20. [ ] Appendix C
 21. [ ] Appendix D
+
+
 
