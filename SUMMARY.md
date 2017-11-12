@@ -108,10 +108,10 @@
     * [Strict Aliasing](part3/translation-details/strict-aliasing.md)
     * [Security Issues](part3/translation-details/security-issues.md)
       * [Stack Buffer Overrun](part3/translation-details/security-issues/stack-buffer-overrun.md)
-      * return-to-libc
+      * [return-to-libc](part3/translation-details/security-issues/return-to-libc.md)
       * Format Output Vulnerabilities
     * [Protection Mechanisms](part3/translation-details/protection-mechanisms.md)
-      * Security Cookie
+      * [Security Cookie](part3/translation-details/protection-mechanisms/security-cookie.md)
       * Address Space Layout Randomization
       * DEP
     * [Summary](part3/translation-details/summary.md)
