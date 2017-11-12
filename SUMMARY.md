@@ -92,12 +92,12 @@
 * [Part 3 C 和汇编](part3.md)
   * [Chapter 14 Translation Details](part3/translation-details.md)
     * [Function Calling Sequence](part3/translation-details/function-calling-sequence.md)
-      * XMM Registers
-      * Calling Convention
-      * Example: Simple Function and Its Stack
-      * Red Zone
-      * Variable Number of Arguments
-      * vprintf and Friends
+      * [XMM Registers](part3/translation-details/function-calling-sequence/xmm-registers.md)
+      * [Calling Convention](part3/translation-details/function-calling-sequence/calling-convention.md)
+      * [Example: Simple Function and Its Stack](part3/translation-details/function-calling-sequence/example-simple-function-and-its-stack.md)
+      * [Red Zone](part3/translation-details/function-calling-sequence/red-zone.md)
+      * [Variable Number of Arguments](part3/translation-details/function-calling-sequence/variable-number-of-arguments.md)
+      * [vprintf and Friends](part3/translation-details/function-calling-sequence/vprintf-and-friends.md)
     * [volatile](part3/translation-details/volatile.md)
     * [Non-Local jumps–setjmp](part3/translation-details/non-local-jumpssetjmp.md)
     * [inline](part3/translation-details/inline.md)
