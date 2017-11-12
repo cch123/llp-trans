@@ -14,12 +14,10 @@ inline 是在 C99 中引入的函数修饰符。行为上模仿了 C++ 中相同
 inline 关键字就是解决这种问题的。其正确的用法应该是下面这样：
 
 * 在相关的头文件中定义一个 inline 函数，例如，
-
-inline int inc\( int x \) { return x + 1; }
+  * inline int inc\( int x \) { return x + 1; }
 
 * 在一个翻译单元\(也就是说 a.c 文件\)，添加外部声明
-
-extern inline int inc\( int x \);
+  * extern inline int inc\( int x \);
 
 这样你就为自己定义了一个 inc 的内部版本，虽然会在外部其它文件所引用，但本单元的函数是独立的。
 
