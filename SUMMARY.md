@@ -99,12 +99,21 @@
       * [Variable Number of Arguments](part3/translation-details/function-calling-sequence/variable-number-of-arguments.md)
       * [vprintf and Friends](part3/translation-details/function-calling-sequence/vprintf-and-friends.md)
     * [volatile](part3/translation-details/volatile.md)
+      * Lazy Memory Allocation
+      * Generated Code
     * [Non-Local jumps–setjmp](part3/translation-details/non-local-jumpssetjmp.md)
+      * Volatile and setjmp
     * [inline](part3/translation-details/inline.md)
     * [restrict](part3/translation-details/restrict.md)
     * [Strict Aliasing](part3/translation-details/strict-aliasing.md)
     * [Security Issues](part3/translation-details/security-issues.md)
+      * Stack Buffer Overrun
+      * return-to-libc
+      * Format Output Vulnerabilities
     * [Protection Mechanisms](part3/translation-details/protection-mechanisms.md)
+      * Security Cookie
+      * Address Space Layout Randomization
+      * DEP
     * [Summary](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
