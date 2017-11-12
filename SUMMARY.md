@@ -99,8 +99,8 @@
       * [Variable Number of Arguments](part3/translation-details/function-calling-sequence/variable-number-of-arguments.md)
       * [vprintf and Friends](part3/translation-details/function-calling-sequence/vprintf-and-friends.md)
     * [volatile](part3/translation-details/volatile.md)
-      * Lazy Memory Allocation
-      * Generated Code
+      * [Lazy Memory Allocation](part3/translation-details/volatile/lazy-memory-allocation.md)
+      * [Generated Code](part3/translation-details/volatile/generated-code.md)
     * [Non-Local jumps–setjmp](part3/translation-details/non-local-jumpssetjmp.md)
       * Volatile and setjmp
     * [inline](part3/translation-details/inline.md)
