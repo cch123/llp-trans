@@ -1,4 +1,4 @@
 14.1 Function Calling Sequence
 
-In Chapter 2 we studied how to call the procedures, how they return values, and how they accept arguments. The full calling sequence is described in \[24\] and we highly recommend you to take a look at it. We are going to revisit this process and add valuable details.
+第二章我们学习了如何进行调用过程，如何返回值，如何接收参数。完整的调用序列在 \[24\] 中有描述，强烈建议你去看一看。我们将回到这个流程，并在这里再讲一些重要的细节。
 
