@@ -57,7 +57,7 @@ Since a type name becomes an argument andva\_listis used by name, but is mutated
 
 ---
 
-■Question 264Can you imagine a situation in which a function, not a macro, accepts a variable by name \(syntactically\) and changes it? What should be the type of such variable?
+■Question 264 Can you imagine a situation in which a function, not a macro, accepts a variable by name \(syntactically\) and changes it? What should be the type of such variable?
 
 ---
 
