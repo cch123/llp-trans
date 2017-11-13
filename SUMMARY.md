@@ -112,7 +112,7 @@
       * [Format Output Vulnerabilities](part3/translation-details/security-issues/format-output-vulnerabilities.md)
     * [Protection Mechanisms](part3/translation-details/protection-mechanisms.md)
       * [Security Cookie](part3/translation-details/protection-mechanisms/security-cookie.md)
-      * Address Space Layout Randomization
+      * [Address Space Layout Randomization](part3/translation-details/protection-mechanisms/address-space-layout-randomization.md)
       * [DEP](part3/translation-details/protection-mechanisms/dep.md)
     * [Summary](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
