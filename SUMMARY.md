@@ -113,7 +113,7 @@
     * [Protection Mechanisms](part3/translation-details/protection-mechanisms.md)
       * [Security Cookie](part3/translation-details/protection-mechanisms/security-cookie.md)
       * Address Space Layout Randomization
-      * DEP
+      * [DEP](part3/translation-details/protection-mechanisms/dep.md)
     * [Summary](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
