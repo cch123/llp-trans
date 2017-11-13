@@ -1,18 +1,12 @@
 14.1.4 Red Zone
 
-The red zone is an area of 128 bytes that spans fromrspto lower addresses. It relaxes the rule “no data belowrsp”; it is safe to allocate data there and it will not be overwritten by system calls or interrupts. We are speaking about direct memory writes relative torspwithout changingrsp. The function calls will, however, still overwrite the red zone.
+red zone 是一段 128 字节的区域，从 rsp 向低地址延伸。它放宽了“比 rsp 更低的地址没有数据”的限制；在 red zone 上存放数据是安全的，而且不会被系统调用或者中断所覆盖。这里我们说的是在不改变 rsp 的前提下用相对于 rsp 的地址的直接内存写的情况。如果进行函数调用，那还是有可能覆盖掉 red zone。
 
-The red zone was created to allow a specific optimization. If a function never calls other functions, it can omit stack frame creation \(rbpchanges\). Local variables and arguments will then be addressed relative torsp, notrbp.
+red zone 的存在是为了一种特殊的优化。如果一个函数在生命周期内不调用任何其它函数，那么就可以忽略掉其栈帧的创建 \(rbp 的变化\)。局部变量和参数可以使用 rsp 的相对地址进行访问，而不是 rbp。此外：
 
-* The total size of local variables is less than 128 bytes.
+* 局部变量的总大小不应超过 128 字节。
+* 函数是叶子函数\(不调用其它任何函数\)。
+* 函数不修改 rsp 寄存器；否则就不可能用相对 rsp 的地址去访问内存了。
 
-* A function is a leaf function \(does not call other functions\).
-
-* Function does not changersp; otherwise it is impossible to address memory relative to it.
-
-
-
-By movingrspahead you can still get more free space to allocate your data in, than 128 bytes in the stack. See also section 16.1.3.
-
-
+通过向前挪动 rsp，你依然可以获得可以分配数据的比 128 字节大的空闲空间。参见 16.1.3 节。
 
