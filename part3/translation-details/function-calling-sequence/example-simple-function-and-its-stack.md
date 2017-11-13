@@ -17,22 +17,15 @@ int main(void) {
     int x = maximum( 42, 999 );
     return 0;
 }
-
 ```
 
 Listing14-5shows the disassembly produced byobjdump.
 
 Listing 14-5.maximum.asm
 
-
-
-
-
 After a bit of cleaning, we get a pure and more readable assembly code, which is shown in Listing14-6.
 
 Listing 14-6.maximum\_refined.asm
-
-
 
 ---
 
@@ -42,15 +35,19 @@ Listing 14-6.maximum\_refined.asm
 
 We are going to trace the function call and its prologue \(check Listing14-6\) and show the stack contents immediately after its execution.
 
-
-
 call maximum
+
+14-a
 
 push rbp
 
+14-b
+
 mov rbp, rsp
+
+14-c
 
 sub rsp, 3984
 
-
+14-d
 
