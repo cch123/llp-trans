@@ -1,4 +1,4 @@
-14.1.6 vprintf and Friends
+14.1.6 vprintf 和它的朋友们
 
 像 printf，fprintf 这类的函数都有特殊的版本。特殊版本接收 va\_list 作为它们的最后的参数。这些特殊版本的函数以字母 v 作为前缀，例如：
 
