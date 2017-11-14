@@ -36,10 +36,7 @@ The vulnerability does not come fromgetsusage but from usage of the format strin
 ```
 > %x %x %x %x %x %x %x %x %x %x
 b1b6701d b19467b0 fbad2088 b1b6701e 0 25207825 20782520 78252078 25207825
-
 ```
-
-
 
 As we see, it actually gave us four numbers that share a certain informal similarity, a 0 and two more numbers. Our hypothesis is that the last two numbers are taken from the stack already.
 
@@ -68,13 +65,11 @@ Listing 14-28.printf\_n.c
 
 \#include &lt;stdio.h&gt;
 
-
-
 ```
 int main(void) {
-    int count;    
-    printf( "hello%n world\n", &count);    
-    printf( "%d\n", count );    
+    int count;
+    printf( "hello%n world\n", &count);
+    printf( "%d\n", count );
     return 0;
 }
 ```
