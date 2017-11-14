@@ -1,9 +1,8 @@
 14.7.2 return-to-libc
 
-As we have already elaborated, the malevolent user can rewrite the return address if the program allows him to overrun the stack buffer. The return-to-libc attack is performed when the return address is the address  
- of a function in the standard C library. One function is of a particular interest,int system\(const char\* command\). This function allows you to execute an arbitrary shell command. What’s even worse, it will be executed with the same privileges as the attacked program.
+我们已经详细讲过，如果程序允许用户越过栈缓冲，那么狠心的用户可能覆盖掉程序的返回地址。return-to-libc 攻击就是指那些把返回地址覆盖为 C 标准库地址的攻击行为。其中一个函数会被攻击者重点关注，int system\(const char\* command\)。这个函数允许你执行任意的 shell 命令。更糟糕的是，它甚至在和攻击程序相同的特权级别下执行。
 
-When the current function terminates by executing theretcommand, we will start executing the function from libc. It is yet a question, how do we form a valid argument for it?
+当函数使用 ret 命令终止运行时，我们将执行 libc 的函数。不过还有一个问题，我们怎么给这个 libc 的函数造一个合法参数呢？
 
-In the presence ofASLR\(address space layout randomization\), doing this attack is nontrivial \(but still possible\).
+由于 ASLR \(地址空间布局随机化 address space layout randomization\) 的存在，发动这种类型的攻击变得非常麻烦 \(但并非不可能\)。
 
