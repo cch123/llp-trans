@@ -20,13 +20,9 @@ void printf( char const* format, ... );
 
 显然，对 C 程序员来说也没法对这种变长参数的功能进行编码，因为寄存器在 C 语言中没有办法直接访问。然而还是有一种标准库提供的可移植的手段，能够让我们声明变长参数的函数。每一个平台对于这种手段都有自己的实现支持。在你的程序中 include 进 stdarg.h 这个头文件，然后在函数中处理：
 
-* va\_list– 存储了参数信息的结构体
-* a structure that stores information about arguments.
-
-* `va_start`– 初始化  `va ist` 的宏
-
+* `va_list`– 存储了参数信息的结构体
+* `va_start`– 初始化  `va list` 的宏
 * `va_end`– 结束初始化 `va list` 的宏
-
 * `va_arg`– 在提供了 `va list` 实例和参数类型时，从参数列表中取下一个参数的宏
 
 列表 14-7 展示了一个例子。printer 函数接收变长参数列表和任意的参数数量。
