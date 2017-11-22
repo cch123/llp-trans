@@ -12,7 +12,7 @@ void printf( char const* format, ... );
 
 ---
 
- ■Note 为了处理变长数量的参数，al 寄存器应该存储被参数使用到的 xmm 寄存器的数量。
+■Note 为了处理变长数量的参数，al 寄存器应该存储被参数使用到的 xmm 寄存器的数量。
 
 ---
 
@@ -52,15 +52,13 @@ int main () {
 }
 ```
 
-First,va\_listis initialized with the name of the last argument before dots byva\_start. Then, each call tova\_arggets the next argument. The second parameter is the name of the fresh argument’s type. In the end,va\_listis deinitialized usingva\_end.
+首先，`va_list` 被 ... 之前的最后一个参数所初始化。然后每次调用  \`va arg\` 都会获取到下一个参数。第二个参数是参数的具体类型。最后 va list 被 va end 结束初始化。
 
-Since a type name becomes an argument andva\_listis used by name, but is mutated, this example can look confusing.
+由于类型名被用作了参数，`va_list` 用名字来使用名字来访问，但类型有变化，这个例子看上去可能有些费解。
 
 ---
 
-■Question 264 
-
-Can you imagine a situation in which a function, not a macro, accepts a variable by name \(syntactically\) and changes it? What should be the type of such variable?
+■Question 264 你可以想像一下，在哪个函数中\(非宏\)，用名字来接收一个“变量”，然后修改掉它么？这种变量应该是什么类型？
 
 ---
 
