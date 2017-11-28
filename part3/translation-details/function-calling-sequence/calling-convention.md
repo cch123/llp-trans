@@ -42,13 +42,11 @@ void f( int x, struct s* ret ) {
 
 Each such function instance is stored in the stack, because its main principle—“last in, first out”—corresponds to how functions are launched and terminated. If a functionfis launched and then invokes a functiong,gis terminated first \(but was invoked last\), andfis terminated last \(while being invoked first\).
 
-Stack frameis a part of a stack dedicated to a single function instance. It stores the values of the local variables, temporal variables, and saved registers.
+**Stack frame**is a part of a stack dedicated to a single function instance. It stores the values of the local variables, temporal variables, and saved registers.
 
 The function code is usually enclosed inside a pair ofprologueandepilogue, which are similar for all functions. Prologue helps initialize the stack frame, and epilogue deinitializes it.
 
 During the function execution,rbpstays unchanged and points to the beginning of its stack frame. It is possible to address local variables and stack arguments relatively torbp. It is reflected in the function prologue shown in Listing14-1.
-
-
 
 _**Listing 14-1**.prologue.asm_
 
