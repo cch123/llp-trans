@@ -20,17 +20,14 @@
 
 如果一个结构体大于 32 字节，或者有未对齐的字段，那么就会通过内存传入。
 
+小结构体会按照其字段被分解为多个字段，每一个字段都被分别处理，如果结构体内又有结构体，那么也会被递归做相同处理。所以一个包含两个元素的结构体可以用两个参数的同样的方式进行传入If one field of a structure is considered “memory,” it propagates to the structure itself.
 
+rbp 寄存器像我们即将看到的，会用来定位通过内存传入的参数以及局部变量。
 
-A smaller structure is decomposed in fields and each field is treated separately and, if in an inner structure, recursively. So, a structure of two elements can be passed the same way as two arguments. If one field of a structure is considered “memory,” it propagates to the structure itself.
-
-Therbpregister, as we will see, is used to address the arguments passed in memory and local variables.
-
-What about return values? Integer and pointer values are returned inraxandrdx. Floating point values are returned inxmm0andxmm1. Big structures are returned through a pointer, provided as an additional hidden argument, in the spirit of the following example:
+返回值往哪里填呢？整数和指针会存储在 rax 和 rdx 中返回。浮点数会在 xmm0 和 xmm1 返回。大结构体会以一个指针形式返回，该指针以隐藏的附加参数返回，像下面这个例子：
 
 ```
 struct s {
-
     char vals[100];
 };
 
