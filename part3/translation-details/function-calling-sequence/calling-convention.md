@@ -16,9 +16,11 @@
 
 第一个列表中的前六个参数通过六个通用寄存器传入\(rdi，rsi，rdx，rcx，r8 和 r9\)。第二个列表中的前八个参数通过 xmm0 ~ xmm7 这八个寄存器传入。如果前两个列表还有更多的参数传入，那么这些多余的参数会被以**反序**存储在栈上传入。也就是说，在函数被执行前，传入的最后一个参数应该是在栈顶上。
 
-While integers and floats are quite trivial to handle, structures are a bit trickier.
+整数和浮点数参数传递比较简单，结构体传入则稍微复杂一些。
 
-If a structure is bigger than 32 bytes, or has unaligned fields, it is passed in memory.
+如果一个结构体大于 32 字节，或者有未对齐的字段，那么就会通过内存传入。
+
+
 
 A smaller structure is decomposed in fields and each field is treated separately and, if in an inner structure, recursively. So, a structure of two elements can be passed the same way as two arguments. If one field of a structure is considered “memory,” it propagates to the structure itself.
 
