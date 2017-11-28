@@ -4,21 +4,17 @@
 
 如果所有人都遵守同样的规则的话，那么就可以流畅地完成合作。一旦有人破坏规则，例如，修改或者在一个函数中不恢复 rbp 的值，那么可能会发生：啥事都没有，稍后程序崩溃，或者程序马上就崩。由于其它函数在编写的时候都假定自身以外的函数是遵守这些调用规则的，且保证 rbp 寄存器不被修改。
 
-The calling conventions declare, among other things, the argument passing algorithm. In the case of the typical \*nix x86 64 convention we are using \(described fully in \[24\]\), the description that follows is an accurate enough approximation of how the function is called.
+调用规约定义的其中之一就是参数的传递算法。我们这里使用传统的 \*nix 的 x86 64 下的习惯\(在\[24\]中详细定义\)，下面的描述对于函数如何被调用是一个相对精确的近似。
 
-1.First, the registers that need to be preserved are saved. All registers except for seven callee-saved registers \(rbx,rbp,rsp, andr12-r15\) can be changed by the called function, so if their value is of any importance, they should be stored \(probably in a stack\).
+1. 首先，需要对值进行保护的寄存器需要保存好原来的值。除了七个 callee-saved 寄存器\(rbx，rbp，rsp，r12 - r15\)都可能被被调用函数所修改，所以如果这些寄存器的值重要的话，就需要把这些寄存器的值保存起来\(一般都在栈上保存\)。
+2. 寄存器和栈都会被参数填充。
+   每个参数都会被 round 到 8 字节。
+   参数会被分为三个列表：
+   \(a\) 整数和指针参数
+   \(b\) Float 和 double 参数
+   \(c\) 通过内存中的栈传入的参数
 
-2.The
-
-The size of each argument gets rounded up to 8 bytes. The arguments are split into three lists:
-
-1. \(a\) Integer or pointer arguments.
-
-2. \(b\) Floats and doubles.
-
-3. \(c\) Arguments passed in memory via stack \(“memory”\).
-
-The first six arguments from the first list are passed in general purpose registers \(rdi,rsi,rdx,rcx,r8, andr9\). The first eight arguments from the second list are passed in registersxmm0toxmm7. If there are more arguments from these lists to pass, they are passed on to the stack in reverse order. It means that the last argument will be on top of the stack before the call is performed.
+第一个列表中的前六个参数通过六个通用寄存器传入\(rdi，rsi，rdx，rcx，r8 和 r9\)。第二个列表中的前八个参数通过 xmm0 ~ xmm7 这八个寄存器传入。如果前两个列表还有更多的参数传入，那么这些多余的参数会被以**反序**存储在栈上传入。也就是说，在函数被执行前，传入的最后一个参数应该是在栈顶上。
 
 While integers and floats are quite trivial to handle, structures are a bit trickier.
 
