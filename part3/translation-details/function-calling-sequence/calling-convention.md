@@ -16,7 +16,7 @@
    第一个列表中的前六个参数通过六个通用寄存器传入\(rdi，rsi，rdx，rcx，r8 和 r9\)。第二个列表中的前八个参数通过 xmm0 ~ xmm7 这八个寄存器传入。如果前两个列表还有更多的参数传入，那么这些多余的参数会被以**反序**存储在栈上传入。也就是说，在函数被执行前，传入的最后一个参数应该是在栈顶上。
    整数和浮点数参数传递比较简单，结构体传入则稍微复杂一些。
    如果一个结构体大于 32 字节，或者有未对齐的字段，那么就会通过内存传入。
-   小结构体会按照其字段被分解为多个字段，每一个字段都被分别处理，如果结构体内又有结构体，那么也会被递归做相同处理。所以一个包含两个元素的结构体可以用两个参数的同样的方式进行传入If one field of a structure is considered “memory,” it propagates to the structure itself.
+   小结构体会按照其字段被分解为多个字段，每一个字段都被分别处理，如果结构体内又有结构体，那么也会被递归做相同处理。所以一个包含两个元素的结构体可以用两个参数的同样的方式进行传入。如果结构体的某个字段被认为是 "内存"，那么就会冒泡到结构体本身。
    rbp 寄存器像我们即将看到的，会用来定位通过内存传入的参数以及局部变量。
    返回值往哪里填呢？整数和指针会存储在 rax 和 rdx 中返回。浮点数会在 xmm0 和 xmm1 返回。大结构体会以一个指针形式返回，该指针以隐藏的附加参数返回，像下面这个例子：
 
@@ -38,15 +38,13 @@ void f( int x, struct s* ret ) {
 
 3.然后就可以调用 call 指令了。call 的参数是需要调用的函数的第一条指令的地址。call 指令会将该地址 push  到栈上。
 
-每一个程序都可以有同一个函数的多个实例同时执行，这些同时执行的函数并不一定是在不同的线程中，且有可能是由于递归导致的多实例。
+每一个程序都可以有同一个函数的多个实例同时执行，这些同时执行的函数并不一定是在不同的线程中，且有可能是由于递归导致的多实例。这个函数的每一个实例都会被存储在栈上，因为栈的主要规则是后进先出，因此该特性会反映在函数的运行和销毁上。一个函数 f 在运行后调用了函数 g，那么 g 会先被销毁\(而 g 从时间上来讲是后被调用的\)，f 之后才被销毁 \(然而 f 在时间上是先被调用的\)。
 
-Each such function instance is stored in the stack, because its main principle—“last in, first out”—corresponds to how functions are launched and terminated. If a functionfis launched and then invokes a functiong,gis terminated first \(but was invoked last\), andfis terminated last \(while being invoked first\).
+**栈帧**是为某一函数所专用的栈的一部分。栈帧保存了局部变量，临时变量和保存的寄存器。
 
-**Stack frame**is a part of a stack dedicated to a single function instance. It stores the values of the local variables, temporal variables, and saved registers.
+函数代码一般会被一对 prologue 代码和 epilogue 代码包裹，对所有函数来说都一样。prologue 用来初始化栈帧，epilogue 用来逆向初始化\(销毁\)。
 
-The function code is usually enclosed inside a pair ofprologueandepilogue, which are similar for all functions. Prologue helps initialize the stack frame, and epilogue deinitializes it.
-
-During the function execution,rbpstays unchanged and points to the beginning of its stack frame. It is possible to address local variables and stack arguments relatively torbp. It is reflected in the function prologue shown in Listing14-1.
+函数执行过程中，rbp 保持不变并一直指向该函数栈帧的起始位置。这样就可以用 rbp 寄存器外加偏移量来对局部变量进行寻址了。列表 14-1 中的代码对此有所反映。
 
 _**Listing 14-1**.prologue.asm_
 
@@ -58,11 +56,13 @@ mov rbp, rsp
 sub rsp, 24      ; given 24 is total size of local variables
 ```
 
-The oldrbpvalue is saved to be restored later in epilogue. Then a newrbpis set up to the current top of the stack \(which stores the oldrbpvalue now by the way\). Then the memory for the local variables is allocated in the stack by subtracting their total size fromrsp. This is the automatic memory allocation in C and the technique we have used in the very first assignment to allocate buffers on stack.
+老的 rbp 值被存储起来以便之后在 epilogue 中恢复。然后 rbp 被设置为当前的栈的栈顶值\(顺便说一下，栈顶现在存储的是 rbp 的老值\)。接下来为局部变量分配空间的话，就只需要让 rsp 的值减去该变量的大小就可以了。这也是我们在栈上分配 buffer 空间的方式。
 
-The functions end with an epilogue shown in Listing14-2.
+局部变量现在若要分配内存则可以直接用 rsp 减去其大小
 
-Listing 14-2.epilogue.asm
+函数结束的 epilogue 片段如列表 14-2 所示。
+
+_**Listing 14-2**.epilogue.asm_
 
 ```
 mov rsp, rbp
@@ -70,18 +70,18 @@ pop rbp
 ret
 ```
 
-By moving the stack frame the beginning address intorspwe can be sure that all memory allocated in the stack is deallocated. Then the oldrbpvalue is restored, and nowrbppoints at the start of the previous stack frame. Finally,retpops the return address from stack intorip.
+通过将栈帧的起始地址移动到 rsp，我们可以确保所有在栈上分配的空间都被释放掉了。然后老的 rbp 值也就被恢复了，现在 rbp 会指向前一个栈帧的起始地址。最后 ret 指令会将返回地址从栈弹出到 rip 中。
 
-A fully equivalent alternative form is sometimes chosen by the compiler. It is shown in Listing14-3.
+编译器一般使用的是一组完全等价的替代指令，参见列表 14-3。
 
-Listing 14-3.epilogue\_alt.asm
+_**Listing 14-3**.epilogue\_alt.asm_
 
 ```
 Leave
 ret
 ```
 
-The leave instruction is made especially for stack frame destruction. Its counterpart,enter, is not always used by compilers because it is more functional than the instruction sequence shown in Listing14-1. It is aimed at languages with inner functions support.
+leave 指令是特别为栈帧销毁所发明的指令。其反义指令 enter 则不太被很多编译器所接受，因为这条指令提供了比列表 14-1 更多的功能。指令本身是针对那些内嵌函数支持的编程语言设计的。
 
-4.After leaving the function, our work is not always done. In case there were arguments that were passed in memory \(stack\), we have to get rid of them too.
+4. 在离开函数之后，并不是说我们的工作就结束了。由于一些参数是通过内存\(栈\)传入的，我们也需要把这些也清理掉。
 
