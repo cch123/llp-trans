@@ -13,18 +13,12 @@
    \(a\) 整数和指针参数
    \(b\) Float 和 double 参数
    \(c\) 通过内存中的栈传入的参数
-
-第一个列表中的前六个参数通过六个通用寄存器传入\(rdi，rsi，rdx，rcx，r8 和 r9\)。第二个列表中的前八个参数通过 xmm0 ~ xmm7 这八个寄存器传入。如果前两个列表还有更多的参数传入，那么这些多余的参数会被以**反序**存储在栈上传入。也就是说，在函数被执行前，传入的最后一个参数应该是在栈顶上。
-
-整数和浮点数参数传递比较简单，结构体传入则稍微复杂一些。
-
-如果一个结构体大于 32 字节，或者有未对齐的字段，那么就会通过内存传入。
-
-小结构体会按照其字段被分解为多个字段，每一个字段都被分别处理，如果结构体内又有结构体，那么也会被递归做相同处理。所以一个包含两个元素的结构体可以用两个参数的同样的方式进行传入If one field of a structure is considered “memory,” it propagates to the structure itself.
-
-rbp 寄存器像我们即将看到的，会用来定位通过内存传入的参数以及局部变量。
-
-返回值往哪里填呢？整数和指针会存储在 rax 和 rdx 中返回。浮点数会在 xmm0 和 xmm1 返回。大结构体会以一个指针形式返回，该指针以隐藏的附加参数返回，像下面这个例子：
+   第一个列表中的前六个参数通过六个通用寄存器传入\(rdi，rsi，rdx，rcx，r8 和 r9\)。第二个列表中的前八个参数通过 xmm0 ~ xmm7 这八个寄存器传入。如果前两个列表还有更多的参数传入，那么这些多余的参数会被以**反序**存储在栈上传入。也就是说，在函数被执行前，传入的最后一个参数应该是在栈顶上。
+   整数和浮点数参数传递比较简单，结构体传入则稍微复杂一些。
+   如果一个结构体大于 32 字节，或者有未对齐的字段，那么就会通过内存传入。
+   小结构体会按照其字段被分解为多个字段，每一个字段都被分别处理，如果结构体内又有结构体，那么也会被递归做相同处理。所以一个包含两个元素的结构体可以用两个参数的同样的方式进行传入If one field of a structure is considered “memory,” it propagates to the structure itself.
+   rbp 寄存器像我们即将看到的，会用来定位通过内存传入的参数以及局部变量。
+   返回值往哪里填呢？整数和指针会存储在 rax 和 rdx 中返回。浮点数会在 xmm0 和 xmm1 返回。大结构体会以一个指针形式返回，该指针以隐藏的附加参数返回，像下面这个例子：
 
 ```
 struct s {
@@ -42,17 +36,19 @@ void f( int x, struct s* ret ) {
 }
 ```
 
-3.Then thecallinstruction should be called. Its parameter is the address of the first
+3.然后就可以调用 call 指令了。call 的参数是需要调用的函数的第一条指令的地址。call 指令会将该地址 push  到栈上。
 
-instruction of a called function. It pushes the return address into the stack.
+每一个程序都可以有同一个函数的多个实例同时执行，这些同时执行的函数并不一定是在不同的线程中，且有可能是由于递归导致的多实例。
 
-Each program can have multiple instances of the same function launched at the same time, not only in different threads but also due to recursion. Each such function instance is stored in the stack, because its main principle—“last in, first out”—corresponds to how functions are launched and terminated. If a functionfis launched and then invokes a functiong,gis terminated first \(but was invoked last\), andfis terminated last \(while being invoked first\).
+Each such function instance is stored in the stack, because its main principle—“last in, first out”—corresponds to how functions are launched and terminated. If a functionfis launched and then invokes a functiong,gis terminated first \(but was invoked last\), andfis terminated last \(while being invoked first\).
 
 Stack frameis a part of a stack dedicated to a single function instance. It stores the values of the local variables, temporal variables, and saved registers.
 
 The function code is usually enclosed inside a pair ofprologueandepilogue, which are similar for all functions. Prologue helps initialize the stack frame, and epilogue deinitializes it.
 
 During the function execution,rbpstays unchanged and points to the beginning of its stack frame. It is possible to address local variables and stack arguments relatively torbp. It is reflected in the function prologue shown in Listing14-1.
+
+
 
 _**Listing 14-1**.prologue.asm_
 
