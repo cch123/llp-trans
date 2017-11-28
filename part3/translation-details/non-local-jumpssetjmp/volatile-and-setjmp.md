@@ -28,7 +28,6 @@ int main( int argc, char** argv ) {
     }
     return 0; 
 }
-
 ```
 
 We are going to compile it without optimizations\(gcc -O0,Listing14-16\)and with optimizations \(gcc -O2, Listing14-17\).
@@ -149,7 +148,6 @@ Listing 14-17.volatile\_setjmp\_o2.asm
     mov    esi,0x1
     mov    edi,0x600a40
     call   400490 <longjmp@plt>
-
 
 The program output will be
 
