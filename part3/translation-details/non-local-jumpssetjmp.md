@@ -1,10 +1,10 @@
 14.3 Non-Local jumps–setjmp
 
-The standard C library contains machinery to perform a very tricky kind of hack. It allows storing a computation context and restoring it. The context describes the program execution statewith the exception ofthe following:
+C 标准库包含了可以做 tricky 的 hack 的一些手段。这些手段允许保存计算的上下文并在之后进行恢复。上下文描述了程序执行的状态，除了下面这些特殊内容：
 
-* Everything related to the external world \(e.g., opened descriptors\).
+* 和外部世界打交道的任意对象\(e.g.打开的文件描述符\)
 
-* Floating point computations context.
+Floating point computations context.
 
 * Stack variables.
 
@@ -18,8 +18,6 @@ Include thesetjmp.hto gain access to the following machinery:
 * void longjmp\(jmp\_buf env, int val\) is used to return to a saved context, stored in a certain variable of typejmp\_buf.
 
 When returning from thelongjmp,setjmpreturns not necessarily 0 but the valuevalfed tolongjmp. Listing14-13shows an example. The firstsetjmpwill return 0 by default and so will be thevalvalue. However, thelongjmpaccepts 1 as its argument, and the program execution will continue from thesetjmpcall \(because they are linked through the usage of thejb\). This timesetjmpwill return 1 and this is the value that will be assigned toval.
-
-
 
 Listing 14-13.longjmp.c
 
