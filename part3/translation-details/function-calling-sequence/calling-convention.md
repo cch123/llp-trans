@@ -1,5 +1,7 @@
 14.1.2 Calling Convention
 
+
+
 **Calling convention** is a set of rules about function calling sequence a programmer willingly adheres to.  
  If everyone is following the same rules, a smooth interoperability is guaranteed. However, once someone breaks the rules, for example, makes changes, and does not restorerbpin a certain function, anything can happen: nothing, a delayed crash, or an immediate one. The reason is that other functions are written with the implication that these rules are respected and they count onrbpbeing left untouched.
 
@@ -7,7 +9,7 @@ The calling conventions declare, among other things, the argument passing algori
 
 1.First, the registers that need to be preserved are saved. All registers except for seven callee-saved registers \(rbx,rbp,rsp, andr12-r15\) can be changed by the called function, so if their value is of any importance, they should be stored \(probably in a stack\).
 
-2.The 
+2.The
 
 The size of each argument gets rounded up to 8 bytes. The arguments are split into three lists:
 
@@ -17,15 +19,11 @@ The size of each argument gets rounded up to 8 bytes. The arguments are split in
 
 3. \(c\) Arguments passed in memory via stack \(“memory”\).
 
-
-
 The first six arguments from the first list are passed in general purpose registers \(rdi,rsi,rdx,rcx,r8, andr9\). The first eight arguments from the second list are passed in registersxmm0toxmm7. If there are more arguments from these lists to pass, they are passed on to the stack in reverse order. It means that the last argument will be on top of the stack before the call is performed.
 
 While integers and floats are quite trivial to handle, structures are a bit trickier.
 
 If a structure is bigger than 32 bytes, or has unaligned fields, it is passed in memory.
-
-
 
 A smaller structure is decomposed in fields and each field is treated separately and, if in an inner structure, recursively. So, a structure of two elements can be passed the same way as two arguments. If one field of a structure is considered “memory,” it propagates to the structure itself.
 
@@ -33,10 +31,9 @@ Therbpregister, as we will see, is used to address the arguments passed in memor
 
 What about return values? Integer and pointer values are returned inraxandrdx. Floating point values are returned inxmm0andxmm1. Big structures are returned through a pointer, provided as an additional hidden argument, in the spirit of the following example:
 
-
-
 ```
-struct s {   
+struct s {
+
     char vals[100];
 };
 
@@ -61,11 +58,7 @@ Stack frameis a part of a stack dedicated to a single function instance. It stor
 
 The function code is usually enclosed inside a pair ofprologueandepilogue, which are similar for all functions. Prologue helps initialize the stack frame, and epilogue deinitializes it.
 
-
-
 During the function execution,rbpstays unchanged and points to the beginning of its stack frame. It is possible to address local variables and stack arguments relatively torbp. It is reflected in the function prologue shown in Listing14-1.
-
-
 
 _**Listing 14-1**.prologue.asm_
 
@@ -80,8 +73,6 @@ sub rsp, 24      ; given 24 is total size of local variables
 The oldrbpvalue is saved to be restored later in epilogue. Then a newrbpis set up to the current top of the stack \(which stores the oldrbpvalue now by the way\). Then the memory for the local variables is allocated in the stack by subtracting their total size fromrsp. This is the automatic memory allocation in C and the technique we have used in the very first assignment to allocate buffers on stack.
 
 The functions end with an epilogue shown in Listing14-2.
-
-
 
 Listing 14-2.epilogue.asm
 
