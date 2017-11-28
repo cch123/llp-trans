@@ -2,9 +2,7 @@
 
 **调用规约**是程序员需要遵守的关于函数调用顺序的约定。
 
-如果所有人都遵守同样的规则的话，那么就可以流畅地完成合作。一旦有人破坏规则，例如，修改或者在一个函数中不恢复 rbp 的值，那么可能会发生：啥事都没有，稍后程序崩溃，或者程序马上就崩。由于其它函数在编写的时候都假定自身以外的函数是遵守这些调用规则，并保证 rbp 寄存器不被修改的。
-
- If everyone is following the same rules, a smooth interoperability is guaranteed. However, once someone breaks the rules, for example, makes changes, and does not restorerbpin a certain function, anything can happen: nothing, a delayed crash, or an immediate one. The reason is that other functions are written with the implication that these rules are respected and they count onrbpbeing left untouched.
+如果所有人都遵守同样的规则的话，那么就可以流畅地完成合作。一旦有人破坏规则，例如，修改或者在一个函数中不恢复 rbp 的值，那么可能会发生：啥事都没有，稍后程序崩溃，或者程序马上就崩。由于其它函数在编写的时候都假定自身以外的函数是遵守这些调用规则的，且保证 rbp 寄存器不被修改。
 
 The calling conventions declare, among other things, the argument passing algorithm. In the case of the typical \*nix x86 64 convention we are using \(described fully in \[24\]\), the description that follows is an accurate enough approximation of how the function is called.
 
