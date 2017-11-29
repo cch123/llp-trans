@@ -11,7 +11,7 @@ C 标准库包含了可以做 tricky 的 hack 的一些手段。这些手段允�
 把 setjmp.h 引入到你的工程中就可以使用上面说的工具了：
 
 * jmp\_buf 是一种用来存储上下文的变量类型。
-* int setjmp\(jmp\_buf env\) 是一个函数，该函数接收一个 `jmp buf `实例并把当前的上下文保存在这个传入的 jmp buf 中。默认情况下该函数会返回0。
+* int setjmp\(jmp\_buf env\) 是一个函数，该函数接收一个 `jmp buf`实例并把当前的上下文保存在这个传入的 jmp buf 中。默认情况下该函数会返回 0。
 * void longjmp\(jmp\_buf env, int val\) 函数用来恢复保存的上下文，传入的 jmp buf 即“保存的上下文”。
 
 从 longjmp 中返回时，
