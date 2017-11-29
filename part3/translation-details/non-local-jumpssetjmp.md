@@ -3,19 +3,18 @@
 C 标准库包含了可以做 tricky 的 hack 的一些手段。这些手段允许保存计算的上下文并在之后进行恢复。上下文描述了程序执行的状态，除了下面这些特殊内容：
 
 * 和外部世界打交道的任意对象\(e.g.打开的文件描述符\)
+* 浮点数计算上下文
+* 栈上的变量
 
-Floating point computations context.
+除此之外的内容，C 标准库的工具允许你保存当前上下文并在我们想返回的时候跳回到这些上下文。这种跳转并不会被函数的作用域所限制。
 
-* Stack variables.
+把 setjmp.h 引入到你的工程中就可以使用上面说的工具了：
 
-It allows saving context and jumping back to it in case we feel like we have to return. We are not limited by the same function scope.
+* jmp\_buf 是一种用来存储上下文的变量类型。
+* int setjmp\(jmp\_buf env\) 是一个函数，该函数接收一个 `jmp buf `实例并把当前的上下文保存在这个传入的 jmp buf 中。默认情况下该函数会返回0。
+* void longjmp\(jmp\_buf env, int val\) 函数用来恢复保存的上下文，传入的 jmp buf 即“保存的上下文”。
 
-Include thesetjmp.hto gain access to the following machinery:
-
-* jmp\_bufis a type of a variable which can store the context.
-* int setjmp\(jmp\_buf env\) is a function that accepts ajmp\_bufinstance and stores the current context in it. By default it returns 0.
-
-* void longjmp\(jmp\_buf env, int val\) is used to return to a saved context, stored in a certain variable of typejmp\_buf.
+从 longjmp 中返回时，
 
 When returning from thelongjmp,setjmpreturns not necessarily 0 but the valuevalfed tolongjmp. Listing14-13shows an example. The firstsetjmpwill return 0 by default and so will be thevalvalue. However, thelongjmpaccepts 1 as its argument, and the program execution will continue from thesetjmpcall \(because they are linked through the usage of thejb\). This timesetjmpwill return 1 and this is the value that will be assigned toval.
 
