@@ -1,4 +1,4 @@
-14.1.1 XMM Registers
+14.1.1 XMM 寄存器
 
 除了我们已经讨论过的寄存器，现代处理器还有一些扩展。这些扩展体现在电路上，指令集上，有时候也会扩展一些很有用的寄存器。比较著名的扩展叫作 SSE \(Streaming SIMD Extensions\)，该扩展加入了新的 xmm 寄存器集合：xmm0，xmm1，...，xmm15。这些寄存器为 128 位宽，常用于两种任务：
 
@@ -15,11 +15,9 @@
 
 ---
 
- ■Question 263 阅读 \[15\] 中关于 movq，movdqa 和 movdqu 指令的资料。
+■Question 263 阅读 \[15\] 中关于 movq，movdqa 和 movdqu 指令的资料。
 
 ---
-
-
 
 
 
