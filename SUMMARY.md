@@ -114,7 +114,7 @@
       * [Security Cookie](part3/translation-details/protection-mechanisms/security-cookie.md)
       * [地址空间布局随机化](part3/translation-details/protection-mechanisms/address-space-layout-randomization.md)
       * [DEP](part3/translation-details/protection-mechanisms/dep.md)
-    * [Summary](part3/translation-details/summary.md)
+    * [小结](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
