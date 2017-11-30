@@ -149,7 +149,7 @@ Listing 14-17.volatile\_setjmp\_o2.asm
     mov    edi,0x600a40
     call   400490 <longjmp@plt>
 
-The program output will be
+程序的输出将是
 
 1
 
@@ -157,15 +157,13 @@ The program output will be
 
 1
 
-The volatile variableb, as you see, behaved as intended \(otherwise, the cycle would have never ended\). The variablevarwas always equal to 1, despite being “incremented” according to the program text.
+volatile 变量 b，行为和预期相符\(否则，循环就永远结束不了了\)。即使你在程序中对其进行 increment 操作，变量 var 始终还是等于 1。
 
 ---
 
 ■Question 265 如何用 setjmp 和 longjmp 实现类似 “try-catch” 式的结构呢？
 
 ---
-
- 
 
 
 
