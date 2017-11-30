@@ -11,21 +11,38 @@ restrict 被引入之前，程序员有时使用不同的结构体名字来获�
 
 破坏这些规则就可能会引起难查的优化 bug，因为这样会触发未定义行为。
 
+列表 14-18 中的例子，可以在不使用 restrict 关键字的前提下获得与 restrict 关键字一样的效果。也就是使用 strict aliasing 来达到我们的目的，把两个参数打包到具有不同的 tag 的 struct 中去。
 
+列表 14-23 展示了修改后的源码。
 
-The example shown in Listing14-18, can be rewritten to achieve the same effect without therestrictkeyword. The idea is to use the strict aliasing rules to our benefit, packing both parameters into the structures with different tags.
+_**Listing 14-23**.restrict-hack.c_
 
-Listing14-23shows the modified source.
+```
+struct a {
+    int v;
+};
 
-Listing 14-23.restrict-hack.c
+struct b {
+    int v;
+};
 
-codecodecode
+void f(struct a* x, struct b* add) {
+    x->v += add->v;
+    x->v += add->v;
+}
+```
 
-To our satisfaction, the compiler optimizes the reads away just as we wanted. Listing14-24shows the disassembly.
+结果令我们很满意，编译器把读取优化掉了。列表 14-24 展示了反编译的结果。
 
-Listing 14-24.restrict-hack-dump
+_**Listing 14-24**.restrict-hack-dump_
 
-codecodecode
+```
+0000000000000000 <f>:
+   0:   8b 06                     mov   eax,DWORD PTR [rsi]
+   2:   01 c0                     add   eax,eax
+   4:   01 07                     add   DWORD PTR [rdi],eax
+   6:   c3                        ret
+```
 
-We discourage using aliasing rules for optimization purposes in code for C99 and newer standards becauserestrictmakes the intention more obvious and does not introduce unnecessary type names.
+我们不鼓励在 C99 或更新的标准下写的代码使用上述 aliasing 规则，因为 restrict 显然更加一目了然，并且也不会引入没什么必要的类型名。
 
