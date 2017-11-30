@@ -109,7 +109,7 @@
     * [安全问题](part3/translation-details/security-issues.md)
       * [Stack Buffer Overrun](part3/translation-details/security-issues/stack-buffer-overrun.md)
       * [return-to-libc](part3/translation-details/security-issues/return-to-libc.md)
-      * [Format Output Vulnerabilities](part3/translation-details/security-issues/format-output-vulnerabilities.md)
+      * [格式化输出的弱点](part3/translation-details/security-issues/format-output-vulnerabilities.md)
     * [保护手段](part3/translation-details/protection-mechanisms.md)
       * [Security Cookie](part3/translation-details/protection-mechanisms/security-cookie.md)
       * [地址空间布局随机化](part3/translation-details/protection-mechanisms/address-space-layout-randomization.md)
