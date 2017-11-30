@@ -161,9 +161,11 @@ The volatile variableb, as you see, behaved as intended \(otherwise, the cycle w
 
 ---
 
-■Question 265 how do you implement “try–catch”-alike constructions using setjmp and longjmp?
+■Question 265 如何用 setjmp 和 longjmp 实现类似 “try-catch” 式的结构呢？
 
 ---
+
+ 
 
 
 
