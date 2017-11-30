@@ -33,13 +33,13 @@ int main(void) {
 }
 ```
 
-Local variables that are not marked volatile will all hold undefined values afterlongjmp. This is the source of bugs as well as memory freeing related issues: it is hard to analyze the control flow in presence oflongjmpand ensure that all dynamically allocated memory is freed.
+没有被标记为 volatile 类型的局部变量在 longjmp 之后会持有一个未定义的值。这也是一种 bug 的源头，这些 bug 的表现和那些内存释放方面的 bug 比较类似，而且 longjmp/setjmp 导致的 bug 难以分析，因为程序的控制流被修改掉了，而且这种情况下也难以保证动态申请的内存都正确地被释放掉了。
 
-In general, it is allowed to callsetjmpas a part of a complex expression, but only in rare cases. In most cases, this is an undefined behavior. So, better not to do it.
+如果遇到了复杂的表达式，那 setjmp 调用还是可以适当放行的，不过这也是说的很少见的情况下。大多数情况下，这是一种未定义的行为，所以最好不要碰。
 
-It is important to remember that all this machinery is based on stack frames usage. It means that you cannot performlongjmpin a function with a deinitialized stack frame. For example, the code, shown in Listing14-14, yields an undefined behavior for this very reason.
+请记住，这里讲到的手段都是基于栈帧的使用的。也就是说你没法在栈帧已经被销毁的函数执行 longjmp。例如列表 14-14，就引起了这里说的未定义行为。
 
-Listing 14-14.longjmp\_ub.c
+_**Listing 14-14**.longjmp\_ub.c_
 
 ```
 jmp_buf jb;
@@ -53,7 +53,7 @@ void g(void) {
 }
 ```
 
-The functionfhas terminated already, but we are performing longjmp into it. The program behavior is undefined because we are trying to restore a context inside a destroyed stack frame.
+函数 f 已经被销毁掉了，然而我们却用 longjmp 想要跳进 f 函数中。这种行为是未定义的，因为我们想要恢复存储在已经销毁的栈帧的上下文。
 
-In other words, you can only jump into the same function or into a function that is launched.
+换句话说，你只能跳到同一个函数的其它位置，或者已经在执行的函数中\(已压栈\)。
 
