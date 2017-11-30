@@ -1,4 +1,4 @@
-14.8 Protection Mechanisms
+14.8 保护手段
 
 重写返回地址会导致下面两种结果：
 
