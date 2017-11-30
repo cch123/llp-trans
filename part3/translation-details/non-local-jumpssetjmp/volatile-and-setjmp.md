@@ -1,14 +1,14 @@
 14.3.1 Volatile and setjmp
 
-The compiler thinks thatsetjmpis just a function. However, this is not really so, because this is the point from which the program might start to execute again. In normal conditions, some local variables might have been cached in registers \(or never allocated\) before the call tosetjmp. When we return to this point due to alongjmpcall, they will not be restored.
+编译器认为 setjmp 只是一个函数。然而 setjmp 并不真的是一个函数，其实际上是一个程序能够开始执行的“点”。一般情况下，在 setjmp 执行之前，一些局部变量被缓存在寄存器中\(或未被分配内存\)。当我们从 longjmp 调用返回到这个"点"时，这些变量不会被恢复。
 
-Turning off optimizations changes this behavior. So optimizations turned off hide bugs related tosetjmpusage.
+关闭优化会改变这种行为。所以关闭优化可能会隐藏使用 setjmp 所导致的 bug。
 
-To write correctly, remember that onlyvolatilelocal variables are holding defined values afterlongjmp. They arenotrestored to their ancient values, becausejmp\_bufdoes not save stack variables but keeps the values from beforelongjmp.
+想要正确完成程序的话，记住只有 volatile 类型的局部变量在 longjmp 之后还持有正确的值。这些变量并不像一般的变量一样会被恢复为旧的值，因为 jmp buf 并不保存栈上的变量，而是保存那些 longjmp 之前的变量值。
 
-Listing14-15shows an example.
+列表 14-15 展示了一个示例。
 
-Listing 14-15.setjmp\_volatile.c
+_**Listing 14-15**.setjmp\_volatile.c_
 
 ```
 #include <stdio.h>
@@ -30,9 +30,7 @@ int main( int argc, char** argv ) {
 }
 ```
 
-We are going to compile it without optimizations\(gcc -O0,Listing14-16\)and with optimizations \(gcc -O2, Listing14-17\).
-
-Without optimizations,
+我们使用 gcc -O0\(列表 14-16\) 和 gcc -O2\(列表 14-17\)级别优化分别编译这个程序
 
 Listing 14-16.volatile\_setjmp\_o0.asm
 
@@ -88,7 +86,7 @@ Listing 14-16.volatile\_setjmp\_o0.asm
     Leave
     ret
 
-The program output will be
+在开启优化的情况下，程序输出是：
 
 1
 
@@ -96,9 +94,7 @@ The program output will be
 
 3
 
-With optimizations,
-
-Listing 14-17.volatile\_setjmp\_o2.asm
+_**Listing 14-17**.volatile\_setjmp\_o2.asm_
 
     main:
 
