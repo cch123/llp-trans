@@ -14,11 +14,9 @@ C 标准库包含了可以做 tricky 的 hack 的一些手段。这些手段允�
 * int setjmp\(jmp\_buf env\) 是一个函数，该函数接收一个 `jmp buf`实例并把当前的上下文保存在这个传入的 jmp buf 中。默认情况下该函数会返回 0。
 * void longjmp\(jmp\_buf env, int val\) 函数用来恢复保存的上下文，传入的 jmp buf 即“保存的上下文”。
 
-从 longjmp 中返回时，
+从 longjmp 中返回时，setjmp 会返回传给 longjmp 的 val 值，而非 0。列表 14-13 展示了一个例子。第一个 setjmp 默认返回 0，并将 0 赋值给 val。然而 longjmp 接收 1 作为其参数，然后程序会从 longjmp 跳转到 setjmp 调用\(因为这两个调用之间使用 jb 变量串联起来了\)。这次 setjmp 则会返回 1，而这个 1 这次也会赋值给 val。
 
-When returning from thelongjmp,setjmpreturns not necessarily 0 but the valuevalfed tolongjmp. Listing14-13shows an example. The firstsetjmpwill return 0 by default and so will be thevalvalue. However, thelongjmpaccepts 1 as its argument, and the program execution will continue from thesetjmpcall \(because they are linked through the usage of thejb\). This timesetjmpwill return 1 and this is the value that will be assigned toval.
-
-Listing 14-13.longjmp.c
+_**Listing 14-13**.longjmp.c_
 
 ```
 #include <stdio.h>
@@ -35,7 +33,7 @@ int main(void) {
 }
 ```
 
-Local variables that are not markedvolatilewill all hold undefined values afterlongjmp. This is the source of bugs as well as memory freeing related issues: it is hard to analyze the control flow in presence oflongjmpand ensure that all dynamically allocated memory is freed.
+Local variables that are not marked volatile will all hold undefined values afterlongjmp. This is the source of bugs as well as memory freeing related issues: it is hard to analyze the control flow in presence oflongjmpand ensure that all dynamically allocated memory is freed.
 
 In general, it is allowed to callsetjmpas a part of a complex expression, but only in rare cases. In most cases, this is an undefined behavior. So, better not to do it.
 
