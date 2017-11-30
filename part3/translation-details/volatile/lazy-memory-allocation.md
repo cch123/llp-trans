@@ -1,4 +1,4 @@
-14.2.1 Lazy Memory Allocation
+14.2.1 内存懒分配
 
 很多操作系统对页的映射都采用“懒映射原则”，实际的映射时机时在调用 mmap \(或类似的映射函数\) 之后第一次使用该内存时再加载\(而非调用函数的时候\)。
 
@@ -28,8 +28,6 @@ for( ptr = start; ptr < start + size; ptr += pagesize )
 **■Volatile pointers in the language standard** 如果 volatile 指针指向一段非 volatile 的内存的话，根据语言标准这种情况下没有任何保证！只有在内存和指针都是 volatile 的情况下才符号 volatile 指针的标准，所以，根据标准来看，上面的例子是不正确的。不过因为程序员们这里使用 volatile 指针是为了避免优化的原因，大多数编译器\(MSVC，GCC，Clang\) 也就不会优化掉这些经过解引用的 volatile 指针，这件事情并没有什么符合标准的做法。
 
 ---
-
- 
 
 
 
