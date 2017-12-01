@@ -2,7 +2,7 @@
 
 输出格式化函数是一些恶心 bug 的源头。标准库里有一些这种格式化函数；表格 14-1 列出了这些函数。
 
-Table 14-1.String Format Functions
+_**Table 14-1**.String Format Functions_
 
 | Function | Description |
 | :--- | :--- |
@@ -55,7 +55,7 @@ _**Listing 14-27**.gdb\_printf_
 
 ---
 
-■Question 266 列表 14-26 中的代码，如果输入 "%s %s %s %s %s" 的话，执行结果是什么呢？ 
+■Question 266 列表 14-26 中的代码，如果输入 "%s %s %s %s %s" 的话，执行结果是什么呢？
 
 ---
 
