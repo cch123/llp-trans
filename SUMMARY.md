@@ -118,9 +118,25 @@
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
     * [Optimizations](part3/performance/optimizations.md)
+      * [Myth About Fast Languages](part3/performance/optimizations/myth-about-fast-languages.md)
+      * General Advice
+      * Omit Stack Frame Pointer
+      * Tail recursion
+      * Common Subexpressions Elimination
+      * Constant Propagation
+      * \(Named\) Return Value Optimization
+      * [Influence of Branch Prediction](part3/performance/optimizations/influence-of-branch-prediction.md)
+      * [Influence of Execution Units](part3/performance/optimizations/influence-of-execution-units.md)
+      * [Grouping Reads and Writes in Code](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
     * [Caching](part3/performance/caching.md)
+      * [How Do We use Cache Effectively?](part3/performance/caching/how-do-we-use-cache-effectively.md)
+      * [Prefetching](part3/performance/caching/prefetching.md)
+      * [Example: Binary Search with Prefetching](part3/performance/caching/example-binary-search-with-prefetching.md)
+      * [Bypassing Cache](part3/performance/caching/bypassing-cache.md)
+      * [Example: Matrix Initialization](part3/performance/caching/example-matrix-initialization.md)
     * [SIMD Instruction Class](part3/performance/simd-instruction-class.md)
     * [SSE and AVX Extensions](part3/performance/sse-and-avx-extensions.md)
+      * [Assignment: Sepia Filter](part3/performance/sse-and-avx-extensions/assignment-sepia-filter.md)
     * [Summary](part3/performance/summary.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
 * [Part 4 附录](part4.md)
