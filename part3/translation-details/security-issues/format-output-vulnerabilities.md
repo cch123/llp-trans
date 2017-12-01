@@ -51,15 +51,15 @@ _**Listing 14-27**.gdb\_printf_
 0x7fffffffe000: 0x00000000 0x00000000
 ```
 
-* •The"%s" format specifier is used to print strings. As a string is defined by the address of its start, this means addressing memory by a pointer. So, if no valid pointer is given, the invalid pointer will be dereferenced.
+* "%s" 这个格式化占位符用来打印字符串。因为字符串使用其起始位置的地址来定义，即使用指针来对内存寻址。所以传入非法指针的话，非法的指针也会被解引用。
 
 ---
 
-■Question 266 What will be the result of launching the code shown in listing14-26on input"%s %s %s %s %s"?
+■Question 266 列表 14-26 中的代码，如果输入 "%s %s %s %s %s" 的话，执行结果是什么呢？ 
 
 ---
 
-* •The"%n"format specifier is a bit exotic but still harmful. It allows one to write an integer into memory. Theprintffunction accepts apointerto an integer which will be rewritten with an amount of symbols written so far \(before"%n"occurs\). Listing14-28shows an example of its usage.
+* "%n" 格式化占位符虽然可能比较吸引人，但却对程序有害。该符号允许用户将一个 integer 写入到内存。printf 函数接收指向 integer 的指针，该 integer 会被当前已经写过的符号数量所重写 \(在 "%n" 之前\)。列表 14-28 展示了 "%n" 的一个使用的例子。
 
 _**Listing 14-28**.printf\_n.c_
 
@@ -84,5 +84,5 @@ printf("%d %n", 10, &x);  /* x = 3 */
 printf("%d %n", 200, &x); /* x = 4 */
 ```
 
-To avoid that, do not use the string accepted from the user as a format string. You can always writeprintf\("%s", buffer\), which is safe as long as the buffer is not NULL and is a valid null-terminated string. Do not forget about such functions asputsoffputs, which are not only faster but also safer.
+为了避免这样的结果，不要使用用户输入的字符串作为格式化字符串。使用 printf\("%s", buffer\) 在 buffer 非 NULL 且使用 0 结束的情况下总是安全的。不要忘记使用 puts，fputs 这些既快速又安全的函数。
 
