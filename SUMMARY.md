@@ -119,12 +119,12 @@
   * [Chapter 16 Performance](part3/performance.md)
     * [Optimizations](part3/performance/optimizations.md)
       * [Myth About Fast Languages](part3/performance/optimizations/myth-about-fast-languages.md)
-      * General Advice
-      * Omit Stack Frame Pointer
-      * Tail recursion
-      * Common Subexpressions Elimination
-      * Constant Propagation
-      * \(Named\) Return Value Optimization
+      * [General Advice](part3/performance/optimizations/general-advice.md)
+      * [Omit Stack Frame Pointer](part3/performance/optimizations/omit-stack-frame-pointer.md)
+      * [Tail recursion](part3/performance/optimizations/tail-recursion.md)
+      * [Common Subexpressions Elimination](part3/performance/optimizations/common-subexpressions-elimination.md)
+      * [Constant Propagation](part3/performance/optimizations/constant-propagation.md)
+      * [\(Named\) Return Value Optimization](part3/performance/optimizations/named-return-value-optimization.md)
       * [Influence of Branch Prediction](part3/performance/optimizations/influence-of-branch-prediction.md)
       * [Influence of Execution Units](part3/performance/optimizations/influence-of-execution-units.md)
       * [Grouping Reads and Writes in Code](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
