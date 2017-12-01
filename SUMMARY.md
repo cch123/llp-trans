@@ -107,7 +107,7 @@
     * [restrict](part3/translation-details/restrict.md)
     * [Strict Aliasing](part3/translation-details/strict-aliasing.md)
     * [安全问题](part3/translation-details/security-issues.md)
-      * [Stack Buffer Overrun](part3/translation-details/security-issues/stack-buffer-overrun.md)
+      * [栈缓冲溢出](part3/translation-details/security-issues/stack-buffer-overrun.md)
       * [return-to-libc](part3/translation-details/security-issues/return-to-libc.md)
       * [格式化输出的弱点](part3/translation-details/security-issues/format-output-vulnerabilities.md)
     * [保护手段](part3/translation-details/protection-mechanisms.md)
