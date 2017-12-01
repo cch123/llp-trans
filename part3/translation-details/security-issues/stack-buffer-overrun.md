@@ -1,9 +1,8 @@
-14.7.1 Stack Buffer Overrun  
+14.7.1 栈缓冲溢出
 
+假设程序使用了一个函数 f 和本地 buffer，如列表 14-25 所示：
 
-Suppose that the program uses a functionfwith a local buffer, as shown in Listing14-25.
-
-Listing 14-25.buffer\_overrun.c
+_**Listing 14-25**.buffer\_overrun.c_
 
 ```
 #include <stdio.h>
@@ -19,15 +18,15 @@ int main( int argc, char** argv ) {
 }
 ```
 
-After being initialized, the layout of the stack frame will look as follows:
+初始化之后，栈帧的结构看起来会像下面这样：
 
-14-g?
+![](/assets/14-g.png)
 
-The gets function reads a line fromstdinand places it in the buffer, whose address is accepted as an argument. Unfortunately, it does not control the buffer size at all and thus can surpass it.
+gets 函数从 stdin 中读取一行内容并把其放进在参数给定了地址的 buffer 里。不幸的是，函数没有控制 buffer 的大小，从而可以越过 buffer。
 
-If the line is too long, it will overwrite the buffer, then the savedrbpvalue, and then the return address. When theretinstruction is executed, the program will most probably crash. Even worse, if the attacker forms a clever line, it can rewrite the return address with specific bytes forming a valid address.
+如果该行内容太长的话，就可能会覆盖掉 buffer 内容，甚至可能会覆盖掉保存在 buffer 上 rbp 的值，或者函数的返回地址。接下来执行指令的话就很可能让程序整个 crash。更糟糕的情况，如果攻击者更精心地准备了一行输入，可能把返回地址改成一个合法的特殊地址。
 
-Should the attacker choose to redirect the return address directly into the buffer being overrun, he can transmit the executable code directly in this buffer. Such code is often calledshellcode, because it is small and usually only opens a remote shell to work with.
+万一攻击者选择将返回地址重定向到 buffer 之外，他就可以把任何可执行的代码传送到这个 buffer 中了。这种代码一般被称为 shellcode，因为 shellcode 一般都比较小而且会开启一个远程的 shell 来搞破坏。
 
-Obviously, this is not only the flaw ingetsbut the feature of the language itself. The moral is never to usegetsand always to provide a way to check the bounds of the target memory block.
+显然这并不只是 gets 这个函数的瑕疵，而是语言本身的特性。所以永远都不要直接使用 gets，应该提供检查目标内存边界的方法。
 
