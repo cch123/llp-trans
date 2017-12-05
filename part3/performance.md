@@ -1,8 +1,8 @@
 CHAPTER 16 Performance
 
-In this chapter we will study how to write faster code. In order to do that, we will look into SSE \(Streaming SIMD Extensions\) instructions, study compiler optimizations, and hardware cache functioning.
+本章将学习如何编写更快的代码。为了达成目的，我们会调研 SSE\(Streaming SIMD Extensions\) 指令，研究编译器优化，和硬件缓存功能。
 
-Note that this chapter is a mere introduction to the topic and will not make you an expert in optimization.
+注意本章只是对优化这个主题的导论，并不会使你成为优化方面的专家。
 
-There is no silver bullet technique to magically make everything fast. Hardware has become so complex that even an educated guess about the code that is slowing down program execution might fail. Testing and profiling should always be performed, and the performance should be measured in a reproducible way. It means that everything about the environment should be described in such detail that anyone would be able to replicate the conditions of the experiment and receive similar results.
+对于使程序变快来讲，并没有什么银弹。现代硬件已经变得非常复杂，即使是有经验的人可能都没法看出某段代码是否会使程序变慢。测试和 profiling 应该每次都做，而且性能应该能被可以重复的方式测量。也就是说所有环境相关的信息都应该事无巨细，这样任何人都能够复制实验的环境，并得到相似的测试结果。
 
