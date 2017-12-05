@@ -1,4 +1,4 @@
-16.2.3 Example: Binary Search with Prefetching
+16.2.3 示例：二分查找和 prefetch
 
 列表 16-21 是一个例子，我们来研究一下。
 
