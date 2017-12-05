@@ -12,7 +12,7 @@ Listing 16-21.prefetch\_binsearch.c
 #define SIZE 1024*512*16
 
 int binarySearch(int *array, size_t number_of_elements, int key) {
-    size_t low = 0, high = number_of_elements-1, mid;
+    size_t low = 0, high = number_of_elements-1, mid;
     while(low <= high) {
         mid = (low + high)/2;
 #ifdef DO_PREFETCH
@@ -121,7 +121,6 @@ Listing 16-24.binsearch\_prefetch\_off\_cachegrind
 
 ```
 
-```
 
 ==25479== Cachegrind, a cache and branch-prediction profiler
 
@@ -166,12 +165,12 @@ Listing 16-24.binsearch\_prefetch\_off\_cachegrind
 ==25479== LL misses:        133,468,754   \(132,419,653 rd   +  1,049,101 wr\)
 
 ==25479== LL miss rate:             4.5%  \(        4.6%     +        1.5%  \)
+```
 
 Listing 16-25.binsearch\_prefetch\_on\_cachegrind
 
 ```
 
-```
 
 ==26238== Cachegrind, a cache and branch-prediction profiler
 
@@ -216,6 +215,7 @@ Listing 16-25.binsearch\_prefetch\_on\_cachegrind
 ==26238== LL misses:      133,489,515   \(132,440,415  rd   +  1,049,100 wr\)
 
 ==26238== LL miss rate:           3.3%  \(        3.3%      +        1.5%  \)
+```
 
 
 
