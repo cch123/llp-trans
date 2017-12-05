@@ -52,8 +52,6 @@ int main() {
 }
 ```
 
-The memory access pattern of the binary search is hard to predict. It is highly nonsequential, jumping from the start to the end, then to the middle, then to the fourth, etc. Let us see the difference in execution times.
-
 二分查找算法的访问模式导致我们难以对其要访问的内存进行预测。因为这种算法非线性，从起点跳到终点，然后再跳到中间，然后循环往复。让我们看看执行时间的差别。
 
 列表 16-22 展示了 prefetch 关闭的结果。
