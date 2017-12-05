@@ -1,8 +1,8 @@
 16.2.3 Example: Binary Search with Prefetching
 
-Let us study an example shown in Listing16-21.
+列表 16-21 是一个例子，我们来研究一下。
 
-Listing 16-21.prefetch\_binsearch.c
+_**Listing 16-21**.prefetch\_binsearch.c_
 
 ```
 #include <time.h>
@@ -37,14 +37,14 @@ int main() {
     int NUM_LOOKUPS = SIZE;
     int *array;
     int *lookups;
-    
+
     srand(time(NULL));
     array =  malloc(SIZE*sizeof(int));
-    
+
     lookups = malloc(NUM_LOOKUPS * sizeof(int));
     for (i=0;i<SIZE;i++) array[i] = i;
     for (i=0;i<NUM_LOOKUPS;i++) lookups[i] = rand() % SIZE;
-    
+
     for (i=0;i<NUM_LOOKUPS;i++)
         binarySearch(array, SIZE, lookups[i]);
     free(array);
@@ -54,7 +54,9 @@ int main() {
 
 The memory access pattern of the binary search is hard to predict. It is highly nonsequential, jumping from the start to the end, then to the middle, then to the fourth, etc. Let us see the difference in execution times.
 
-Listing16-22shows the results of execution with prefetch off.
+二分查找算法的访问模式导致我们难以对其要访问的内存进行预测。因为这种算法非线性，从起点跳到终点，然后再跳到中间，然后循环往复。让我们看看执行时间的差别。
+
+列表 16-22 展示了 prefetch 关闭的结果。
 
 ```
 > gcc -O3 prefetch.c -o prefetch_off && /usr/bin/time -v ./prefetch_off
@@ -86,11 +88,9 @@ Listing16-22shows the results of execution with prefetch off.
    Exit status: 0
 ```
 
+列表 16-23 展示了 prefetch 打开的执行结果。
 
-
-Listing16-23shows the results of execution with prefetch on.
-
-Listing 16-23.binsearch\_prefetch\_on
+_**Listing 16-23**.binsearch\_prefetch\_on_
 
 ```
 > gcc -O3 prefetch.c -o prefetch_off && /usr/bin/time -v ./prefetch_off
@@ -113,15 +113,13 @@ Listing 16-23.binsearch\_prefetch\_on
    Voluntary context switches: 1
 ```
 
-Using valgrind utility withcachegrindmodule we can check the amount of cache misses. Listing16-24shows the results for no prefetch, while Listing16-25shows the results with prefetching.
+用带有 cachegrind 模块的 valgrind 工具，我们可以检查 cache miss 的次数。列表 16-24 列出了关闭 prefetch 的结果，列表 16-25 列出了 prefetch 打开的结果。
 
-I corresponds to instruction cache,Dto the data cache,LL–Last Level Cache\). There are almost 100% data cache misses, which is very bad.
+大写字母 I 表示指令缓存，D 表示数据缓存，LL 表示 Last Level Cache。数据缓存 miss 几乎是 100%，结果比较糟糕。
 
-Listing 16-24.binsearch\_prefetch\_off\_cachegrind
+_**Listing 16-24**.binsearch\_prefetch\_off\_cachegrind_
 
 ```
-
-
 ==25479== Cachegrind, a cache and branch-prediction profiler
 
 ==25479== Copyright \(C\) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
@@ -136,42 +134,40 @@ Listing 16-24.binsearch\_prefetch\_off\_cachegrind
 
 ==25479==
 
-==25479== I   refs:      2,529,064,580
+==25479== I   refs:      2,529,064,580
 
-==25479== I1  misses:              778
+==25479== I1  misses:              778
 
-==25479== LLi misses:              774
+==25479== LLi misses:              774
 
-==25479== I1  miss rate:          0.00%
+==25479== I1  miss rate:          0.00%
 
-==25479== Lli miss rate:          0.00%
-
-==25479==
-
-==25479== D   refs:         404,809,999   \(335,588,367 rd   + 69,221,632 wr\)
-
-==25479== D1  misses:       160,885,105   \(159,835,971 rd   +  1,049,134 wr\)
-
-==25479== LLd misses:       133,467,980   \(132,418,879 rd   +  1,049,101 wr\)
-
-==25479== D1  miss rate:           39.7%  \(       47.6%     +        1.5%  \)
-
-==25479== LLd miss rate:           33.0%  \(       39.5%     +        1.5%  \)
+==25479== Lli miss rate:          0.00%
 
 ==25479==
 
-==25479== LL refs:          160,885,883   \(159,836,749 rd   +  1,049,134 wr\)
+==25479== D   refs:         404,809,999   \(335,588,367 rd   + 69,221,632 wr\)
 
-==25479== LL misses:        133,468,754   \(132,419,653 rd   +  1,049,101 wr\)
+==25479== D1  misses:       160,885,105   \(159,835,971 rd   +  1,049,134 wr\)
 
-==25479== LL miss rate:             4.5%  \(        4.6%     +        1.5%  \)
+==25479== LLd misses:       133,467,980   \(132,418,879 rd   +  1,049,101 wr\)
+
+==25479== D1  miss rate:           39.7%  \(       47.6%     +        1.5%  \)
+
+==25479== LLd miss rate:           33.0%  \(       39.5%     +        1.5%  \)
+
+==25479==
+
+==25479== LL refs:          160,885,883   \(159,836,749 rd   +  1,049,134 wr\)
+
+==25479== LL misses:        133,468,754   \(132,419,653 rd   +  1,049,101 wr\)
+
+==25479== LL miss rate:             4.5%  \(        4.6%     +        1.5%  \)
 ```
 
-Listing 16-25.binsearch\_prefetch\_on\_cachegrind
+_**Listing 16-25**.binsearch\_prefetch\_on\_cachegrind_
 
 ```
-
-
 ==26238== Cachegrind, a cache and branch-prediction profiler
 
 ==26238== Copyright \(C\) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
@@ -186,42 +182,36 @@ Listing 16-25.binsearch\_prefetch\_on\_cachegrind
 
 ==26238==
 
-==26238== I   refs:     3,686,688,760
+==26238== I   refs:     3,686,688,760
 
-==26238== I1  misses:             777
+==26238== I1  misses:             777
 
-==26238== LLi misses:             773
+==26238== LLi misses:             773
 
-==26238== I1  miss rate:         0.00%
+==26238== I1  miss rate:         0.00%
 
-==26238== LLi miss rate:         0.00%
-
-==26238==
-
-==26238== D   refs:       404,810,009   \(335,588,374  rd   + 69,221,635 wr\)
-
-==26238== D1  misses:     160,887,823   \(159,838,690  rd   +  1,049,133 wr\)
-
-==26238== LLd misses:     133,488,742   \(132,439,642  rd   +  1,049,100 wr\)
-
-==26238== D1  miss  rate:        39.7%  \(       47.6%      +        1.5%  \)
-
-==26238== LLd miss rate:         33.0%  \(       39.5%      +        1.5%  \)
+==26238== LLi miss rate:         0.00%
 
 ==26238==
 
-==26238== LL refs:        160,888,600   \(159,839,467  rd   +  1,049,133 wr\)
+==26238== D   refs:       404,810,009   (335,588,374  rd   + 69,221,635 wr)
 
-==26238== LL misses:      133,489,515   \(132,440,415  rd   +  1,049,100 wr\)
+==26238== D1  misses:     160,887,823   (159,838,690  rd   +  1,049,133 wr)
 
-==26238== LL miss rate:           3.3%  \(        3.3%      +        1.5%  \)
+==26238== LLd misses:     133,488,742   (132,439,642  rd   +  1,049,100 wr)
+
+==26238== D1  miss  rate:        39.7%  (       47.6%      +        1.5%  )
+
+==26238== LLd miss rate:         33.0%  (       39.5%      +        1.5%  )
+
+==26238==
+
+==26238== LL refs:        160,888,600   (159,839,467  rd   +  1,049,133 wr)
+
+==26238== LL misses:      133,489,515   (132,440,415  rd   +  1,049,100 wr)
+
+==26238== LL miss rate:           3.3%  (        3.3%      +        1.5%  )
 ```
 
-
-
-As we see, the amount of cache misses has drastically decreased.
-
-
-
-
+可以看到，缓存 miss 极大地降低了。
 
