@@ -120,7 +120,7 @@ _**Listing 16-24**.binsearch\_prefetch\_off\_cachegrind_
 ```
 ==25479== Cachegrind, a cache and branch-prediction profiler
 
-==25479== Copyright \(C\) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==25479== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
 
 ==25479== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
 
@@ -144,23 +144,23 @@ _**Listing 16-24**.binsearch\_prefetch\_off\_cachegrind_
 
 ==25479==
 
-==25479== D   refs:         404,809,999   \(335,588,367 rd   + 69,221,632 wr\)
+==25479== D   refs:         404,809,999   (335,588,367 rd   + 69,221,632 wr)
 
-==25479== D1  misses:       160,885,105   \(159,835,971 rd   +  1,049,134 wr\)
+==25479== D1  misses:       160,885,105   (159,835,971 rd   +  1,049,134 wr)
 
-==25479== LLd misses:       133,467,980   \(132,418,879 rd   +  1,049,101 wr\)
+==25479== LLd misses:       133,467,980   (132,418,879 rd   +  1,049,101 wr)
 
-==25479== D1  miss rate:           39.7%  \(       47.6%     +        1.5%  \)
+==25479== D1  miss rate:           39.7%  (       47.6%     +        1.5%  )
 
-==25479== LLd miss rate:           33.0%  \(       39.5%     +        1.5%  \)
+==25479== LLd miss rate:           33.0%  (       39.5%     +        1.5%  )
 
 ==25479==
 
-==25479== LL refs:          160,885,883   \(159,836,749 rd   +  1,049,134 wr\)
+==25479== LL refs:          160,885,883   (159,836,749 rd   +  1,049,134 wr)
 
-==25479== LL misses:        133,468,754   \(132,419,653 rd   +  1,049,101 wr\)
+==25479== LL misses:        133,468,754   (132,419,653 rd   +  1,049,101 wr)
 
-==25479== LL miss rate:             4.5%  \(        4.6%     +        1.5%  \)
+==25479== LL miss rate:             4.5%  (        4.6%     +        1.5%  )
 ```
 
 _**Listing 16-25**.binsearch\_prefetch\_on\_cachegrind_
@@ -168,11 +168,11 @@ _**Listing 16-25**.binsearch\_prefetch\_on\_cachegrind_
 ```
 ==26238== Cachegrind, a cache and branch-prediction profiler
 
-==26238== Copyright \(C\) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==26238== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
 
 ==26238== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
 
-==26238== Command: ./prefetch\_on
+==26238== Command: ./prefetch_on
 
 ==26238==
 
