@@ -56,6 +56,8 @@ int main() {
 
 列表 16-22 展示了 prefetch 关闭的结果。
 
+_**Listing 16-22**.binsearch\_prefetch\_off_
+
 ```
 > gcc -O3 prefetch.c -o prefetch_off && /usr/bin/time -v ./prefetch_off
 ```
