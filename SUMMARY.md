@@ -131,7 +131,7 @@
     * [Caching](part3/performance/caching.md)
       * [How Do We use Cache Effectively?](part3/performance/caching/how-do-we-use-cache-effectively.md)
       * [Prefetching](part3/performance/caching/prefetching.md)
-      * [Example: Binary Search with Prefetching](part3/performance/caching/example-binary-search-with-prefetching.md)
+      * [示例：二分查找和 prefetch](part3/performance/caching/example-binary-search-with-prefetching.md)
       * [Bypassing Cache](part3/performance/caching/bypassing-cache.md)
       * [Example: Matrix Initialization](part3/performance/caching/example-matrix-initialization.md)
     * [SIMD Instruction Class](part3/performance/simd-instruction-class.md)
