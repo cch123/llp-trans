@@ -118,7 +118,7 @@
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
   * [Chapter 16 Performance](part3/performance.md)
     * [优化](part3/performance/optimizations.md)
-      * [Myth About Fast Languages](part3/performance/optimizations/myth-about-fast-languages.md)
+      * [高性能语言的秘密](part3/performance/optimizations/myth-about-fast-languages.md)
       * [General Advice](part3/performance/optimizations/general-advice.md)
       * [Omit Stack Frame Pointer](part3/performance/optimizations/omit-stack-frame-pointer.md)
       * [Tail recursion](part3/performance/optimizations/tail-recursion.md)
