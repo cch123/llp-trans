@@ -120,7 +120,7 @@
     * [优化](part3/performance/optimizations.md)
       * [高性能语言的秘密](part3/performance/optimizations/myth-about-fast-languages.md)
       * [General Advice](part3/performance/optimizations/general-advice.md)
-      * [Omit Stack Frame Pointer](part3/performance/optimizations/omit-stack-frame-pointer.md)
+      * [省略栈帧指针](part3/performance/optimizations/omit-stack-frame-pointer.md)
       * [Tail recursion](part3/performance/optimizations/tail-recursion.md)
       * [Common Subexpressions Elimination](part3/performance/optimizations/common-subexpressions-elimination.md)
       * [Constant Propagation](part3/performance/optimizations/constant-propagation.md)

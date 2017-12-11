@@ -1,4 +1,4 @@
-16.1.3 Omit Stack Frame Pointer
+16.1.3 省略栈帧指针
 
 相关的 GCC 选项：-formit-frame-pointer。  
 有时我们并不需要存储 rbp 的旧值并将其初始化为新值。这种不需要的场景具体是指：
