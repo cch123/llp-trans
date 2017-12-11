@@ -1,12 +1,12 @@
 16.1.1 Myth About Fast Languages
 
-There is a common misunderstanding that the language defines the program execution speed. It is not true. Better and more useful performance tests are usually highly specialized. They measure performance
+有一个比较常见的误解：语言能够决定程序的执行速度。优秀并且有用的性能测试经常是被高度特化的。这些测试以非常特殊的 case 来对性能进行测量，而非更为通用的测定方式。因此当别人给出一些性能的语句时，最好能将测试的场景细节和结果一并给出。通过详细地描述我们能够创建类似的评测系统并运行差不多的测试，从而得到可比较的结论。
 
-in very specific cases. It prevents us from making bold generalizations. So, when giving statements about the performance it is wise to give the most possibly detailed description of the scenario and test results. The description should be enough to build a similar system and launch similar tests, getting comparable results.
+在一些 case 下，用 C 写的程序可能会被类似行为的 Java 程序胜过。而这种情况和语言本身没什么关系。
 
-There are cases in which a program written in C can be outperformed by another program performing similar actions but written in, say, Java. It has no connection with the language itself.
+举个例子，malloc 这种典型的实现有一个特点：没有办法预测该实现的执行时间。一般来说，时间取决于当前的堆状态：有多少 block 存在，堆的碎片化程度怎么样等等。很多情况下在堆上分配内存都会比在栈上要得多一些。然而在典型的 JVM 实现中，内存分配非常快速。这是因为 Java 有非常简单的堆结构。简化来说，就只是一段内存区域和内部的一个指针，
 
-For example, a typicalmallocimplementation has a particular property: it is hard to predict its execution time. In general, it is dependent on the current heap state: how many blocks exist, how fragmented the heap is, etc. In any case it is most likely greater than allocating memory on a stack. In a typical Java Virtual Machine implementation, however, allocating memory is fast. It happens because Java has a simpler heap structure. With some simplifications, it is just a memory region and a pointer inside it, which delimits an occupied area from the free one. Allocating memory means moving this pointer further into the free part, which is fast.
+it is just a memory region and a pointer inside it, which delimits an occupied area from the free one. Allocating memory means moving this pointer further into the free part, which is fast.
 
 However, it has its cost: to get rid of the memory chunks we do not need anymore, garbage collection is performed, which might stop the program for an unknown period of time.
 
