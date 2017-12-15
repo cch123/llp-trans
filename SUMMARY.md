@@ -122,7 +122,7 @@
       * [General Advice](part3/performance/optimizations/general-advice.md)
       * [省略栈帧指针](part3/performance/optimizations/omit-stack-frame-pointer.md)
       * [Tail recursion](part3/performance/optimizations/tail-recursion.md)
-      * [Common Subexpressions Elimination](part3/performance/optimizations/common-subexpressions-elimination.md)
+      * [消除公共子表达式](part3/performance/optimizations/common-subexpressions-elimination.md)
       * [Constant Propagation](part3/performance/optimizations/constant-propagation.md)
       * [\(Named\) Return Value Optimization](part3/performance/optimizations/named-return-value-optimization.md)
       * [Influence of Branch Prediction](part3/performance/optimizations/influence-of-branch-prediction.md)

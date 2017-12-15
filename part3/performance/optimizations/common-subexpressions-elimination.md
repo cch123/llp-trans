@@ -1,4 +1,6 @@
-16.1.5 Common Subexpressions Elimination
+16.1.5 消除公共子表达式
+
+Common Subexpressions Elimination
 
 和该话题相关的 GCC 选项： -fgcse 和其它包含 cse 这个字符串的选项。
 
