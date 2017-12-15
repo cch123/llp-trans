@@ -1,13 +1,12 @@
 16.1.5 Common Subexpressions Elimination
 
-Related GCC options:-fgcseand others containingcsesubstring.  
- Computing two expressions with a common part does not result in computing this part twice. It means
+和该话题相关的 GCC 选项： -fgcse 和其它包含 cse 这个字符串的选项。
 
-that it makes no sense performance-wise to compute this part ahead, store its result in a variable, and use it in two expressions.
+如果两个表达式中有相同的部分，不会导致该部分被计算两次。也就是说对这种公共部分进行预计算，把结果保存在变量中，然后在两个表达式中使用该变量，从优化角度来讲，这样做没什么用处。
 
-In an example shown in Listing16-8a subexpressionx2+ 2xis computed once, while the naive approach suggests otherwise.
+在列表 16-8 的例子中，子表达式 x\*x + 2\*x 就只会被计算一次，而不像直观的感受那样。
 
-Listing 16-8.common\_subexpression.c
+_**Listing 16-8**.common\_subexpression.c_
 
 ```
 #include <stdio.h>
@@ -18,14 +17,14 @@ __attribute__ ((noinline))
                 x*x + 2*x + 1,
                 x*x + 2*x - 1 );
     }
-    
+
 int main(int argc, char** argv) {
     test( argc );
     return 0;
 }
 ```
 
-As a proof, Listing16-9shows the compiled code, which does not computex2+ 2xtwice.
+列表 16-9 是编译后的机器码，可以作为我们上述结论的佐证，对 x\*x + 2\*x 这个公共表达式不会计算两次。
 
 Listing 16-9.common\_subexpression.asm
 
@@ -44,5 +43,5 @@ Listing 16-9.common\_subexpression.asm
 400528:       e9 b3 fe ff ff                     jmp       4003e0 <printf@plt>
 ```
 
-How do we use it?Do not be afraid to write beautiful formulae with same common subexpressions: they will be computed efficiently. Favor code readability.
+我们怎么活用这套结论呢？不要害怕在你漂亮的公式中出现一样的子表达式，编译器会高效地对它们进行计算。尽量从代码的可读性角度去考虑这种问题。
 
