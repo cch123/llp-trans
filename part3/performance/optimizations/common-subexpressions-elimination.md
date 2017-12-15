@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 
 列表 16-9 是编译后的机器码，可以作为我们上述结论的佐证，对 x\*x + 2\*x 这个公共表达式不会计算两次。
 
-Listing 16-9.common\_subexpression.asm
+_**Listing 16-9**.common\_subexpression.asm_
 
 ```
 0000000000400516 <test>:
