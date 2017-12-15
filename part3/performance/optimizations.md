@@ -1,15 +1,16 @@
 16.1 优化
 
-In this section we want to discuss the most important optimizations that happen during the translation process. They are crucial to understanding how to write quality code. Why? A common type of decision making in programming is balancing between code readability and performance. Knowing optimizations  
- is necessary in order to make good decisions. Otherwise, when choosing between two versions of code, we might choose a less readable one because it “looks” like it performs fewer actions. In reality, however, both versions will be optimized to exactly the same sequences of assembly instructions. In this case, we just made a less readable code for no benefit at all.
+本节中我们想讨论一下翻译过程中最重要的优化环节。这些知识对于编写高质量的代码非常关键。为什么？在代码的编写过程中，我们会在代码的可读性和性能之间经常进行取舍。知晓优化知识可以帮我们更好地进行选择。否则的话，在两个版本的代码之间进行选择时，我们可能会选择那种降低可读性但“看起来”操作变少性能变好的写法。但事实上可能两种代码都会最终被编译器优化为完全相同的汇编指令序列。这样的话我们通过降低代码的可读性什么好处都没捞到。
 
 ---
 
-■Note In the listings presented in this section we will often use an\_\_attribute\_\_ \(\(noinline\)\)GCC directive. Applying it to a function definition suppresses inlining for the said function. Exemplary functions are often small, which encourages compilers to inline them, which we do not want to better show various optimization effects.
+■Note 本节中出现的列表我们会经常使用 `__attribute__((noinline))`这个 GCC 伪指令。这样修饰函数的话会禁止函数的内联行为。因为我们的示例函数一般都比较小，所以编译器很可能自作聪明地内联它们，这并不是我们所希望的。
 
-Alternatively, we could have compiled the examples with-fno-inlineoption.
+也可以选择使用 `-fno-inline` 编译选项来禁止内联。
 
 ---
+
+ 
 
 
 
