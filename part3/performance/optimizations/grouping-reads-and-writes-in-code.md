@@ -2,7 +2,7 @@
 
 硬件对于没有交叉的连续读和连续写操作是支持得最好的。正因如此，在列表 16-19 中的代码一般都会比列表 16-20 中相似的代码要慢。后者的读写操作没有交叉，都是顺序的。
 
-Listing 16-19.rwgroup\_bad.asm
+_**Listing 16-19**.rwgroup\_bad.asm_
 
 ```
 mov rax,[rsi]
@@ -15,7 +15,7 @@ mov rax,[esi+24]
 mov [rdi+24],eax
 ```
 
-Listing 16-20.rwgroup\_good.asm
+_**Listing 16-20**.rwgroup\_good.asm_
 
 ```
 mov rax, [rsi]
