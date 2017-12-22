@@ -1,6 +1,6 @@
-16.1.10 Grouping Reads and Writes in Code
+16.1.10 对代码中的读写操作分组
 
-Hardware operates better with sequences of reads and writes which are not interleaved. For this reason, the code shown in Listing16-19is usually slower than its counterpart shown in Listing16-20. The latter has sequences of sequential reads and writes grouped rather than interleaved.
+硬件对于没有交叉的连续读和连续写操作是支持得最好的。正因如此，在列表 16-19 中的代码一般都会比列表 16-20 中相似的代码要慢。后者的读写操作没有交叉，都是顺序的。
 
 Listing 16-19.rwgroup\_bad.asm
 
@@ -13,7 +13,6 @@ mov rax,[rsi+16]
 mov [rdi+16],rax
 mov rax,[esi+24]
 mov [rdi+24],eax
-
 ```
 
 Listing 16-20.rwgroup\_good.asm
@@ -27,7 +26,6 @@ mov [rdi], rax
 mov [rdi+8], rbx
 mov [rdi+16], rcx
 mov [rdi+24], rdx
-
 ```
 
 
