@@ -139,6 +139,19 @@
       * [Assignment: Sepia Filter](part3/performance/sse-and-avx-extensions/assignment-sepia-filter.md)
     * [Summary](part3/performance/summary.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
+    * [Processes and Threads](part3/multithreading/processes-and-threads.md)
+    * What Makes Multithreading Hard?
+    * Execution Order
+    * Strong and Weak Memory Models
+    * Reordering Example
+    * What Is Volatile and What Is Not
+    * Memory Barriers
+    * Introduction to pthreads
+    * Semaphores
+    * How Strong Is Intel 64?
+    * What Is Lock-Free Programming?
+    * C11 Memory Model
+    * Summary
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
   * [Appendix B. Using Make](part4/appendix-b-using-make.md)
