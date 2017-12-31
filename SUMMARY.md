@@ -141,7 +141,7 @@
   * [Chapter 17 Multithreading](part3/multithreading.md)
     * [Processes and Threads](part3/multithreading/processes-and-threads.md)
     * [What Makes Multithreading Hard?](part3/multithreading/what-makes-multithreading-hard.md)
-    * Execution Order
+    * [Execution Order](part3/multithreading/execution-order.md)
     * Strong and Weak Memory Models
     * Reordering Example
     * What Is Volatile and What Is Not
