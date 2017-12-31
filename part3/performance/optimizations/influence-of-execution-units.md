@@ -9,8 +9,6 @@ A part of the CPU that performs the operations and calculations is called theexe
 
 * Performing multiple arithmetic actions simultaneously despite their being described sequentially in assembly code.
 
-
-
 CPUs of the Pentium IV family were already capable of executing four arithmetic instructions simultaneously in the right circumstances.
 
 How do we use the knowledge about execution unit’s existence? Let us look at the example shown in Listing16-17.
@@ -24,7 +22,7 @@ looper:
     ; It means that we can not swap them because
     ; the program behavior will change.
     xor     rax, 0x1
-    
+
     ; One more dependency here
     add     [rdi],rax
     add     rsi,8
@@ -60,5 +58,5 @@ Now the dependencies are gone, the instructions of two iterations are now mixed.
 
 ---
 
-
+We cannot tell you which execution units are in your CPU, because this is highly model dependent. We have to read the optimization manuals for a specific CPU, such as \[16\]. Additional sources are often helpful; for example, the Haswell processors are well explained in \[17\].
 
