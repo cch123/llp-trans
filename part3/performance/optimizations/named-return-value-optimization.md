@@ -5,7 +5,7 @@ Copy elision and return value optimization allow us to eliminate unnecessary cop
 
 returns an instance of a structural type, it should first create it in its own stack frame and then copy it to the outside world \(unless it fits into two general purpose registersraxandrdx\).
 
-Listing16-14shows an example.
+Listing16-14 shows an example.
 
 ```
 Listing 16-14. nrvo.c
