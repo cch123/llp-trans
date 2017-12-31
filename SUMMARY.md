@@ -140,7 +140,7 @@
     * [Summary](part3/performance/summary.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
     * [Processes and Threads](part3/multithreading/processes-and-threads.md)
-    * What Makes Multithreading Hard?
+    * [What Makes Multithreading Hard?](part3/multithreading/what-makes-multithreading-hard.md)
     * Execution Order
     * Strong and Weak Memory Models
     * Reordering Example
