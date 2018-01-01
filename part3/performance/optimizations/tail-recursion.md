@@ -96,19 +96,18 @@ _**Listing 16-5**.factorial\_tailrec.asm_
 4004d3:  c3                         ret
 ```
 
-As we see, a tail recursive call consists of two stages.
+可以看到，尾递归调用由两阶段组成。
 
-Populate registers with new argument values.
+* 将新的参数值弹出到寄存器。
+* 跳到函数开始部分
 
-Jump to the function start.
+循环显然要比递归快得多，因为后者需要额外的栈上空间\(这样可能在递归层数深时爆栈\)。那为什么我们不在写代码阶段就用循环来取代递归呢？
 
-Cycles are faster than recursion because the latter needs additional space in the stack \(which might lead to stack overflow as well\). Why not always stick with cycles then?
+因为递归使我们能够以更连贯和优雅的方式来表达一些算法。如果我们将函数写成尾递归的形式，那这种递归不会影响到程序的性能。
 
-Recursion often allows us to express some algorithms in a more coherent and elegant way. If we can write a function so that it becomes tail recursive as well, that recursion will not impact the performance.
+列表 16-6 展示了一个典型的，通过索引访问链表的函数。
 
-Listing16-6shows an exemplary function accessing a linked list element by index.
-
-Listing 16-6.tail\_rec\_example\_list.c
+_**Listing 16-6**.tail\_rec\_example\_list.c_
 
 ```
 #include <stdio.h>
@@ -157,5 +156,5 @@ _**Listing 16-7**.tail\_rec\_example\_list.asm_
 4005ab:       c3                      ret
 ```
 
-How do we use it?Never be afraid to use tail recursion if it makes the code more readable for it brings no performance penalty.
+如何活用本节知识？不要害怕使用尾递归，因为尾递归能够使代码更为可读且不会带来任何性能损失。
 
