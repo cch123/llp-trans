@@ -142,16 +142,16 @@
     * [Processes and Threads](part3/multithreading/processes-and-threads.md)
     * [What Makes Multithreading Hard?](part3/multithreading/what-makes-multithreading-hard.md)
     * [Execution Order](part3/multithreading/execution-order.md)
-    * Strong and Weak Memory Models
-    * Reordering Example
-    * What Is Volatile and What Is Not
-    * Memory Barriers
-    * Introduction to pthreads
-    * Semaphores
-    * How Strong Is Intel 64?
-    * What Is Lock-Free Programming?
-    * C11 Memory Model
-    * Summary
+    * [Strong and Weak Memory Models](part3/multithreading/strong-and-weak-memory-models.md)
+    * [Reordering Example](part3/multithreading/reordering-example.md)
+    * [What Is Volatile and What Is Not](part3/multithreading/what-is-volatile-and-what-is-not.md)
+    * [Memory Barriers](part3/multithreading/memory-barriers.md)
+    * [Introduction to pthreads](part3/multithreading/introduction-to-pthreads.md)
+    * [Semaphores](part3/multithreading/semaphores.md)
+    * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
+    * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
+    * [C11 Memory Model](part3/multithreading/c11-memory-model.md)
+    * [Summary](part3/multithreading/summary.md)
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
   * [Appendix B. Using Make](part4/appendix-b-using-make.md)
