@@ -79,11 +79,13 @@ g:
    ret      ; 2
 ```
 
-Whengandfare the same function, it is exactly the case of tail recursion. When not optimized,factorial\(5, 1\)will launch itself five times, polluting the stack with five stack frames. The last call will end executingretfive times in a row in order to get rid of all return addresses.
+当 g 和 f 是同一个函数时，就是很明显的尾递归。在没有优化的前提下，factorial\(5,1\) 将五次执行自身，并“污染”五次栈帧。最后一次调用完毕之后会依次执行五次 ret 以处理好所有的返回地址。
+
+现代编译器都能够有效的处理尾递归，并且知道如何将尾递归处理为一个循环。在列表 16-5 中列出的汇编代码是 GCC 对尾递归的阶乘计算\(列表 16-3\)所产生的。
 
 Modern compilers are usually aware of tail recursive calls and know how to optimize tail recursion into a cycle. The assembly listing produced by GCC for the tail recursive factorial \(Listing16-3\) is shown in Listing16-5.
 
-Listing 16-5.factorial\_tailrec.asm
+_**Listing 16-5**.factorial\_tailrec.asm_
 
 ```
 00000000004004c6 <factorial>:
