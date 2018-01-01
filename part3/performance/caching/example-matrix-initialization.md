@@ -1,10 +1,10 @@
-16.2.5 Example: Matrix Initialization
+16.2.5 示例：矩阵初始化
 
-To illustrate a good memory access pattern, we are going to use a huge matrix with values 42. The matrix is stored row after row.
+为了演示优秀的内存访问模式，我们将使用一个巨大的矩阵，所有元素值都是 42。该矩阵以行存储。
 
-One program, shown in Listing16-27, initializes each row; the other, shown in Listing16-28, initializes each column. Which one will be faster?
+列表 16-27 中的程序按行初始化该矩阵；列表 16-28 中的程序按列初始化。哪一个程序执行更快？
 
-Listing 16-27.matrix\_init\_linear.c
+_**Listing 16-27**.matrix\_init\_linear.c_
 
 ```
 #include <stdio.h>
@@ -22,7 +22,7 @@ int main( int argc, char** argv ) {
 }
 ```
 
-Listing 16-28.matrix\_init\_ra.c
+_**Listing 16-28**.matrix\_init\_ra.c_
 
 ```
 #include <stdio.h>
@@ -39,7 +39,7 @@ int main( int argc, char** argv ) {
 }
 ```
 
-We will use thetimeutility \(not shell built-in\) again to test the execution time.
+再次使用 linux 的 time 工具\(不是 shell 自带的\)来测试执行时间。
 
 ```
 > /usr/bin/time -v ./matrix_init_ra
@@ -95,10 +95,9 @@ We will use thetimeutility \(not shell built-in\) again to test the execution ti
    Exit status: 0
 ```
 
-The execution is so much slower because of cache misses, which can be checked usingvalgrindutility withcachegrindmodule as shown in in Listing16-29.
+因为 cache misses 的关系执行慢了很多，这样的输出可以使用 valgrind 加上 cachgrind 组件来进行观察。valgrind 输出见列表 16-29 所示。
 
-Listing 16-29.cachegrind\_matrix\_bad  
-
+_**Listing 16-29**.cachegrind\_matrix\_bad_
 
 ```
 > valgrind --tool=cachegrind ./matrix_init_ra
@@ -123,7 +122,7 @@ Listing 16-29.cachegrind\_matrix\_bad
 ==17022== LL miss rate:       20.0%  (   0.0%    +      100.0%  )
 ```
 
-As we see, accessing memory sequentially decreases cache misses radically:
+我们可以看到，线性地访问内存显著地减少了 cache misses。
 
 ```
 ==17023== Command: ./matrix_init_linear
@@ -152,8 +151,6 @@ As we see, accessing memory sequentially decreases cache misses radically:
 **■Question 334** 查看 GCC 的 man page 的 optimizations 小节。
 
 ---
-
- 
 
 
 
