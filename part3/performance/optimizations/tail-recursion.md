@@ -23,8 +23,6 @@ We say that the function istail recursiveif the function either
 •Launches itself recursively with other arguments and returns the result immediately, without performing further computations with it. For example,return factorial  
  \( acc \* arg, arg-1 \);.
 
-
-
 A function is not tail recursive when the recursive call result is then used in computations.
 
 Listing16-4shows an example of a non-tail-recursive factorial computation. The result of a recursive call is multiplied byargbefore being returned, hence no tail recursion.
@@ -38,7 +36,7 @@ __attribute__ (( noinline ))
         if ( arg == 0 ) return acc;
         return arg * factorial( arg-1 );
      }
-     
+
 int main(int argc, char** argv) { return factorial(argc); }
 ```
 
@@ -47,17 +45,17 @@ In Chapter2, we studied Question 20, which proposes a solution in the spirit of 
 ```
   ; somewhere else:
         call f
-        
+
   ...
   ...
-  
+
   f:
-  
+
      ...
      call g
      ret    ; 1
   g:
-  
+
      ...
      ret    ; 2
 ```
@@ -66,12 +64,10 @@ The ret instruction in this listing are marked as the first and the second one.
 
 Executing call g will place the return address into the stack. This is the address of the firstretinstruction. Whengcompletes its execution, it executes the secondretinstruction, which pops the return address, leaving us at the firstret. Thus, tworetinstructions will be executed in a row before the control passes to the function that calledf. However, why not return to the caller offimmediately? To do that, we replace call g with jmp g. Now g we will never return to functionf, nor will we push a useless return address into the stack. The secondretwill pick up the return address fromcall f, which should have happened somewhere, and return us directly there.
 
-
-
 ```
 ; somewhere else:
     call f
-    
+
 ...
 ...
 
@@ -83,7 +79,6 @@ g:
 
    ...
    ret      ; 2
-   
 ```
 
 Whengandfare the same function, it is exactly the case of tail recursion. When not optimized,factorial\(5, 1\)will launch itself five times, polluting the stack with five stack frames. The last call will end executingretfive times in a row in order to get rid of all return addresses.
@@ -101,7 +96,6 @@ Listing 16-5.factorial\_tailrec.asm
 4004cf:  ff ce                      dec     esi
 4004d1:  eb f5                      jmp     4004c8 <factorial+0x2>
 4004d3:  c3                         ret
-
 ```
 
 As we see, a tail recursive call consists of two stages.
@@ -148,13 +142,12 @@ int main( void ) {
 }
 ```
 
-Compiling with-Oswill produce the non-recursive code, shown in Listing16-7.
+使用 -Os 选项编译将会产生非递归的代码，如列表 16-7 所示。
 
-Listing 16-7.tail\_rec\_example\_list.asm
-
-0000000000400596 &lt;llist\_at&gt;:
+_**Listing 16-7**.tail\_rec\_example\_list.asm_
 
 ```
+0000000000400596  <llist_at>:
 400596:       48 89 f8                mov      rax,rdi
 400599:       48 85 f6                test     rsi,rsi
 40059c:       74 0d                   je       4005ab <llist_at+0x15>
@@ -164,7 +157,6 @@ Listing 16-7.tail\_rec\_example\_list.asm
 4005a6:       48 8b 00                mov      rax,QWORD PTR [rax]
 4005a9:       eb ee                   jmp      400599 <llist_at+0x3>
 4005ab:       c3                      ret
-
 ```
 
 How do we use it?Never be afraid to use tail recursion if it makes the code more readable for it brings no performance penalty.
