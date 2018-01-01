@@ -83,8 +83,6 @@ g:
 
 现代编译器都能够有效的处理尾递归，并且知道如何将尾递归处理为一个循环。在列表 16-5 中列出的汇编代码是 GCC 对尾递归的阶乘计算\(列表 16-3\)所产生的。
 
-Modern compilers are usually aware of tail recursive calls and know how to optimize tail recursion into a cycle. The assembly listing produced by GCC for the tail recursive factorial \(Listing16-3\) is shown in Listing16-5.
-
 _**Listing 16-5**.factorial\_tailrec.asm_
 
 ```
