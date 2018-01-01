@@ -27,7 +27,7 @@ A function is not tail recursive when the recursive call result is then used in 
 
 Listing16-4shows an example of a non-tail-recursive factorial computation. The result of a recursive call is multiplied byargbefore being returned, hence no tail recursion.
 
-Listing 16-4.factorial\_nontailrec.c
+_**Listing 16-4**.factorial\_nontailrec.c_
 
 ```
 __attribute__ (( noinline ))
