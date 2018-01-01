@@ -1,31 +1,26 @@
-16.1.2 General Advice
+16.1.2 一般性的建议
 
-When programming we should not usually be concerned with optimizations right away. Premature optimization is evil for numerous reasons.
+编程时，我们不应该在第一时间去关心优化方面的事情。过早优化会带来很多问题：
 
-* Most programs are written in a way that only a fraction of their code is repeatedly executed. This code determines how fast the program will be executing, and it can slow down everything else. Speeding up other parts will in these circumstances have little to no effect.
+大多数程序在实际执行的时候都是其中的代码片段会被反复执行。程序的运行速度主要由这部分被反复执行的代码所决定，如果这段代码执行慢，会拖慢系统整体的速度。这种情况下对其它代码进行优化效果微乎其微。
 
-* Finding such parts of the code is best performed using aprofiler—a utility program that measures how often and how long different parts of code are executed.
+* 找到上述代码片段的最佳手段是使用 profiler 工具----一种能够衡量不同代码内容的执行频次和时长的工具软件。
+* 手动优化代码经常会降低代码的可读性，使代码难以维护。
+* 现代编译器了解高级语言的常用模式。由于编译器作者们做了很多工作，所以这些模式在编译器层面就会被很好的优化，而这种优化一般是值得的。
 
-* Optimizing code by hand virtually always makes it less readable and harder to maintain.
+在优化范畴中最重要的是选择正确的算法。汇编级别的底层优化很难达到理想的效果。例如按照索引来访问链表中的元素是非常慢的，因为我们需要从头去依次遍历每一个结点。数组在这种场景下则更擅长索引访问。然而在链表中插入元素却比数组要方便得多，因为在数组第 i 个位置插入元素的话，我们还需要把所有位置 i 之后的元素都向后移动，这样甚至可能会导致内存的重新分配和所有元素的重新拷贝。
 
-* Modern compilers are aware of common patterns in high-level language code. Such patterns get optimized well because the compiler writers put much work into it, since the work is worth it.
+简洁的代码往往也都是最高效的代码。
 
-The most important part of optimizations is often choosing the right algorithm. Low-level optimizations on the assembly level are rarely so beneficial. For example, accessing elements of a linked list by index  
- is slow, because we have to traverse it from the beginning, jumping from node to node. Arrays are more beneficial when the program logic demands accessing its elements by index. However, insertion in a linked list is easy compared to array, because to insert an element to thei-th position in an array we have to move all following elements first \(or maybe even reallocate memory for it first and copy everything\).
+当我们对性能不满时，需要使用 profiler 来定位最频繁执行的代码片段并手动优化它。通过记录计算结果来优化掉一些重复的计算。研究汇编代码输出以确定是否可以强制 inline 某些函数来减少调用开销。
 
-A simple, clean code is often also the most efficient.
+在进行优化时，我们还需要考虑程序局部性问题和缓存使用方面的问题。在 16。2 节中我们会提到这些话题。
 
-Then, if the performance is unsatisfactory, we have to locate the code that gets executed the most using profiler and try to optimize it by hand. Check for duplicated computations and try to memorize and reuse computation results. Study the assembly listings and check if forcing inlining for some of the functions used is doing any good.
+还需要考虑编译器的优化。本章的后半部分会学习一些基础编译器优化。通过对某个指定的文件或者代码段打开或者关闭特定的优化可能会带来性能方面的提升。在 -O3 flag 传入的情况下，所有优化都是打开的。
 
-General concerns about hardware such as locality and cache usage should be taken into account at this time. We will speak about them in section 16.2.
+然后是底层优化：人为使用 SSE 或 AVX \(Advanced Vector Extension\) 指令，内联汇编代码，编写越过原价缓存的数据访问，在使用数据前将数据预取入缓存等等。
 
-The compiler optimizations should be considered then. We will study the basic ones later in this section. Turning specific optimizations onor offfor a dedicated file or a code region can have a positive impact on performance. By default, they are usually all turned on when compiling with -O3flag.
+编译器的优化主要通过使用编译 flag：-O0，-O1，-O2，-O3，-Os\(优化空间使用，以生成更小的可执行文件\)。在 -O 后跟着的索引值越大，说明优化的级别越高。
 
-Only then come lower-level optimizations: manually throwing in SSE or AVX \(Advanced Vector Extensions\) instructions, inlining assembly code, writing data bypassing hardware cache, prefetching data into caches before using it, etc.
-
-The compiler optimizations are boldly controlled by using compiler flags-O0,-O1,-O2,-O3,-Os\(optimize space usage, to produce the smallest executable file possible\). The index near-O, increases as the set of enabled optimizations grows.
-
-Specific optimizations can be turned on and off. Each optimization type has two associated compiler options for that, for example,-fforward-propagateand-fno-forward-propagate.
-
-
+特定的优化可以被打开和关闭。每一种优化类型都有对应的编译器选项，例如 -fforward-propagate 和 -fno-forward-propagate 分别代表打开和关闭同一个优化选项。
 

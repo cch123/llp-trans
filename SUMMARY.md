@@ -119,7 +119,7 @@
   * [Chapter 16 Performance](part3/performance.md)
     * [优化](part3/performance/optimizations.md)
       * [高性能语言的秘密](part3/performance/optimizations/myth-about-fast-languages.md)
-      * [General Advice](part3/performance/optimizations/general-advice.md)
+      * [一般性的建议](part3/performance/optimizations/general-advice.md)
       * [省略栈帧指针](part3/performance/optimizations/omit-stack-frame-pointer.md)
       * [Tail recursion](part3/performance/optimizations/tail-recursion.md)
       * [消除公共子表达式](part3/performance/optimizations/common-subexpressions-elimination.md)
