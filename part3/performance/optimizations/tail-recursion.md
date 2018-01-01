@@ -14,7 +14,9 @@
 int main(int argc, char** argv) { return factorial(1, argc); }
 ```
 
-It calls itself recursively, but this call is particular. Once the call is completed, the function immediately returns.
+函数递归地调用自身，但是这种调用比较特殊。一旦这个调用完成了，函数也就立即返回了。
+
+我们说函数是尾递归函数，只要该函数满足下列条件的其中之一：
 
 We say that the function istail recursiveif the function either
 
