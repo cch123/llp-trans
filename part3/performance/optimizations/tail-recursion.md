@@ -18,16 +18,12 @@ int main(int argc, char** argv) { return factorial(1, argc); }
 
 我们说函数是尾递归函数，只要该函数满足下列条件的其中之一：
 
-We say that the function istail recursiveif the function either
+* 返回一个不需要递归调用的值，例如，return 4；
+* 递归调用函数自身，传入其它参数并立即返回结果，而不是在结果的基础上进行计算。例如，return factorial\(acc \* arg, arg-1\)；
 
-•Returns a value that does not involve a recursive call, for example,return 4;.
+当递归调用的结果被用来做计算了的话，那函数就不是尾递归函数。
 
-•Launches itself recursively with other arguments and returns the result immediately, without performing further computations with it. For example,return factorial  
- \( acc \* arg, arg-1 \);.
-
-A function is not tail recursive when the recursive call result is then used in computations.
-
-Listing16-4shows an example of a non-tail-recursive factorial computation. The result of a recursive call is multiplied byargbefore being returned, hence no tail recursion.
+列表 16-4 展示了一个非尾递归阶乘计算函数的例子。递归调用的结果在返回之前要乘以 arg，所以不是尾递归。
 
 _**Listing 16-4**.factorial\_nontailrec.c_
 
@@ -42,7 +38,7 @@ __attribute__ (( noinline ))
 int main(int argc, char** argv) { return factorial(argc); }
 ```
 
-In Chapter2, we studied Question 20, which proposes a solution in the spirit of tail recursion. When the last thing a function does is call other function, which is immediately followed by the return, we can perform a jump to the said function start. In other words, the following pattern of instructions can be a subject to optimization:
+在第二章的时候，我们学习了 Question 20，该问题提出了一个解决尾递归的方案。当函数要做的最后一件事情是调用其它函数并直接跟一个 return 语句时；我们可以执行一条 jmp 指令跳到这个函数的开头。也就是说，下面这种模式的一连串指令可以被优化：
 
 ```
   ; somewhere else:
@@ -62,9 +58,11 @@ In Chapter2, we studied Question 20, which proposes a solution in the spirit of 
      ret    ; 2
 ```
 
-The ret instruction in this listing are marked as the first and the second one.
+ret 指令在列表中被标记了 1 和 2。
 
-Executing call g will place the return address into the stack. This is the address of the firstretinstruction. Whengcompletes its execution, it executes the secondretinstruction, which pops the return address, leaving us at the firstret. Thus, tworetinstructions will be executed in a row before the control passes to the function that calledf. However, why not return to the caller offimmediately? To do that, we replace call g with jmp g. Now g we will never return to functionf, nor will we push a useless return address into the stack. The secondretwill pick up the return address fromcall f, which should have happened somewhere, and return us directly there.
+执行 call g 将会把返回地址推到栈上。该地址实际上就是第一个 ret 指令的地址。当 g 完成了它的执行过程之后，会执行第二个 ret 指令，这时会从栈上弹出返回地址，使我们回到第一个 ret 指令的位置。因此两个 ret 指令在控制权被交还给 f 之前会依次执行。为什么不直接返回 f 的调用方呢？为了达到这个目的的话，我们需要把 call g 换成 jmp g。这样 g 就永远不能返回函数 f 了，我们也不能往栈上推一个没什么用的返回地址。第二个 ret 本来是通过 call f 来获取返回地址，现在这种操作需要在其它形式来做以使我们直接返回到那个位置。
+
+The secondretwill pick up the return address fromcall f, which should have happened somewhere, and return us directly there.
 
 ```
 ; somewhere else:
