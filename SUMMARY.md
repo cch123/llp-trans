@@ -128,7 +128,7 @@
       * [Influence of Branch Prediction](part3/performance/optimizations/influence-of-branch-prediction.md)
       * [Influence of Execution Units](part3/performance/optimizations/influence-of-execution-units.md)
       * [对代码中的读写操作分组](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
-    * [Caching](part3/performance/caching.md)
+    * [缓存](part3/performance/caching.md)
       * [How Do We use Cache Effectively?](part3/performance/caching/how-do-we-use-cache-effectively.md)
       * [Prefetching](part3/performance/caching/prefetching.md)
       * [示例：二分查找和 prefetch](part3/performance/caching/example-binary-search-with-prefetching.md)
