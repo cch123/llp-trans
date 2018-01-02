@@ -14,21 +14,15 @@
 具体的分支预测逻辑依赖于 CPU 模型。一般情况下，有两种预测方式：static 和 dynamic。
 
 * 如果 CPU 没有任何关于跳转的信息\(也就是说第一次执行的时候\)，会使用 static 的算法。具体的算法比较简单，可能如下面这样：
-  * - 如果这是向前跳转，我们假设这个跳转还会发生。
-  *  -- 如果这是向后跳转，我们假设这件事情不会再发生。
+
+  * * 如果这是向前跳转，我们假设这个跳转还会发生。
+  * -- 如果这是向后跳转，我们假设这件事情不会再发生。
 
   这种预测是有意义的，例如我们用跳转来实现的循环显然很有可能还会再次发生。
+
 * 如果跳转已经在过去发生过，CPU 就使用更为复杂的算法了。例如，我们使用一个 ring buffer，存储跳转是否发生过。换句话说，这个 ring buffer 中存储所有的跳转历史。使用这种手段的话，只要反复使用长度除以 buffer 的长度就是很好的预测方式。
 
 具体的 CPU 模型信息可以从资料\[16\]中找到。不幸的是，大多数 CPU 内部的信息并不对公众所开放。
 
-如何活用本节结论？当使用 if 然后 else 或者 switch，最好在前面部分使用更可能进入的分支。你也可以使用 GCC 伪指令，例如 builtin expect ，该指令被实现为特殊的跳转指令前缀。
-
-
-
-
-
-The best source of relevant information with regard to the exact CPU model can be found in \[16\]. Unfortunately, most information about the CPU innards is not disclosed to public.
-
-How do we use it?When using if-then-else or switch start with the most likely cases. You can also use special hints such as\_\_builtin\_expectGCC directives, which are implemented as special instruction prefixes for jump instructions \(see \[6\]\).
+如何活用本节结论？当使用 if 然后 else 或者 switch，最好在前面部分使用更可能进入的分支。你也可以使用 GCC 伪指令，例如 builtin expect ，该指令被实现为特殊的跳转指令前缀。参考\[6\]。
 
