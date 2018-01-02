@@ -1,4 +1,4 @@
-CHAPTER 16 Performance
+Chapter 16 性能
 
 本章将学习如何编写更快的代码。为了达成目的，我们会调研 SSE\(Streaming SIMD Extensions\) 指令，研究编译器优化，和硬件缓存功能。
 

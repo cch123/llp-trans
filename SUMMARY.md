@@ -116,7 +116,7 @@
       * [DEP](part3/translation-details/protection-mechanisms/dep.md)
     * [小结](part3/translation-details/summary.md)
   * [Chapter 15 Shared Objects and Code Models](part3/shared-objects-and-code-models.md)
-  * [Chapter 16 Performance](part3/performance.md)
+  * [Chapter 16 性能](part3/performance.md)
     * [优化](part3/performance/optimizations.md)
       * [高性能语言的秘密](part3/performance/optimizations/myth-about-fast-languages.md)
       * [一般性的建议](part3/performance/optimizations/general-advice.md)
