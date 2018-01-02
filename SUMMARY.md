@@ -125,7 +125,7 @@
       * [消除公共子表达式](part3/performance/optimizations/common-subexpressions-elimination.md)
       * [常量传播](part3/performance/optimizations/constant-propagation.md)
       * [返回值优化](part3/performance/optimizations/named-return-value-optimization.md)
-      * [Influence of Branch Prediction](part3/performance/optimizations/influence-of-branch-prediction.md)
+      * [分支预测的影响](part3/performance/optimizations/influence-of-branch-prediction.md)
       * [Influence of Execution Units](part3/performance/optimizations/influence-of-execution-units.md)
       * [对代码中的读写操作分组](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
     * [缓存](part3/performance/caching.md)

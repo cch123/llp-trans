@@ -1,28 +1,30 @@
-16.1.8 Influence of Branch Prediction
+16.1.8 分支预测的影响
 
-On the microcode level the actions performed by the CPU \(central processing unit\) are even more primitive than the machine instructions; they are also reordered to better use all CPU resources.
+在微代码级别，CPU 所执行的动作甚至比机器指令粒度更小；这些微代码为了更好地利用 CPU 资源会被重新排序。
 
-Branch prediction is a hardware mechanism that is aimed at improving program execution speed. When the CPU sees a conditional branch instruction \(such asjg\), it can
+分支预测是一种提升程序执行速度的硬件手段。当 CPU 看到一个条件分支指令\(例如 jg\)时，它可以：
 
-* Start executing both branches simultaneously; or
+* 开始同时执行执行两个分支；或者
+* 猜测下一个执行的分支并开始执行该分支。
 
-* Guess which branch will be executed and start executing it.
+当计算结果\(e.g. jg \[rax\] 指令的 GF flag\)的跳跃目标没有确定时，这种预测就可能会发生，我们先以“投机”的形式去执行一些代码来避免浪费时间。
 
-It happens when the computation result \(e.g., theGFflag value injg \[rax\]\) on which this jump destination depends is not yet ready, so we start executing code speculatively to avoid wasting time.
+分支预测单元在执行误判时，也会直接失败。这种情况下，如果计算已经完成了，CPU 还需要做一些反向的工作，以使在错误的分支执行过的指令效果都能被反转回来。这个过程比较慢且对程序的性能有影响，但误判发生的概率非常小。
 
-The branch prediction unit can fail by issuing amisprediction. In this case, once the computation is completed, the CPU will do an additional work of reverting the changes made by instructions from the wrong branch. It is slow and has a real impact on program performance, but mispredictions are relatively rare.
+具体的分支预测逻辑依赖于 CPU 模型。一般情况下，有两种预测方式：static 和 dynamic。
 
-The exact branch prediction logic depends on the CPU model. In general, two types of prediction exist \[6\]:staticanddynamic.
+* 如果 CPU 没有任何关于跳转的信息\(也就是说第一次执行的时候\)，会使用 static 的算法。具体的算法比较简单，可能如下面这样：
+  * - 如果这是向前跳转，我们假设这个跳转还会发生。
+  *  -- 如果这是向后跳转，我们假设这件事情不会再发生。
 
-* If the CPU has no information about a jump \(when it is executed for the first time\), a static algorithm is used. A possible simple algorithm is as follows:
+  这种预测是有意义的，例如我们用跳转来实现的循环显然很有可能还会再次发生。
+* 如果跳转已经在过去发生过，CPU 就使用更为复杂的算法了。例如，我们使用一个 ring buffer，存储跳转是否发生过。换句话说，这个 ring buffer 中存储所有的跳转历史。使用这种手段的话，只要反复使用长度除以 buffer 的长度就是很好的预测方式。
 
-– If this is a forward jump, we assume that it happens.
+具体的 CPU 模型信息可以从资料\[16\]中找到。不幸的是，大多数 CPU 内部的信息并不对公众所开放。
 
-– If it is a backward jump, we assume that it does not happen.
+如何活用本节结论？当使用 if 然后 else 或者 switch，最好在前面部分使用更可能进入的分支。你也可以使用 GCC 伪指令，例如 builtin expect ，该指令被实现为特殊的跳转指令前缀。
 
-It makes sense because the jumps used to implement loops are more likely to happen than not.
 
-* If a jump has already happened in the past, the CPU can use more complex algorithms. For example, we can use a ring buffer, which stores information about whether the jump occurred or not. In other words, it stores the history of jumps. When this approach is used, small loops of length dividing the buffer length are good for prediction.
 
 
 
