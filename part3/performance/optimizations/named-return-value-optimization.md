@@ -1,14 +1,14 @@
-16.1.7 \(Named\) Return Value Optimization
+16.1.7 返回值优化
 
-Copy elision and return value optimization allow us to eliminate unnecessary copy operations.  
- Recall that naively speaking, local variables are created inside the function stack frame. So, if a function
+拷贝的避免和返回值的优化使我们能够消除不必要的拷贝操作。
 
-returns an instance of a structural type, it should first create it in its own stack frame and then copy it to the outside world \(unless it fits into two general purpose registersraxandrdx\).
+局部变量往往是在函数的栈上被创建。所以如果一个函数返回了一个结构体类型的实例，函数需要在栈上先创建这个变量，然后将变量拷贝到外面的世界\(除非变量可以被存储到 rax 和 rdx 两个寄存器上\)。
 
-Listing16-14 shows an example.
+列表 16-14 展示了一个例子。
+
+_**Listing 16-14**. nrvo.c_
 
 ```
-Listing 16-14. nrvo.c
 struct p  {
     long x;
     long y;
@@ -30,9 +30,9 @@ int main(int argc, char** argv) {
 }
 ```
 
-An instance ofstruct pcalledcopyis created in the stack frame off. Its fields are populated with values 1, 2, and 3, and then it is copied to the outside world, presumably by the pointer accepted byfas a hidden argument.
+一个名叫 copy 的 struct p 的实例在栈帧上创建并离开。它的字段被赋值为 1，2 和 3，然后被拷贝到外部，我们推测可能是被 f 作为一个隐藏的参数所接收了。
 
-Listing16-15shows the resulting assembly code.
+列表 16-15 是结果的汇编代码。
 
     Listing 16-15. nrvo_off.asm
     00000000004004b6 <f>:
@@ -85,9 +85,9 @@ Listing16-15shows the resulting assembly code.
     400518:  c3                             ret
     400519:  0f 1f 80 00 00 00 00           nop    DWORD PTR [rax+0x0]
 
-The compiler can produce a more efficient code as shown in Listing16-16.
+编译器能够产生更高效的代码，如列表 16-16 所示。
 
-Listing 16-16.nrvo\_on.asm
+_**Listing 16-16**.nrvo\_on.asm_
 
 ```
 00000000004004b6 <f>:
@@ -110,7 +110,7 @@ Listing 16-16.nrvo\_on.asm
 4004ee:  00 00
 ```
 
-We do not allocate a place in the stack frame forcopyat all! Instead, we are operating directly on the structure passed to us through a hidden argument.
+我们没有为了拷贝而在栈帧上分配任何空间！而是直接操作结构体并将其作为一个隐藏参数传给我们。
 
-How do we use it?If you want to write a function that fills a certain structure, it is usually not beneficial to pass it a pointer to a preallocated memory area directly \(or allocate it viamallocusage, which is also slower\).
+如何活用本节结论？如果你想写一个函数来填充某个结构体，给它直接预分配好内存空间并没有什么收益。
 
