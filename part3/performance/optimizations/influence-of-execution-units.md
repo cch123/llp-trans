@@ -29,7 +29,7 @@ looper:
     jnz     looper
 ```
 
-Can we make it faster? We see the dependencies between instructions, which hinder the CPU microcode optimizer. What we are going to do is to unroll the loop so that two iterations of the old loop become one iteration of the new one. Listing16-18shows the result.
+能让这段代码更快么？我们可以分析出影响 CPU 微执行优化器的指令之间的依赖关系。我们展开这个循环，这样老的循环的两次叠代就可以变成新的一次叠代，列表 16-18 展示优化后的结果。
 
 _**Listing 16-18**.cycle\_par\_arith.asm_
 
@@ -48,7 +48,7 @@ sub      rcx, 2
 jnz      looper
 ```
 
-Now the dependencies are gone, the instructions of two iterations are now mixed. They will be executed faster in this order because it enhances the simultaneous usage of different CPU execution units. Dependent instructions should be placed away from each other to allow other instructions to perform in between.
+现在依赖被干掉了，两次叠代的指令没有任何混合了。这样执行起来就可以更快，因为这样的代码能够使 CPU 同时使用不同的执行单元去并发执行两次叠代。指令的依赖应该尽量被优化掉使指令能够同时执行。
 
 ---
 
@@ -56,5 +56,5 @@ Now the dependencies are gone, the instructions of two iterations are now mixed.
 
 ---
 
-We cannot tell you which execution units are in your CPU, because this is highly model dependent. We have to read the optimization manuals for a specific CPU, such as \[16\]. Additional sources are often helpful; for example, the Haswell processors are well explained in \[17\].
+我们没法告诉你 CPU 中有哪些执行单元，因为这是和 CPU 的模型相关的。想要获得这些信息只能去阅读特定 CPU 的优化手册，例如 \[16\]。另一些资源可能也会有一些帮助；例如 Haswell 处理器在 \[17\] 中有不错的解读。
 
