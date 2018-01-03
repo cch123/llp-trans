@@ -1,30 +1,31 @@
-16.2.1 How Do We use Cache Effectively?
+16.2.1 如何有效地使用缓存？
 
-Caching is one of the most important mechanisms of performance boosting. We spoke about the general concepts of caching in Chapter4. This section will further investigate how to use these concepts effectively.
+缓存是提升性能的最重要手段之一。第四章中对缓存的基本概念已有所描述。本节将进一步调研如何有效地运用这些概念。
 
-We want to start by elaborating that contrary to the spirit of von Neumann architecture, the common CPUs have been using separate caches for instructions and data for at least 25 years. Instructions and code inhabit virtually always different memory regions, which explains why separate caches are more effective. We are interested in data cache.
+这里我们从冯诺伊曼架构精神的所相悖的历史开始说明，常见的 CPU 将指令缓存和数据缓存分离开来至少有 25 年的历史。指令和代码一般存储在不同内存区域，这也就是为啥要把 cache 分离开更为高效。我们对数据 cache 更感兴趣。
 
-By default, all memory operations involve cache, excluding the pages marked with cache-write-through and cache-disable bits \(see Chapter4\).
+默认情况下，所有的内存操作都需要 cache 参与，除了被标记为 cache-write-through 的页和 cache-disable 的位\(参见第四章\)。
 
-Cache contains small chunks of memory of 64 bytes calledcache-lines,alignedon a 64-byte boundary.
+缓存包含小块的内存，大小为 64 字节，一般被称为 cache-line，且是按 64 字节边界对齐的。
 
-Cache memory is different from the main memory on a circuit level. Each cache-line is identified by atag—an address of the respective memory chunk. Using special circuitry it is possible to retrieve the cache line by its address very fast \(but only for small caches, like 4MB per processor, otherwise it is too expensive\).
+cache memory 和主存储在电路的级别上就是不同的。每一个 cache-line 都会被一个 **tag** 所标记----本质也就是内存块的相对地址。访问 cache-line 会使用特殊的电路，所以访问速度非常快\(不过这里说的只是小块的 cache，例如每个处理器 4MB，否则的话成本就太高了\)。
 
-When trying to read a value from memory, the CPU will try to read it from the cache first. If it is missing, the relevant memory chunk will be loaded into cache. This situation is calledcache-missand often makes ahugeimpact on program performance.
+当尝试从内存中读入一个值时，CPU 将先尝试从 cache 中读取。如果 cache 中没有找到，那么其对应的内存块会被加载进 cache。这种场景被称为 cache-miss，并且对程序的性能影响非常大。
 
-There are usually several levels of cache; each of them is bigger and slower.  
- TheLL-cacheis the last level of cache closest to main memory.  
- For programs with good locality, caching works well. However, when the locality is broken for a piece
+cache 一般被分为多个级别；越大的级别也就越慢。
 
-of code, bypassing cache makes sense. For example, writing values into a large chunk of memory which will not be accessed any time soon is better performed without using cache.
+**LL-cache** 是靠近主存储的最后一级 cache。
 
-The CPU tries to predict what memory addresses will be accessed in the near future and preloads the relevant memory parts into cache. It favors sequential memory accesses.
+对于那些局部性很好的程序来说，cache 机制可以显著提升性能。当局部性在某个代码片段中被破坏时，越过 cache 直接访存也可能会有所用处。例如，向内存中写入一个大块时，显然越过 cache 直接写内存性能会更好。
 
-This gives us two important empirical rules needed to use caches efficiently.
+CPU 会尝试预测程序马上将要访问到的内存地址，然后把对应的内存内容预先载入到 cache 中。所以线性的内存访问一般性能也会比较好。
 
-* Try to ensure locality.
+上述理论在高效使用缓存方面给了我们两条重要的经验原则：
 
-* Favor sequential memory access \(and design data structures with this point in mind\).
+* 尽量确保程序的局部性。
+* 尽量线性地访问连续内存\(并且在设计数据结构的时候也考虑这一点\)。
+
+
 
 
 
