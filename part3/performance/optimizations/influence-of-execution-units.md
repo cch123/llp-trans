@@ -1,19 +1,17 @@
 16.1.9 Influence of Execution Units
 
-A CPU consists of many parts. Each instruction is executed in multiple stages, and at each stage different parts of the CPU are handling it. For example, the first stage is usually called instruction fetch and consists of loading instruction from memory1without thinking about its semantics at all.
+CPU 由多个部分组成。每条汇编指令都会被分为多阶段执行，每个阶段会由 CPU 的不同部件去完成操作。例如，第一阶段一般被称为指令获取，该阶段需要从内存中加载指令，且不考虑任何语义上的问题。
 
-A part of the CPU that performs the operations and calculations is called theexecution unit. It is implementing different kinds of operations that the CPU wants to handle: instruction fetching, arithmetic, address translation, instruction decoding, etc. In fact, CPUs can use it in a more or less independent  
- way. Different instructions are executed in a different number of stages, and each of these stages can be performed by a different execution unit. It allows for interesting circuitry usages such as the following:
+CPU 中执行操作和计算的部件被称为执行单元。该单元实现了 CPU 想要完成的不同类型的操作：指令获取，算术逻辑运算，地址翻译，指令解码等等。实际上 CPU 某种程度上可以单独使用这个组件了。不同的汇编指令所需要的执行阶段数也是不一样的，每一个阶段都可能会被不同的执行单元所执行。这样就允许一些比较有意思的电路运用了，例如：
 
-* Fetching one instruction immediately after the other was fetched \(but has not completed its execution\).
+* 在获取到另一条指令完成但还没开始执行时，马上去取下一条指令。
+* 即使在汇编代码中，按先后顺序描述的算术运算，也会同时执行。
 
-* Performing multiple arithmetic actions simultaneously despite their being described sequentially in assembly code.
+奔腾 IV 家族的 CPU 已经能够在正确的前提下同时执行四个算术指令了。
 
-CPUs of the Pentium IV family were already capable of executing four arithmetic instructions simultaneously in the right circumstances.
+知道了执行单元的存在之后，我们怎么发挥这样的知识呢？先来看看列表 16-17 中的例子。
 
-How do we use the knowledge about execution unit’s existence? Let us look at the example shown in Listing16-17.
-
-Listing 16-17.cycle\_nonpar\_arith.asm
+_**Listing 16-17**.cycle\_nonpar\_arith.asm_
 
 ```
 looper:
@@ -33,7 +31,7 @@ looper:
 
 Can we make it faster? We see the dependencies between instructions, which hinder the CPU microcode optimizer. What we are going to do is to unroll the loop so that two iterations of the old loop become one iteration of the new one. Listing16-18shows the result.
 
-Listing 16-18.cycle\_par\_arith.asm
+_**Listing 16-18**.cycle\_par\_arith.asm_
 
 ```
 looper:
@@ -54,7 +52,7 @@ Now the dependencies are gone, the instructions of two iterations are now mixed.
 
 ---
 
-■Question 333 What is the instruction pipeline and superscalar architecture?
+**■Question 333** 什么是指令流水线和超标量体系架构？
 
 ---
 
