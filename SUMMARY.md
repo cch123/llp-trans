@@ -129,7 +129,7 @@
       * [执行单元的影响](part3/performance/optimizations/influence-of-execution-units.md)
       * [对代码中的读写操作分组](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
     * [缓存](part3/performance/caching.md)
-      * [How Do We use Cache Effectively?](part3/performance/caching/how-do-we-use-cache-effectively.md)
+      * [如何有效地使用缓存？](part3/performance/caching/how-do-we-use-cache-effectively.md)
       * [Prefetching](part3/performance/caching/prefetching.md)
       * [示例：二分查找和 prefetch](part3/performance/caching/example-binary-search-with-prefetching.md)
       * [越过缓存](part3/performance/caching/bypassing-cache.md)
