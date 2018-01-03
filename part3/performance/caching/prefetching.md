@@ -1,4 +1,4 @@
-16.2.2 Prefetching
+16.2.2 预取
 
 It is possible to issue a special hint to the CPU to indicate that a certain memory area will be accessed soon. In Intel 64 it is done using aprefetchinstruction. It accepts an address in memory; the CPU will do its best to preload it into cache in the near future. This is used to prevent cache misses.
 
@@ -19,6 +19,4 @@ It will be replaced with an architecture-specific prefetching instruction.
 2.How strong is locality? Three for maximal locality to zero for minimal. Zero indicates that the value can be cleared from cache after usage, 3 means that all levels of caches should continue to hold it.
 
 Prefetching is performed by the CPU itselfifit can predict where the next memory access is likely to be. While it works well for continuous memory accesses, such as traversing arrays, it starts being ineffective as soon as the memory access pattern starts seeming random for the predictor.
-
-
 
