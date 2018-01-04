@@ -21,7 +21,5 @@ Void __builtin_prefetch (const void *addr, ...)
 1. 该地址是读\(传 0，默认值\)还是写\(传1\)？
 2. 局部性有多强？3 表示最大，一直到 0 表示最小。0 的话表示这个值在使用过之后可以立刻从 cache 中清除，3 表示所以级别的 cache 都应该继续保持该值。
 
-
-
-Prefetching is performed by the CPU itself if it can predict where the next memory access is likely to be. While it works well for continuous memory accesses, such as traversing arrays, it starts being ineffective as soon as the memory access pattern starts seeming random for the predictor.
+只要 CPU 能够预测下一次内存访问发生在什么位置，那么就会自己进行预取操作。预取在连续的内存访问情况下可以工作得很好，例如进行数组遍历的时候。如果进行随机内存访问的时候，预取就不是那么得高效了。
 
