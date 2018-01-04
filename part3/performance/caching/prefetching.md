@@ -6,18 +6,22 @@ prefetch 使用得好可以很高效，不过一定要进行测试。prefetch �
 
 另外还需要理解一点，与数据访问操作距离的 “近” 和 "远" 指的是指令执行的序列中的指令位置。在考虑程序的结构前提下
 
-Moreover, it is very important to understand that “close” and “far” from the data access mean the instruction position in the execution trace. We should not necessarily place prefetch close with regard to the program structure \(in the same function\), but we have to choose a place that precedes data access. It can be located in an entirely different module, for example, in the logging module, which justhappens to usually be executed before the data access. This is of course very bad for code readability, introduces non-obvious dependencies between modules, and is a “last resort” kind of technique.
+We should not necessarily place prefetch close with regard to the program structure \(in the same function\), but we have to choose a place that precedes data access. It can be located in an entirely different module, for example, in the logging module, which justhappens to usually be executed before the data access. This is of course very bad for code readability, introduces non-obvious dependencies between modules, and is a “last resort” kind of technique.
 
-To use prefetch in C, we can use one of GCC built-ins:
+在 C 语言中使用 prefetch，只需要使用 GCC 内置的：
 
-Void \_\_builtin\_prefetch \(const void \*addr, ...\)
+```
+Void __builtin_prefetch (const void *addr, ...)
+```
 
-It will be replaced with an architecture-specific prefetching instruction.  
- Besides address, it also accepts two parameters, which should be integer constants.
+编译器会自动把这个 prefetch 替换为对应架构下的 prefetch 汇编指令。
 
-1.Will we read from that address \(0, default\) or write \(1\)?
+除了地址之外，函数还接收两个参数，两个数值常量。
 
-2.How strong is locality? Three for maximal locality to zero for minimal. Zero indicates that the value can be cleared from cache after usage, 3 means that all levels of caches should continue to hold it.
+1. 该地址是读\(传 0，默认值\)还是写\(传1\)？
+2. 局部性有多强？3 表示最大，一直到 0 表示最小。0 的话表示这个值在使用过之后可以立刻从 cache 中清除，3 表示所以级别的 cache 都应该继续保持该值。
 
-Prefetching is performed by the CPU itselfifit can predict where the next memory access is likely to be. While it works well for continuous memory accesses, such as traversing arrays, it starts being ineffective as soon as the memory access pattern starts seeming random for the predictor.
+
+
+Prefetching is performed by the CPU itself if it can predict where the next memory access is likely to be. While it works well for continuous memory accesses, such as traversing arrays, it starts being ineffective as soon as the memory access pattern starts seeming random for the predictor.
 
