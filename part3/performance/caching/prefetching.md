@@ -4,9 +4,7 @@
 
 prefetch 使用得好可以很高效，不过一定要进行测试。prefetch 操作应该在数据被访问前进行，但不能和执行执行的时间间隔太接近。缓存的预载是异步进行的，也就是说数据载入和紧跟着的指令执行几乎是同时发生的。如果预取和数据访问时间太接近的话，CPU 可能来不及把数据载入到 cache，数据访问就发生了。这时候就会有 cache-miss。
 
-另外还需要理解一点，与数据访问操作距离的 “近” 和 "远" 指的是指令执行的序列中的指令位置。在考虑程序的结构前提下
-
-We should not necessarily place prefetch close with regard to the program structure \(in the same function\), but we have to choose a place that precedes data access. It can be located in an entirely different module, for example, in the logging module, which justhappens to usually be executed before the data access. This is of course very bad for code readability, introduces non-obvious dependencies between modules, and is a “last resort” kind of technique.
+另外还需要理解一点，与数据访问操作距离的 “近” 和 "远" 指的是指令执行的序列中的指令位置。考虑到程序的结构，我们不应该把 prefetch 放在同一函数内，而应放在数据放问之前的其它位置。可以放在完全不同的另外一个模块，例如，在日志模块中，一般在数据访问之前很可能会被调用到。不过真的这样做将会对代码的可读性造成极大的负面影响，并引入不明显的模块间依赖，这里说的是一种破罐破摔的技巧了。
 
 在 C 语言中使用 prefetch，只需要使用 GCC 内置的：
 
