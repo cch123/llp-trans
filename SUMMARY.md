@@ -130,7 +130,7 @@
       * [对代码中的读写操作分组](part3/performance/optimizations/grouping-reads-and-writes-in-code.md)
     * [缓存](part3/performance/caching.md)
       * [如何有效地使用缓存？](part3/performance/caching/how-do-we-use-cache-effectively.md)
-      * [Prefetching](part3/performance/caching/prefetching.md)
+      * [预取](part3/performance/caching/prefetching.md)
       * [示例：二分查找和 prefetch](part3/performance/caching/example-binary-search-with-prefetching.md)
       * [越过缓存](part3/performance/caching/bypassing-cache.md)
       * [示例：矩阵初始化](part3/performance/caching/example-matrix-initialization.md)
