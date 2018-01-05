@@ -1,19 +1,15 @@
-16.3 SIMD Instruction Class
+16.3 SIMD 指令集
 
-The von Neumann computational model is sequential by its nature. It does not presume that some operations can be executed in parallel. However, in time it became apparent that executing actions in parallel is necessary to achieve better performance. It is possible when the computations are independent from one another. For example, in order to sum 1 million integers we can calculate the sum of the chunks of 100,000 numbers on ten processors and then sum up the results. It is a typical kind of task that is solved well by themap-reducetechnique \[5\].
+冯诺伊曼计算模型的特征是线性的，且不认为多种操作可以并行执行。显而易见，当今时代为了获得更优性能并行执行是非常必要的了。如果计算行为彼此独立，就可以进行并行执行。例如，为了计算 100 万个数值的和，我们可以在十个处理器中分别处理 10 万个数的和，然后再把结果加起来。这是 map-reduce 技术能够适用的场景之一\[5\]。
 
-We can implement parallel execution in two ways.
+我们可以使用两种方式实现并行执行：
 
-* Parallel execution of several sequences of instructions. That is achievable by introducing additional processor cores. We will discuss the multithreaded programming that makes use of multiple cores in Chapter17.
+* 并行执行几个序列的汇编指令。在多核的场景下就可以做得到。在 17 章中会讨论使用到了多核心的多线程编程知识。
+* 将一条指令拆成多条并行执行。这种情况下我们可以调用多个独立的计算，这些计算会使用处理器的多种元件。这也是并行可以被开发的地方。
 
-* Parallel execution of actions that are needed to complete asingle instruction. In this case we can have instructions which invoke multiple independent computations spanning the different parts of processor circuits, which are exploitable in parallel.  
-   To implement such instructions, the CPU has to include several ALUs to have actual performance gains, but it does not need to be able to execute multiple instructions truly simultaneously. These instructions are calledSIMD\(Single Instruction, Multiple Data\) instructions.
+为了实现这样的指令，CPU 需要包含一些 ALU 单元来获得实际的性能提升，不过也并不一定需要真的去同时执行多条指令。这种指令被称为 SIMD\(Single Instruction, Multiple Data\) 指令。
 
-In this section we are going to overview the CPU extensions calledSSE \(Streaming SIMD Extensions\)and its newer analogueAVX \(Advanced Vector Extensions\).
+本节中我们将要学习 CPU 的扩展 SSE\(Streaming SIMD Extensions\) 和类似的 AVX\(Advanced Vector Extensions\)。
 
-Contrary to SIMD instructions, most instructions we have studied yet are of the type SISD \(Single Instruction, Single Data\).
-
-
-
-
+和 SIMD 指令对比的话，我们学习过的大多数指令都是 SISD\(Single Instruction，Single Data\) 的。
 
