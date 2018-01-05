@@ -1,6 +1,6 @@
-# LLP translation
+# Low Level Programming translation
 
-translate LLP into Chinese.
+translate Low Level Programming into Chinese.
 
 1. [x] Chapter 1
 2. [x] Chapter 2
@@ -23,4 +23,6 @@ translate LLP into Chinese.
 19. [ ] Appendix B
 20. [ ] Appendix C
 21. [ ] Appendix D
+
+
 
