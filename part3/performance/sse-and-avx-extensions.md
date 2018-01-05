@@ -35,9 +35,9 @@ In this example there is a functionssedefined somewhere else, which accepts two 
 
 We call the values **packed** if they fill an xmm register of consecutive memory cells of the same size. In Listing16-30,float x\[4\]is four packed single precision float values.
 
-We will define the function sse in the assembly file shown in Listing16-31.
+在列表 16-31 中我们以汇编形式定义一个 sse 函数。
 
-Listing 16-31.simd\_asm.asm
+_**Listing 16-31**.simd\_asm.asm_
 
 ```
 section .text
@@ -53,27 +53,23 @@ sse:
     ret
 ```
 
-This file defines the functionsse. It performs four SSE instructions:
+这个文件定义了一个 sse 函数。该函数执行了四种 SSE 指令：
 
-* movdqa\(MOVeDoubleQwordAligned\) copies 16 bytes from memory pointed byrdi
+* movdqa\(**MOV**e **D**ouble **Q**word **A**ligned\) 从 rdi 寄存器指向的内存位置拷贝 16 个字节到 xmm0 寄存器。我们在 14.1.1 节中见过这条指令。
 
-  into registerxmm0. We have seen this instruction in section 14.1.1.
+* mulps\(**MUL**tiply **P**acked **S**ingle precision floating point values\) 从 rsi 指向的内存地址中取出数据，并对 xmm0 寄存器进行连续四次浮点数运算。
 
-* mulps\(MULtiplyPackedSingle precision floating point values\) multiplies the contents
+* addps\(**ADD** **P**acked **S**ingled precision floating point\) 从 rsi 指向的内存地址中取数据，并进行四次连续的浮点数计算。
 
-  ofxmm0by four consecutive float values stored in memory at the address taken fromrsi.
+* movdqa 从 xmm0 寄存器中拷贝数据到 rdi 指向的内存地址。
 
-* addps\(ADD PackedSingled precision floating point\) adds the contents of four
+换句话说，四对浮点数会被进行乘法运算，然后每一对的第二个浮点数会再被加到第一个浮点数上。
 
-  consecutive float values stored in memory at the address taken fromrsiagain.
+命名方面的规则倒是比较通用：动作元语\(mov，add，mul...\)加上后缀。第一个后缀可以是 P\(packed\) 或者 S\(scalar 表示单个值\)。第二个后缀可以是 D 表示双精度值\(C 语言里的 double\) 或者 S 表示单精度值\(C 语言里的 float\)。
 
-* movdqacopiesxmm0into the memory pointed byrdi.
+这里再强调一遍，大多数 SSE 指令只接收进行过内存对齐的内存操作数。
 
-  In other words, four pair of floats are getting multiplied and then the second float of each pair is added to the first one.
 
-The naming pattern is common: the action semantics \(mov, add, mul...\) with suffixes. The first suffix is eitherP\(packed\) orS\(scalar, for single values\). The second one is eitherDfor double precision values \(doublein C\) orSfor single precision values \(floatin C\).
-
-We want to emphasize again that most SSE instructions accept only aligned memory operands.
 
 In order to complete the assignment, you will need to study the documentation for the following instructions using the Intel Software Developer Manual \[15\]:
 
