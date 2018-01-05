@@ -33,7 +33,7 @@ int main() {
 
 In this example there is a functionssedefined somewhere else, which accepts two arrays offloats. Each of them should be at least four elements wide. This function performs computations and modifies the first array.
 
-We call the values **packed** if they fill anxmmregister of consecutive memory cells of the same size. In Listing16-30,float x\[4\]is four packed single precision float values.
+We call the values **packed** if they fill an xmm register of consecutive memory cells of the same size. In Listing16-30,float x\[4\]is four packed single precision float values.
 
 We will define the functionssein the assembly file shown in Listing16-31.
 
