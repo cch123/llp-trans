@@ -9,7 +9,7 @@
 
 为了实现这样的指令，CPU 需要包含一些 ALU 单元来获得实际的性能提升，不过也并不一定需要真的去同时执行多条指令。这种指令被称为 SIMD\(Single Instruction, Multiple Data\) 指令。
 
-本节中我们将要学习 CPU 的扩展 SSE\(Streaming SIMD Extensions\) 和类似的 AVX\(Advanced Vector Extensions\)。
+下一节中我们将要学习 CPU 的扩展 SSE\(Streaming SIMD Extensions\) 和类似的 AVX\(Advanced Vector Extensions\)。
 
 和 SIMD 指令对比的话，我们学习过的大多数指令都是 SISD\(Single Instruction，Single Data\) 的。
 
