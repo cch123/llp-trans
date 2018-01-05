@@ -35,7 +35,7 @@ In this example there is a functionssedefined somewhere else, which accepts two 
 
 We call the values **packed** if they fill an xmm register of consecutive memory cells of the same size. In Listing16-30,float x\[4\]is four packed single precision float values.
 
-We will define the functionssein the assembly file shown in Listing16-31.
+We will define the function sse in the assembly file shown in Listing16-31.
 
 Listing 16-31.simd\_asm.asm
 
