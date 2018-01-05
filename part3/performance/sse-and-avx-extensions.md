@@ -1,8 +1,8 @@
-16.4 SSE and AVX Extensions
+16.4 SSE 和 AVX 扩展
 
-The SIMD instructions are the basis for the instruction set extensions SSE and AVX. Most of them are used to perform operations on multiple data pairs; for example,mulpscan multiply four pairs of 32-bit floats at once. However, their single operand pair counterparts \(such asmulss\) are now a recommended way to perform all floating point arithmetic.
+SIMD 指令集是 SSE 和 AVX 扩展的基础。大部分 SIMD 指令都用来操作多个数据对儿；例如，**mulps **可以一次性同时对四对 32 位浮点数进行乘法运算。不过现在在进行浮点数运算时，更推荐单对的操作指令\(例如 **mulss**\)。
 
-By default, GCC will generate SSE instructions to operate floating point numbers. They accept operands either inxmmregisters or in memory.
+默认情况下，GCC 会生成 SSE 指令来操作浮点数。这些指令可以接收 xmm 寄存器或者内存中的内容作为操作数。
 
 ---
 
@@ -10,9 +10,9 @@ By default, GCC will generate SSE instructions to operate floating point numbers
 
 ---
 
-We will start with an example shown in Listing16-30.
+我们从列表 16-30 中的例子开始吧。
 
-Listing 16-30.simd\_main.c
+_**Listing 16-30**.simd\_main.c_
 
 ```
 #include <stdlib.h>
@@ -23,9 +23,9 @@ void sse( float[static 4], float[static 4] );
 int main() {
     float x[4] = {1.0f, 2.0f, 3.0f, 4.0f };
     float y[4] = {5.0f, 6.0f, 7.0f, 8.0f };
-    
+
     sse( x, y );
-    
+
     printf( "%f %f %f %f\n", x[0], x[1], x[2], x[3] );
     return 0;
 }
@@ -110,6 +110,4 @@ It is important to understand that if your CPU supports AVX instructions it does
 Let us takemulpswithymmregisters as an example. It is used to multiply 8 pairs of floats.
 
 Better CPUs will have enough ALUs \(arithmetic logic units\) to multiply all eight pairs simultaneously. Cheaper CPUs will only have, say, four ALUs, and so will have to iterate on the microcode level twice, multiplying first four pairs, then last. The programmer will not notice that when using instruction, the semantic is the same, but performance-wise it will be noticeable. A single AVX version ofmulpswithymmregisters and eight pairs of floats can even be slower than two SSE versions ofmuplswithxmmregisters with four pairs each!
-
-
 
