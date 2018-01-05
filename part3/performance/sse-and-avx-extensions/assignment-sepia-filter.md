@@ -8,14 +8,9 @@ Let the new pixel value be \(B G R\)T\(whereTsuperscript stands for transpositio
 
 pic here pic here
 
-
-
-In scalar form, we can rewrite it as  
-
+In scalar form, we can rewrite it as
 
 pic here pic here
-
-
 
 In the assignment given in section 13.10 we coded a program to rotate the image. If you thought out its architecture well, it will be easy to reuse most of its code.
 
@@ -63,7 +58,6 @@ void sepia_c_inplace( struct image* img ) {
         for( x = 0; x < img->width; x++ )
             sepia_one( pixel_of( *img, x, y ) );
 }
-
 ```
 
 Note that usinguint8\_torunsigned charis very important.
@@ -89,8 +83,6 @@ To make a noticeable difference, we have to have as many operations in parallel 
 Let the subscript denote the index of a pixel. The image then looks as follows:
 
 pic here
-
-
 
 We would like to compute the first four components. Three of them correspond to the first pixel, the fourth one corresponds to the second one.
 
@@ -132,22 +124,21 @@ int main(void) {
     struct rusage r;
     struct timeval start;
     struct timeval end;
-    
+
     getrusage(RUSAGE_SELF, &r );
     start = r.ru_utime;
-    
+
     for( uint64_t i = 0; i < 100000000; i++ );
-    
+
     getrusage(RUSAGE_SELF, &r );
     end = r.ru_utime;
-    
+
     long res = ((end.tv_sec - start.tv_sec) * 1000000L) +
         end.tv_usec - start.tv_usec;
-        
+
     printf( "Time elapsed in microseconds: %ld\n", res );
     return 0;
 }
-
 ```
 
 Use a table to perform a fast conversion fromunsigned charintofloat.
