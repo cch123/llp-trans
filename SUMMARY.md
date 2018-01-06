@@ -135,7 +135,7 @@
       * [越过缓存](part3/performance/caching/bypassing-cache.md)
       * [示例：矩阵初始化](part3/performance/caching/example-matrix-initialization.md)
     * [SIMD 指令集](part3/performance/simd-instruction-class.md)
-    * [SSE and AVX Extensions](part3/performance/sse-and-avx-extensions.md)
+    * [SSE 和 AVX 扩展](part3/performance/sse-and-avx-extensions.md)
       * [Assignment: Sepia Filter](part3/performance/sse-and-avx-extensions/assignment-sepia-filter.md)
     * [Summary](part3/performance/summary.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
