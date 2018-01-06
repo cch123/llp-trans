@@ -2,7 +2,7 @@
 
 It is important to understand the difference between two key concepts involved in most talks about multithreading: threads and processes.
 
-Aprocessis a resource container that collects all kinds of runtime information and resources a program needs to be executed. A process contains the following:
+A **process** is a resource container that collects all kinds of runtime information and resources a program needs to be executed. A process contains the following:
 
 * An address space, partially filled with executable code, data, shared libraries, other mapped files, etc. Parts of it can be shared with other processes.
 
