@@ -6,7 +6,7 @@ SIMD 指令集是 SSE 和 AVX 扩展的基础。大部分 SIMD 指令都用来�
 
 ---
 
-**■Consistency** We omit the description of the legacy floating point dedicated stack for brevity. however, we want to point out that all program parts should be translated using the same method of floating point arithmetic: either floating point stack or SSE instructions.
+**■Consistency** 简略起见，我们略过了历史遗留的浮点数专用栈的说明，不过还是需要指出，所有程序部件被翻译的时候都应该使用同一种浮点运算：要么使用浮点数栈，要么使用 SSE 指令集。
 
 ---
 
@@ -68,8 +68,6 @@ sse:
 命名方面的规则倒是比较通用：动作元语\(mov，add，mul...\)加上后缀。第一个后缀可以是 P\(packed\) 或者 S\(scalar 表示单个值\)。第二个后缀可以是 D 表示双精度值\(C 语言里的 double\) 或者 S 表示单精度值\(C 语言里的 float\)。
 
 这里再强调一遍，大多数 SSE 指令只接收进行过内存对齐的内存操作数。
-
-
 
 In order to complete the assignment, you will need to study the documentation for the following instructions using the Intel Software Developer Manual \[15\]:
 
