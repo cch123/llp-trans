@@ -69,7 +69,7 @@ sse:
 
 这里再强调一遍，大多数 SSE 指令只接收进行过内存对齐的内存操作数。
 
-In order to complete the assignment, you will need to study the documentation for the following instructions using the Intel Software Developer Manual \[15\]:
+为了完成课后作业，你需要查阅 Intel 软件开发手册\[15\] 来学习下面这些指令：
 
 movsd–Move Scalar Double-Precision Floating- Point Value.
 
