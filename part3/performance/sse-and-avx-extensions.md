@@ -95,13 +95,13 @@ movsd–Move Scalar Double-Precision Floating- Point Value.
 
 * cvtdq2pd–Convert Packed Dword Integers to Packed Double-Precision FP Values.
 
-These instructions are part of the SSE extensions. Intel introduced a new extension called AVX, which has new registersymm0, ymm1,..., ymm15. They are 256 bits wide, their least significant 128 bits \(lesser half \) can be accessed as oldxmmregisters.
+这些指令是 SSE 扩展的一部分。Intel 引入了名为 AVX 的新扩展，该扩展使用了 ymm0，ymm1...ymm15 等新寄存器。这些寄存器为 256 位宽度，其低 128 位可以当作原来的 xmm 寄存器来使用。
 
-New instructions are mostly prefixed with v, for examplevbroadcastss.
+新指令大多数有字母 v 作为前缀，例如 **vbroadcastss**。
 
-It is important to understand that if your CPU supports AVX instructions it does not mean that they are faster than SSE! Different processors of the same family do not differ by the instruction set but by the amount of circuitry. Cheaper processors are likely to have fewer ALUs.
+了解你的 CPU 是否支持 AVX 很重要，并不是说 AVX 指令一定比 SSE 快！同一产品家族中的处理器在指令集上没有区别，只在集成电路数量上有差别。便宜的处理器一般 ALU 数量会少一些。
 
-Let us takemulpswithymmregisters as an example. It is used to multiply 8 pairs of floats.
+结合 mulps 指令和 ymm 寄存器，可以做到同时对 8 对浮点数做乘法。
 
-Better CPUs will have enough ALUs \(arithmetic logic units\) to multiply all eight pairs simultaneously. Cheaper CPUs will only have, say, four ALUs, and so will have to iterate on the microcode level twice, multiplying first four pairs, then last. The programmer will not notice that when using instruction, the semantic is the same, but performance-wise it will be noticeable. A single AVX version ofmulpswithymmregisters and eight pairs of floats can even be slower than two SSE versions ofmuplswithxmmregisters with four pairs each!
+较好的 CPU 在 ALU 数量上足以同时将八对浮点数同时进行乘法运算。便宜的 CPU 可能只有四个 ALU，所以需要在微指令执行两次操作，每次乘 4 对。程序员一般会注意到使用指令时，可能语义上完全一致，但性能方面却大不相同。AVX 版本的 mulps 和 ymm 寄存器以及 8 对浮点数有时候甚至也可以比 SSE 版本的 mulps 和 xmm 寄存器结合 4 对浮点数运算两次还要慢！
 
