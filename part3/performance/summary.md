@@ -14,7 +14,7 @@
 
 ■Question 340 一个递归函数可以在不使用更多的数据结构的前提下被改写为尾递归形式么？
 
-■Question 341 What is a common subexpression elimination? how does it affect our code writing?
+■Question 341 什么是通常的子表达式消除？这个概念对于我们写代码有什么影响？
 
 ■Question 342 什么是常量传播？
 
