@@ -31,9 +31,9 @@ int main() {
 }
 ```
 
-In this example there is a functionssedefined somewhere else, which accepts two arrays offloats. Each of them should be at least four elements wide. This function performs computations and modifies the first array.
+这个地方使用了一个别的地方定义的函数 sse，接收两个 float 类型的数组作为参数。每一个参数都需要至少四个元素。该函数将会执行计算，并修改第一个数组。
 
-We call the values **packed** if they fill an xmm register of consecutive memory cells of the same size. In Listing16-30,float x\[4\]is four packed single precision float values.
+我们称多个值为 **packed** 当这些值能够依次填充满同一个 xmm 寄存器。在列表 16-30 中，float x\[4\] 就是四个单精度浮点数 **packed** 的值。
 
 在列表 16-31 中我们以汇编形式定义一个 sse 函数。
 
