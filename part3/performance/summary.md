@@ -1,6 +1,4 @@
-16.5 Summary
+16.5 小结
 
-In this chapter we have talked about the compiler optimizations and why they are needed. We have seen how far the translated optimized code can go from its initial version. Then we have studied how to get the most benefit from caching and how to parallelize floating point computations on the instruction level using SSE instructions. In the next chapter we will see how to parallelize instruction sequences execution, create multiple threads, and change our vision of memory in the presence of multithreading.
-
-
+本章我们讨论了编译器优化以及每种优化的必要性。我们学习到了翻译并优化后的代码和最初的版本能有多么大的区别。然后研究了如何从缓存中最大程度获益，以及使用 SSE 扩展，在指令级别进行浮点数运算的并行化。下一章中我们将学习如何并行化指令序列的执行，创建多个线程，并以此来刷新我们多线程方面的知识。
 

@@ -137,7 +137,7 @@
     * [SIMD 指令集](part3/performance/simd-instruction-class.md)
     * [SSE 和 AVX 扩展](part3/performance/sse-and-avx-extensions.md)
       * [Assignment: Sepia Filter](part3/performance/sse-and-avx-extensions/assignment-sepia-filter.md)
-    * [Summary](part3/performance/summary.md)
+    * [小结](part3/performance/summary.md)
   * [Chapter 17 Multithreading](part3/multithreading.md)
     * [Processes and Threads](part3/multithreading/processes-and-threads.md)
     * [What Makes Multithreading Hard?](part3/multithreading/what-makes-multithreading-hard.md)
