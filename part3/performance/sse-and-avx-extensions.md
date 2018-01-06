@@ -71,29 +71,17 @@ sse:
 
 为了完成课后作业，你需要查阅 Intel 软件开发手册\[15\] 来学习下面这些指令：
 
-movsd–Move Scalar Double-Precision Floating- Point Value.
-
-* movdqa–Move Aligned Double Quad word.
-
-* movdqu–Move Unaligned Double Quad word.
-
-* mulps–Multiply Packed Single-Precision Floating Point Values.
-
-* mulpd–Multiply Packed Double-Precision Floating Point Values.
-
-* addps–Add Packed Single-Precision Floating Point Values.
-
-* haddps–Packed Single-FP Horizontal Add.
-
-* shufps–Shuffle Packed Single-Precision Floating Point Values.
-
-* unpcklps–Unpack and Interleave High Packed Double-Precision Floating
-
-  Point Values.
-
-* packswb–Pack with Signed Saturation.
-
-* cvtdq2pd–Convert Packed Dword Integers to Packed Double-Precision FP Values.
+* **movsd**–Move Scalar Double-Precision Floating- Point Value.
+* **movdqa**–Move Aligned Double Quad word.
+* **movdqu**–Move Unaligned Double Quad word.
+* **mulps**–Multiply Packed Single-Precision Floating Point Values.
+* **mulpd**–Multiply Packed Double-Precision Floating Point Values.
+* **addps**–Add Packed Single-Precision Floating Point Values.
+* **haddps**–Packed Single-FP Horizontal Add.
+* **shufps**–Shuffle Packed Single-Precision Floating Point Values.
+* **unpcklps**–Unpack and Interleave High Packed Double-Precision Floating Point Values.
+* **packswb**–Pack with Signed Saturation.
+* **cvtdq2pd**–Convert Packed Dword Integers to Packed Double-Precision FP Values.
 
 这些指令是 SSE 扩展的一部分。Intel 引入了名为 AVX 的新扩展，该扩展使用了 ymm0，ymm1...ymm15 等新寄存器。这些寄存器为 256 位宽度，其低 128 位可以当作原来的 xmm 寄存器来使用。
 
