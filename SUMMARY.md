@@ -147,10 +147,23 @@
     * [What Is Volatile and What Is Not](part3/multithreading/what-is-volatile-and-what-is-not.md)
     * [Memory Barriers](part3/multithreading/memory-barriers.md)
     * [Introduction to pthreads](part3/multithreading/introduction-to-pthreads.md)
+      * When to Use Multithreading
+      * Creating Threads
+      * Managing Threads
+      * Example: Distributed Factorization
+      * Mutexes
+      * Deadlocks
+      * Livelocks
+      * Condition Variables
+      * Spinlocks
     * [Semaphores](part3/multithreading/semaphores.md)
     * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
     * [C11 Memory Model](part3/multithreading/c11-memory-model.md)
+      * Overview
+      * Atomics
+      * Memory Orderings in C11
+      * Operations
     * [Summary](part3/multithreading/summary.md)
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
