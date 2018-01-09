@@ -1,18 +1,12 @@
-17.2 What Makes Multithreading Hard?
+17.2 多线程编程的难点在什么地方？
 
-Multithreading allows you to make use of several processor cores \(or several processors\) to execute threads at the same time. For example, if one thread is reading file from a disk \(which is a very slow operation\), the other might use the pause to perform CPU-heavy computations, distributing CPU \(central processing unit\) load more uniformly in time. So, it can be faster, if your program can benefit from it.
+多线程使你可以充分利用多个处理器核心\(或者说多个处理器\)来同时执行多个线程。例如，一个线程正在从磁盘中读取文件\(这种操作非常慢\)，另一个线程可以利用这段空闲时间来进行重度 CPU 计算，使 CPU 的负载能够更为均衡。这种情况也可以使你的程序从多线执行中获得性能提升。
 
-Threads should often work on the same data. As long as the data is not modified by any of them, there are no problems working with it, because reading data has zero effect on other threads execution. However, if the shared data is being modified by one \(or multiple\) threads, we face several problems, such as the following:
+线程一般在同一份数据上进行工作。只要数据没有被修改，多线程读取这些数据就没有任何副作用。然而共享数据一旦被某个线程\(或多个\)修改，我们就会遇到很多问题，例如：
 
-* When does threadAsee the changes performed byB?
+* 什么时候线程 A 能够观察到线程 B 的修改？
+* 线程操作数据的顺序是啥样的？\(16 章的例子中，出于优化的目的，指令可能被重排了\)。
+* 如何在不被其它线程打断地情况下操作复杂的数据？
 
-* In which order do threads change the data? \(As we have seen in the Chapter16, the
-
-  instructions can be reordered for optimization purposes.\)
-
-* How can we perform operations on the complex pieces of data without other threads interfering?
-
-
-
-When these problems are not addressed properly, a very problematic sort of bug appears, which is hard to catch \(because it only appears casually, when the instruction of the different threads are executed in a specific, unlucky order\). We will try to establish an understanding and study these problems and how they can be solved.
+这些问题没有被妥善解决的话，一些非常难定位的 bug 就会出现了\(因为这些 bug 都是偶发而非必现，只有在不同线程的指令在某种特定的顺序下执行才触发\)。我们将尽量对这些问题进行理解，并了解如何解决这种问题。
 
