@@ -163,7 +163,7 @@
       * [Overview](part3/multithreading/c11-memory-model/overview.md)
       * [Atomics](part3/multithreading/c11-memory-model/atomics.md)
       * [Memory Orderings in C11](part3/multithreading/c11-memory-model/memory-orderings-in-c11.md)
-      * Operations
+      * [Operations](part3/multithreading/c11-memory-model/operations.md)
     * [Summary](part3/multithreading/summary.md)
 * [Part 4 附录](part4.md)
   * [Appendix A. Using gdb](part4/appendix-a-using-gdb.md)
