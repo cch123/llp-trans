@@ -1,28 +1,23 @@
-17.1 Processes and Threads
+17.1 进程与线程
 
-It is important to understand the difference between two key concepts involved in most talks about multithreading: threads and processes.
+大多数多线程讨论中都会涉及到两个核心概念：进程和线程，了解它们的区别非常重要。
 
-A **process** is a resource container that collects all kinds of runtime information and resources a program needs to be executed. A process contains the following:
+**进程**是是一种承载了运行时信息和资源的资源容器。进程包含如下内容：
 
-* An address space, partially filled with executable code, data, shared libraries, other mapped files, etc. Parts of it can be shared with other processes.
+* 地址空间，一部分地址被程序代码，数据，共享库，映射的文件等等所填充。一部分地址还可以和其它进程所共享。
+* 所有相关类型的状态信息，例如打开的文件描述符，寄存器等等。
+* 进程 ID ，进程组 ID，用户 ID，用户组 ID ...
+* 其它用于进程间通信的资源，例如管道，信号量，消息队列...
 
-* All other kinds of associated state such as open file descriptors, registers, etc.
+**线程**是能够被操作系统调度执行的指令流。
 
-* Information such as process ID, process group ID, user ID, group ID . . .
+操作系统不会调度进程，而是调度线程。每一个线程都作为进程的一部分并持有线程自身的一些状态：
 
-* Other resources used for interprocess communication: pipes, semaphores, message queues . . .
+* 寄存器。
+* 栈\(从技术角度来讲，栈是被栈指针寄存器所定义的；然而由于所有进程的线程都共享相同的地址空间，某个线程是可以访问其它线程的栈的，尽管这样并不是什么好做法\)。
+* 对于调度器来说一些较重要的属性，例如优先级。
+* 等待中和被阻塞的信号。
+* 信号 mask。
 
-threadis a stream of instructions that can be scheduled for execution by the operating system.
-
-The operating system does not schedule processes but threads. Each thread lives as a part of a process and has a piece of process state, which is its own.
-
-* Registers.
-* Stack \(technically, it is defined by the stack pointer register; however, as all processor’s threads share the same address space, one of them can access the stacks of other threads, although this is rarely a good idea\).
-* Properties of importance to the scheduler such as priority.
-
-* Pending and blocked signals.
-
-* Signal mask.
-
-When the process is closed, all associated resources are freed, including all its threads, open file descriptors, etc.
+进程被关闭的时候，所有相关的资源都会被释放，包括线程和打开的文件描述符等等。
 
