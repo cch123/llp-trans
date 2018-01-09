@@ -140,7 +140,7 @@
     * [小结](part3/performance/summary.md)
   * [Chapter 17 多线程](part3/multithreading.md)
     * [进程和线程](part3/multithreading/processes-and-threads.md)
-    * [What Makes Multithreading Hard?](part3/multithreading/what-makes-multithreading-hard.md)
+    * [多线程编程的难点在什么地方？](part3/multithreading/what-makes-multithreading-hard.md)
     * [Execution Order](part3/multithreading/execution-order.md)
     * [Strong and Weak Memory Models](part3/multithreading/strong-and-weak-memory-models.md)
     * [Reordering Example](part3/multithreading/reordering-example.md)
