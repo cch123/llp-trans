@@ -1,8 +1,8 @@
-Chapter 17 Multithreading
+Chapter 17 多线程
 
-In this chapter we will explore the multithreading capabilities provided by the C language. Multithreading is a topic for a book on its own, so we will concentrate on the language features and relevant properties of the abstract machine rather than good practices and program architecture-related topics.
+本章中我们将探索 C 语言提供的多线程能力。本书中多线程也是一个重要的主题，我们将聚焦在语言特性和相关的机器抽象，不会关注最佳实践或是程序架构方面的话题。
 
-Until C11, the support of the multithreading was external to the language itself, via libraries and nonstandard tricks. A part of it \(atomics\) is now implemented in many compilers and provides a standard-compliant way of writing multithreaded applications. Unfortunately, to this day, the support of threading itself is not implemented in most toolchains, so we are going to use the librarypthreadsto write down code examples. We will still use the standard-compliant atomics.
+到 C11 为止，对多线程的支持都需要通过外部的第三方库或是非标准的 tricks。多线程编程中的一部分\(atomics\)目前在很多编译器中已有实现，并能够提供遵守标准的多线程程序写法。不幸的是直到现在，对于线程本身的支持在大多数工具链里还是没有实现。我们将使用 pthreads 库来编写代码示例。但依然使用遵循标准的 atomics。
 
-This chapter is by no means an exhaustive guide to multithreaded programming, which is a beast worth writing a dedicated book about, but it will introduce the most important concepts and relevant language features. If you want to become proficient in it, we recommend lots of practice, specialized articles, books such as \[34\], and code reviews from your more experienced colleagues.
+本章绝对不是多线程编程的一份详细指南，如果深入地写下去那值得专门写一本书了，但会介绍语言特性相关的一些重要概念。如果你需要能够精通多线程，推荐你进行大量的练习，阅读相关的论文和书籍，参见\[34\]，并和你更有经验的同事进行一些 code review。
 
