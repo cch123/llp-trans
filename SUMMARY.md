@@ -160,7 +160,7 @@
     * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
     * [C11 Memory Model](part3/multithreading/c11-memory-model.md)
-      * Overview
+      * [Overview](part3/multithreading/c11-memory-model/overview.md)
       * Atomics
       * Memory Orderings in C11
       * Operations
