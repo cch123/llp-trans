@@ -161,7 +161,7 @@
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
     * [C11 Memory Model](part3/multithreading/c11-memory-model.md)
       * [Overview](part3/multithreading/c11-memory-model/overview.md)
-      * Atomics
+      * [Atomics](part3/multithreading/c11-memory-model/atomics.md)
       * Memory Orderings in C11
       * Operations
     * [Summary](part3/multithreading/summary.md)
