@@ -1,12 +1,12 @@
-17.3 Execution Order
+17.3 执行顺序
 
-When we started to study the C abstract machine, we got used to thinking that the sequence of C statements corresponds to the actions performed by the compiled machine instructions—naturally, in the same order. Now it is time to dive into the more pragmatic details of why it is not really the case.
+我们刚开始学 C 抽象机器的时候，习惯了按照 C 语句自然对应编译后的机器指令，两者有一致的顺序。现在是时候来深入细节，来了解为什么不完全是这样了。
 
-We tend to describe algorithms in a way that is easier to understand, and this is almost always a good thing. However, the order given by the programmer is not always optimal performance-wise.
+一般我们会使用简单的方式来描述算法。但是由程序员所给出的指令顺序对于性能来说并不一定是最优的。
 
-For example, the compiler might want to improvelocalitywithout changing the code semantics. Listing17-1shows an example.
+例如，编译器可能想要通过不修改代码语义的情况下来提升程序的局部性。列表 17-1 是一个例子：
 
-Listing 17-1.ex\_locality\_src.c
+_**Listing 17-1**.ex\_locality\_src.c_
 
 ```
 char x[1000000], y[1000000];
@@ -15,11 +15,9 @@ x[4] = y[4];
 x[10004] = y[10004];
 x[5] = y[5];
 x[10005] = y[10005];
-
-
 ```
 
-列表 17 展示了一种可能的翻译结构。
+列表 17-2 展示了一种可能的翻译结构。
 
 _**Listing 17-2**.ex\_locality\_asm1.asm_
 
@@ -37,9 +35,9 @@ mov al,[rsi + 10005]
 mov [rdi+10005],al
 ```
 
-However, it is evident, that this code could be rewritten to ensure better locality; that is, first assignx\[4\]andx\[5\], then assignx\[10004\]andx\[10005\], as shown in Listing17-3.
+很明显，这些代码可以被重写以达到更好的局部性，首先赋值 x\[4\] 和 x\[5\]，然后再赋值 x\[10004\] 和 x\[10005\]，如列表 17-3 所示。
 
-Listing 17-3.ex\_locality\_asm2.asm
+_**Listing 17-3**.ex\_locality\_asm2.asm_
 
 ```
 mov al,[rsi + 4]
@@ -55,9 +53,9 @@ mov al,[rsi + 10005]
 mov [rdi+10005],al
 ```
 
-The effects of these two instruction sequences are similarif the abstract machine only considers one CPU: given any initial machine state, the resulting state after their executions will be the same. The second translation result often performs faster, so the compiler might prefer it. This is the simple case ofmemory reordering, a situation in which the memory accesses are reordered comparing to the source code.
+如果抽象机器只考虑单个 CPU：给定初始状态，指令执行后的结果状态一致，那么这两种指令顺序的效果就是完全一样的。但第二种翻译结果性能上却更好，所以编译器倾向于选择第二种。这也是内存重重排序的一种简单场景：某些情况下内存访问顺序和源码中的顺序会有所区别。
 
-For single thread applications, which are executed “really sequentially,” we can often expect the order of operations to be irrelevant as long as the observable behavior will be unchanged. This freedom ends as soon as we start communicating between threads.
+对单线程应用来说，这些指令确实都是被 “真线性” 执行的，这种情况下我们可以认为操作的执行顺序对于可以观察到的行为没啥影响。但这种观念在进行多线程编程的时候就行不通了。
 
-Most inexperienced programmers do not think much about it because they limit themselves with single-threaded programming. In these days, we can no longer afford not to think about parallelism because of how pervasive it is and how it is often the only thing that can really boost the program performance. So, in this chapter, we are going to talk about memory reorderings and how to set them up correctly.
+大多数没经验的程序员并不会太深入思考这个问题，早年间他们把自己限定在单线程编程的场景下，但近年我们已经没有办法不去考虑并行问题了。因为并行本身对我们的程序有侵入性，而且并行可以确确实实地提高程序性能。所以本章中，我们将讨论内存重排以及如何正确地使用内存重排。
 
