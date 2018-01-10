@@ -148,14 +148,14 @@
     * [Memory Barriers](part3/multithreading/memory-barriers.md)
     * [Introduction to pthreads](part3/multithreading/introduction-to-pthreads.md)
       * [When to Use Multithreading](part3/multithreading/introduction-to-pthreads/when-to-use-multithreading.md)
-      * Creating Threads
-      * Managing Threads
-      * Example: Distributed Factorization
-      * Mutexes
-      * Deadlocks
-      * Livelocks
-      * Condition Variables
-      * Spinlocks
+      * [Creating Threads](part3/multithreading/introduction-to-pthreads/creating-threads.md)
+      * [Managing Threads](part3/multithreading/introduction-to-pthreads/managing-threads.md)
+      * [Example: Distributed Factorization](part3/multithreading/introduction-to-pthreads/example-distributed-factorization.md)
+      * [Mutexes](part3/multithreading/introduction-to-pthreads/mutexes.md)
+      * [Deadlocks](part3/multithreading/introduction-to-pthreads/deadlocks.md)
+      * [Livelocks](part3/multithreading/introduction-to-pthreads/livelocks.md)
+      * [Condition Variables](part3/multithreading/introduction-to-pthreads/condition-variables.md)
+      * [Spinlocks](part3/multithreading/introduction-to-pthreads/spinlocks.md)
     * [Semaphores](part3/multithreading/semaphores.md)
     * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
