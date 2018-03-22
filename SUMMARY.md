@@ -146,7 +146,7 @@
     * [Reordering Example](part3/multithreading/reordering-example.md)
     * [What Is Volatile and What Is Not](part3/multithreading/what-is-volatile-and-what-is-not.md)
     * [Memory Barriers](part3/multithreading/memory-barriers.md)
-    * [Introduction to pthreads](part3/multithreading/introduction-to-pthreads.md)
+    * [pthreads 入门](part3/multithreading/introduction-to-pthreads.md)
       * [When to Use Multithreading](part3/multithreading/introduction-to-pthreads/when-to-use-multithreading.md)
       * [Creating Threads](part3/multithreading/introduction-to-pthreads/creating-threads.md)
       * [Managing Threads](part3/multithreading/introduction-to-pthreads/managing-threads.md)
