@@ -1,26 +1,20 @@
-17.8 Introduction to pthreads
+17.8 pthreads 介绍
 
-POSIX threads \(pthreads\) is a standard describing a certain model of program execution. It provides means to execute code in parallel and to control the execution. It is implemented as a librarypthreads, which we are going to use throughout this chapter.
+POSIX 线程 \(pthreads\) 是一种描述多线程程序执行的模型的标准。该标准提供了并行执行代码和控制执行的手段。该标准的实现是 pthreads 库，这一整章都会使用这个库。
 
-The library contains C types, constants, and procedures \(which are prefixed withpthread\_\). Their declarations are available in thepthread.hheader. The functions provided by it fall into one of the following groups:
+该库包含 C 类型，常量和一些过程函数\(一般有 `pthread_` 的前缀\)。其声明都可以在 pthread.h 文件中找到。其中提供的函数可划分为下面的几种：
 
-* Basic thread management \(creating, destroying\).
+* 基本线程管理\(创建、销毁\)。
+* 互斥量管理。
+* 条件变量。
+* 使用锁和屏障进行同步。
 
-* Mutex management.
+本节先研究几个例子，让我们能对 pthreads 能变得稍微熟悉一些。为了能够完成多线程计算，你有下面两个选项：
 
-* Condition variables.
+* 在同一个进程内创建多个线程。这些线程共享相同的地址空间，所以数据交换起来很简单且很快速。当进程销毁后，所有的线程跟着被销毁。
+* 创建多个进程，每一个进程都有自己的默认线程。这些线程通过操作系统提供的手段来通信\(例如 pipe\)。
+  这种情况就没有那么快了，创建进程要比创建线程慢很多，因为创建进程需要创建很多操作系统相关的数据结构\(以及一个完全分离的地址空间\)。进程间通信经常需要一次或多次\(有时是隐式\)拷贝操作。
+  不过，将程序的逻辑划分到不同的进程中会带来安全和稳定方面的优势，因为每一个线程就只能看到自己所在的进程暴露给他们的一部分数据了。
 
-* Synchronization using locks and barriers.
-
-In this section we are going to study several examples to become familiar withpthreads. To perform multithreaded computations you have the following two options:
-
-* Spawn multiple threads in the same process.  The threads share the same address space, so the data exchange is relatively easy and fast. When the process terminates, so do all of its threads.
-
-* Spawn multiple processes; each of them has its own default thread. These threads communicate via mechanisms provided by the operating system \(such as pipes\).
-
-  This is not that fast; also spawning a process is slower than spawning just a thread, because it creates more operating system structures \(and a separate address space\). The communication between processes often implies one or more \(sometimes implicit\) copy operations.
-
-  However, separating program logic into separate processes can have a positive impact on security and robustness, because each thread only sees the exposed part of the processes others than its own.
-
-Pthreads allows you to spawn multiple threads in a single process, and that is what you usually want to do.
+Pthreads 允许你在单进程内创建多个线程，大部分情况下你的需求也就是这样的。
 
