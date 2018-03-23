@@ -9,5 +9,5 @@
 
 使用多线程来加速 CPU 密集型的程序是可能的。一般的模式会使用一个队列，将请求分发给线程池\(其中有一些预分配的线程，可能在工作，也可能在等待，这样就不用在每次需要的时候都创建新线程\)中的工作线程。参考第 7 章 \[23\] 来获知详情。
 
-As for how many threads we need, there is no universal recipe. Creating threads, switching between them, and scheduling them produces an overhead. It might make the whole program slower if there is not much work for threads to do. In computation-heavy tasks some people advise to spawnn −1 threads, wherenis the total number of processor cores. In tasks that are sequential by their own nature \(where every step depends directly on the previous one\) spawning multiple threads will not help. What we do recommend is toalwaysexperiment with the number of threads under different workloads to find out which number suits the most for the given task.
+如果问我们需要多少线程的话，是没有通用的答案的。创建线程，线程切换和对线程进行调度都会产生一定的成本。如果线程本身没多少活儿要干，这些动作都可能会使整个程序变慢。一些人建议在计算密集型的任务中创建 n-1 个线程，n 的值是处理器核心数。在一些天然需要线性执行\(每一步都直接依赖上一步产生的结果\)的任务中，创建多个线程就没什么用了。这里我们推荐在不同的工作负载下，对你的线程数进行实验，以找出最适合你的计算任务的线程数。
 
