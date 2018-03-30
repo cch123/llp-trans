@@ -159,7 +159,7 @@
     * [Semaphores](part3/multithreading/semaphores.md)
     * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
-    * [C11 Memory Model](part3/multithreading/c11-memory-model.md)
+    * [C11 内存模型](part3/multithreading/c11-memory-model.md)
       * [Overview](part3/multithreading/c11-memory-model/overview.md)
       * [Atomics](part3/multithreading/c11-memory-model/atomics.md)
       * [Memory Orderings in C11](part3/multithreading/c11-memory-model/memory-orderings-in-c11.md)
