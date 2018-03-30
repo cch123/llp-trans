@@ -7,11 +7,11 @@ Creating threads is easy. Listing 17-6 shows an example.
 #include <stdio.h>
 #include <unistd.h>
 void* threadimpl( void* arg ) {
-    for(int i = 0; i < 10; i++ ) {
-        puts( arg );
-        sleep(1);
-    }
-    return NULL;
+    for(int i = 0; i < 10; i++ ) {
+        puts( arg );
+        sleep(1);
+    }
+    return NULL;
 }
 
 int main( void ) {
@@ -32,11 +32,7 @@ Note that the code that usespthreadlibrary must be compiled with-pthreadflag, fo
 
 That specifying-lpthreadwill not give us an esteemed result. Linking with the solelibpthread.ais not enough: there are several preprocessor options that are enabled by-pthread\(e.g.,\_REENTRANT\). So, whenever the-pthreadoption is available,1use it.
 
-
-
 Initially, there is only one thread which starts executing themainfunction. Apthread\_ttype stores all information about some other thread, so that we can control it using this instance as a handle. Then, the threads are initialized withpthread\_createfunction with the following signature:
-
-
 
 ```
 int pthread_create(
@@ -64,15 +60,15 @@ However, the naivereturnfrom themainfunction will lead to process termination. W
 
 This program will output a pair ofbuzzandfizzlines in random order ten times and then exit. It is impossible to predict whether the first or the second thread will be scheduled first, so each time the order can differ. Listing17-7shows an exemplary output.
 
-
-
 Listing 17-7.pthread\_create\_mwe\_out
 
 ```
 > ./main
 fizz
-buzzzz
-buzzzz
+
+buzzzz
+
+buzzzz
 fizz
 fizz
 buzzzz
@@ -86,7 +82,8 @@ buzzzz
 fizz
 buzzzz
 fizz
-buzzzz
+
+buzzzz
 fizz
 buzzzz
 fizz
@@ -137,8 +134,6 @@ The following functions are used to set attributes:
 * pthread\_attr\_setstacksize–what will be the thread stack size?
 
 * pthread\_attr\_setstack–sets both stack address and stack size.
-
-
 
 All of them have their “get” counterparts \(e.g.,pthread\_attr\_getscope\).
 
