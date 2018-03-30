@@ -152,7 +152,7 @@
       * [Managing Threads](part3/multithreading/introduction-to-pthreads/managing-threads.md)
       * [Example: Distributed Factorization](part3/multithreading/introduction-to-pthreads/example-distributed-factorization.md)
       * [Mutexes](part3/multithreading/introduction-to-pthreads/mutexes.md)
-      * [Deadlocks](part3/multithreading/introduction-to-pthreads/deadlocks.md)
+      * [死锁](part3/multithreading/introduction-to-pthreads/deadlocks.md)
       * [Livelocks](part3/multithreading/introduction-to-pthreads/livelocks.md)
       * [Condition Variables](part3/multithreading/introduction-to-pthreads/condition-variables.md)
       * [Spinlocks](part3/multithreading/introduction-to-pthreads/spinlocks.md)
