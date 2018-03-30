@@ -1,65 +1,61 @@
-17.8.6 Deadlocks  
+17.8.6 死锁
 
+一个单独的互斥量是不会引起问题的。然而当你同时持有多个互斥量时，各种奇怪的情况就可能发生了。来看一下列表 17-14 这个例子。
 
-A sole mutex is rarely a cause of problems. However, when you lock multiple mutexes at a time, several kinds
-
-of strange situations can happen. Take a look at the example shown in Listing17-14.
-
-Listing 17-14.deadlock\_ex
+_**Listing 17-14**.deadlock\_ex_
 
 ```
 mutex A, B;
-thread1 () {
-    lock(A);    
+
+thread1 () {
+    lock(A);
+
     lock(B);
     unlock(B);
     unlock(A);
 }
 
-thread2() {
-    lock(B);    
+
+thread2() {
+    lock(B);
+
     lock(A);
     unlock(A);
     unlock(B);
 }
 ```
 
-This pseudo code demonstrates a situation where both threads can hang forever. Imagine that the following sequence of actions happened due to unlucky scheduling:
-
-* Thread 1 lockedA; control transferred to thread 2.
-
-* Thread 2 lockedB; control transferred to thread 1. 
-
-After that, the threads will try to do the following:
-
-* Thread 1 will attempt to lockB, butBis already locked by thread 2.
-
-* Thread 2 will attempt to lockA, butAis already locked by thread 1.
-
-Both threads will be stuck in this state forever. When threads are stuck in a locked state waiting for each other to perform unlock, the situation is calleddeadlock.
+这段伪代码演示了两个线程一起 hang 住并永远 hang 住的场景。想像一下，因为不幸地调度而产生的如下执行序列：
 
 
 
-The cause of the deadlock is the different order in which the locks are being taken by different threads. It leads us to a simple rule that will save us most of the times when we need to lock several mutexes at a time.
+* 线程 1 锁住 A; 控制权切换到线程 2。
+
+* 线程 2 锁住 B; 控制权切换到线程 1。
+
+之后线程尝试：
+
+* 线程 1 尝试锁 B，但 B 已经被线程 2 锁住了。
+
+* 线程 2 尝试锁 A，但 A 已经被线程 1 锁住了。
+
+两个线程会永远陷入这种状态。这种线程陷入持有锁且等待其它线程解锁的状态被称为死锁。
+
+引起死锁的原因是不同的线程按照不同的顺序获取锁。所以我们也可以得出一条简单的规则来避免死锁，按顺序对资源上锁就能帮我们节省大量的时间了。
 
 ---
 
-■Preventing deadlocksOrder all mutexes in your program in an imaginary sequence. Only lock mutexes in
+■预防死锁 将你程序中的所有互斥量进行假想排序。只按照这种假想的顺序来对互斥量加锁。
 
-the same order they appear in this sequence.  
-
-
-For example, suppose we have mutexesA,B,C, andD. We impose a natural order on them:A &lt; B &lt; C &lt; D. if
-
-you need to lock bothDandB, you should always lock them in the same order, thusBfirst,Dsecond. if thisinvariantis kept, no two threads will lock a pair of mutexes in a different order.
+例如，假设我们有互斥量 A，B，C 和 D。将其以 A &lt; B &lt; C &lt; D 的顺序排好序，如果你想要对 D 和 B 同时加锁，那么你就需要按照上述相同的顺序来加锁，也就是说先锁 B，再锁 D。如果这种规则能够保证执行的话，不会有任何两个线程陷入死锁状态。
 
 ---
 
 ---
 
-■Question 362What are Coffman’s conditions? how can they be used to diagnose deadlocks?
+■Question 362 什么是 Coffman’s conditions? 如何用其来诊断死锁？
 
-■Question 363how do we useHelgrindto detect deadlocks?
+■Question 363 如何使用 Helgrind 来检测死锁？
 
 ---
 
