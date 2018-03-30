@@ -149,7 +149,7 @@
     * [pthreads 入门](part3/multithreading/introduction-to-pthreads.md)
       * [什么时候使用多线程](part3/multithreading/introduction-to-pthreads/when-to-use-multithreading.md)
       * [Creating Threads](part3/multithreading/introduction-to-pthreads/creating-threads.md)
-      * [Managing Threads](part3/multithreading/introduction-to-pthreads/managing-threads.md)
+      * [管理线程](part3/multithreading/introduction-to-pthreads/managing-threads.md)
       * [Example: Distributed Factorization](part3/multithreading/introduction-to-pthreads/example-distributed-factorization.md)
       * [Mutexes](part3/multithreading/introduction-to-pthreads/mutexes.md)
       * [死锁](part3/multithreading/introduction-to-pthreads/deadlocks.md)
