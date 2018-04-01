@@ -6,37 +6,34 @@
 
 内存模型会告诉我们 load 和 store 指令会以哪种形式重排。这里我们不关心访问访问内存的具体指令\(mov, movq, etc\)，只关心对内存到底是读操作，还是写操作。
 
+存在两个极端：弱内存模型和强内存模型。就像弱类型和强类型一样，很多实际存在的约定都会是两种类型的折衷，但相对来说，会较为接近其中的一种。我们找到了 Jeff Preshing \[31\] 提出的一种分类方法很有用，本书中会一直使用这种方法。
 
+根据该分类方法，内存模型可以被划分为四大类，从较宽松到最强约束。
 
-There are two extreme poles: weak and strong memory models. Just like with the strong and weak typing, most existing conventions fall somewhere between, closer to one or another. We have found a classification made by Jeff Preshing \[31\] to be useful and will stick to it in this book.
+1.完全弱一致。
 
-According to it, the memory models can be divided into four categories, enumerated from the more relaxed ones to the stronger ones.
+这种模型下，可能发生任何形式的内存重排\(只要单线程程序的可观测行为不发生变化\)。
 
-Really weak.  
- In these models, any kind of memory reordering can happen \(as long as the
+2.数据依赖顺序弱一致\(例如 ARM v7 的硬件内存模型\)。
 
-1. observable behavior of a single-threaded program is unchanged, of course\).
+这里我们讲一个数据依赖的特殊类型：在 load 之间的依赖。比如我们从内存中取一个地址的值，然后用这个值再进行一次取值，例如：
 
-2. Weakwithdatadependencyordering\(suchashardwarememorymodelof ARM v7\).
+```
+         Mov rdx, [rbx]
+         mov rax, [rdx]
+```
 
-   Here we speak about one particular kind of data dependency: the one betweenloads. It occurs when we need to fetch an address from memory and then use it to perform another fetch, for example,
+在 C 语言里，这是我们使用 -&gt; 符号，通过指向结构体的指针来获取结构体字段的场景。
 
-   ```
-            Mov rdx, [rbx]
-            mov rax, [rdx]
-   ```
+完全弱一致不保证数据依赖的排序。
 
-   In C this is the situation when we use the➤operator to get to a field of a certain structure through the pointer to that structure.
+3.通常强一致\(例如 Intel64 的硬件内存模型\)。
 
-   Really weak memory models do not guarantee data dependency ordering.
+这种类型保证所有 store 操作和程序提供的顺序是一致的。但一些 load 操作，则可能会被移动到别处。
 
-3. Usuallystrong\(suchashardwarememorymodelofIntel64\).
+Intel 64 位一般都是这种类型的。
 
-   It means that there is a guarantee that allstoresare performed in the same order as provided. Someloads, however, can be moved around.
+4.线性一致
 
-   Intel 64 is usually falling into this category.
-
-4. Sequentially consistent.
-
-This can be described as what you see when you debug a non-optimized program step by step on a single processor core. No memory reordering ever happens.
+这种类似于你在一个单核心处理器上一步一步调试完全没有优化过的代码，不会发生任何内存重排。
 
