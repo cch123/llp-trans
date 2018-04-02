@@ -1,8 +1,8 @@
-17.5 Reordering Example
+17.5 重排样例
 
-Listing17-4 shows an exemplary situation when memory reordering can give us a bad day. Here two threads are executing the statements contained in functionsthread1andthread2, respectively.
+列表 17-4 展示了一个内存重排给我们带来麻烦的场景。两个线程交错执行其线程上运行的代码。
 
-Listing 17-4.mem\_reorder\_sample.c
+_**Listing 17-4**.mem\_reorder\_sample.c_
 
 ```
 int x = 0;
@@ -19,13 +19,13 @@ void thread2(void) {
 }
 ```
 
-Both threads share variablesxandy. One of them performs a store intoxand then loads the value ofy, while the other one does the same, but withyandxinstead.
+两个线程间共享变量 x 和变量 y。其中一个线程向 x 写一个值然后读取 y 。另一个线程执行差不多的动作，不过把 x 和 y 的操作顺序互换。
 
-We are interested in two types of memory accesses:loadandstore. In our examples, we will often omit all other actions for simplicity.
+我们主要关注 load 和 store 这两种内存访问方法。例子里的代码为了简略，把其它的行为都省略掉了。
 
-As these instructions are completely independent \(they operate on different data\), they can be reordered inside each thread without changing observable behavior, giving us four options:store + loadorload + storefor each of two threads. This is what a compiler can do for its own reasons. For each optionsixpossible execution orders exist. They depict how both threads advance in time relative to one another.
+由于这些指令是完全独立的\(分别操作的是不同的数据\)，所以每个线程内的操作在线程内都是可以在不影响可观察行为的前提下，进行重排序的，这样就给了我们四种组合：store + load 或 load + store 两两组合。编译器可以按自己的想法进行组合。每一种组合方式下都可能会有六种可能的执行顺序。这些执行顺序表示了线程彼此之间是如何向前执行的。
 
-We show them as sequences of 1 and 2; if the first thread made a step, we write 1; otherwise the second one made a step.
+下面我们以 1 和 2 来表示两个线程的执行情况，如果第一个线程执行了一步，那就写 1，否则就写 2 表示第二个线程执行了一条指令。
 
 1.1-1-2-2
 
@@ -39,19 +39,22 @@ We show them as sequences of 1 and 2; if the first thread made a step, we write 
 
 6.1-2-2-1
 
-For example, 1-1-2-2 means that the first process has executed two steps, and then the second process did the same. Each sequence corresponds to four different scenarios. For example, the sequence 1-2-1-2 encodes one of the traces, shown in Table17-1:
+例如，1-1-2-2 表示第一个线程执行了两步操作，然后第二个线程执行两步。每一个序列都会对应四种不同的场景。例如，序列 1-2-1-2 实际的流程可能有几种流程，见表 17-1:
 
 Table 17-1.Possible Instruction Execution Sequences If Processes Take Turns as 1-2-1-2
 
-注意，这里有一个表格
+| THREAD ID | TRACE 1 | TRACE 2 | TRACE 3 | TRACE 4 |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | store x | store x | load y | load y |
+| 2 | store y | load x | store y | load x |
+| 1 | load y | load y | store x | store x |
+| 2 | load x | store y | load x  | store y |
 
-If we observe these possible traces for each execution order, we will come up with24scenarios \(some of which will be equivalent\). As you see, even for the small examples these numbers can be large enough.
+如果我们反复观察每次执行顺序的可能结果，总共会有 24 种情况\(有一些情况结果等价\)。如你所见，即使是这么小的一个例子，就已经有这么多种可能的情况了。
 
-We do not need all these possible traces anyway; we are interested in the position ofloadrelatively tostorefor each variable. Even in Table17-1many possible combinations are present: bothxandycan be stored, then loaded, or loaded, then stored. Obviously, the result ofloadis dependent on whether there was astorebefore.
+不过我们也不需要关心所有可能的执行顺序；我们只要关心每一个变量 load 和 store 的相对顺序即可。在表 17-1 中出现的多种情况中，一个值的 load 结果只取决于之前是否有过 store 操作。
 
-Were reorderings not in the game, we would be limited: any of the two specifiedloadsshould have been preceded by a store because so it is in the source code; scheduling instructions in a different manner cannot change that. However, as the reorderings are present, we can sometimes achieve an interesting outcome: if both of these threads have their instructions reordered, we come to a situation shown in Listing17-5.
-
-
+如果没有重排这回事的话，可能的情况就很有限了：两个 load 指令之前一定会有一个 store，因为我们的源代码就是这么写的；即使是换一种调度指令也依然不能改变这种事实。不过由于重排始终存在，有时候我们还是会得到一些有趣的结果，如果两个线程的指令都被重排了的话，我们会遇到类似列表 17-5 的场景。
 
 Listing 17-5.mem\_reorder\_sample\_happened.c
 
@@ -70,9 +73,9 @@ void thread2(void) {
 }
 ```
 
-If the strategy 1-2-\*-\* \(where \* denotes any of the threads\) is chosen, we executeload xandload yfirst, which will make them appear to equal to 0 for everyone who uses theseloads’ results
+如果重排策略是 1-2-\*-\*\(\* 表示两个线程随意\)，那么相当于先执行 load x 和 load y，这样就都会打印 0 了。
 
-It is indeed possible in casecompilerreordered these operations. But even if they are controlled well or disabled, the memory reorderings, performed by CPU, still can produce such an effect.
+编译器把这些操作重排是完全有可能的。不过即使我们将重排控制的很好，或者完全关闭重排，CPU 层面也还是可能会发生同样形式的重排。
 
-This example demonstrates that the outcome of such a program is highly unpredictable. Later we are going to study how to limit reorderings by the compiler and by CPU; we will also provide a code to demonstrate this reordering in the hardware.
+这个例子演示了这种程序的极度不可预测性。之后我们会研究怎么限制编译器和 CPU 进行这种重排；同时会提供一个演示硬件层面重排的例子。
 
