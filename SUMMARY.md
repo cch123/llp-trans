@@ -120,12 +120,26 @@
     * [Relocations and PIC](part3/shared-objects-and-code-models/relocations-and-pic.md)
     * [Example: Dynamic Library in C](part3/shared-objects-and-code-models/example-dynamic-library-in-c.md)
     * [GOT and PLT](part3/shared-objects-and-code-models/got-and-plt.md)
+      * Accessing External Variables
+      * Calling External Functions
+      * PLT Example
     * [Preloading](part3/shared-objects-and-code-models/preloading.md)
     * [Symbol Addressing Summary](part3/shared-objects-and-code-models/symbol-addressing-summary.md)
     * [Examples](part3/shared-objects-and-code-models/examples.md)
+      * Calling a Function
+      * On Various Dynamic Linkers
+      * Accessing an External Variable
+      * Complete Assembly Example
+      * Mixing C and Assembly
     * [Which Objects Are Linked?](part3/shared-objects-and-code-models/which-objects-are-linked.md)
     * [Optimizations](part3/shared-objects-and-code-models/optimizations.md)
     * [Code Models](part3/shared-objects-and-code-models/code-models.md)
+      * [Small Code Model \(No PIC\)](part3/shared-objects-and-code-models/code-models/small-code-model-no-pic.md)
+      * [Large Code Model \(No PIC\)](part3/shared-objects-and-code-models/code-models/large-code-model-no-pic.md)
+      * [Medium Code Model \(No PIC\)](part3/shared-objects-and-code-models/code-models/medium-code-model-no-pic.md)
+      * [Small PIC Code Model](part3/shared-objects-and-code-models/code-models/small-pic-code-model.md)
+      * [Large PIC Code Model](part3/shared-objects-and-code-models/code-models/large-pic-code-model.md)
+      * [Medium PIC Code Model](part3/shared-objects-and-code-models/code-models/medium-pic-code-model.md)
     * [Summary](part3/shared-objects-and-code-models/summary.md)
   * [Chapter 16 性能](part3/performance.md)
     * [优化](part3/performance/optimizations.md)
