@@ -1,6 +1,6 @@
-17.6 What Is Volatile and What Is Not
+17.6 volatile 变量
 
-The C memory model, which we are using, is quite weak. Consider the following code:
+C 语言使用的内存模型是弱一致模型。比如下面这段代码：
 
 ```
 int x,y; x = 1;
@@ -8,9 +8,9 @@ y = 2;
 x = 3;
 ```
 
-As we have already seen, the instructions can be reordered by the compiler. Even more, the compiler can deduce that the first assignment is the dead code, because it is followed in another assignment to the same variablex. As it is useless, the compiler can even remove this statement.
+如我们所见，指令是可能被编译器重排序的。编译器还会推断认为第一次的赋值语句是 dead code，因为同一个变量马上就被重新赋了一次值。因为这句没什么用，我们甚至可以直接删掉这条语句。
 
-The volatile keyword addresses this issue. It forces the compiler to never optimize the writes and reads to the said variable and also suppresses any possible instruction reorderings. However, it only enforces these restrictions to one single variable and gives no guarantee about the order in which writes to different volatile variables are emitted. For example, in the previous code, even changing bothxandytype tovolatile intwill impose an order on assignments of each of them but will still allow us to interleave the writes freely as follows:
+volatile 关键字解决的就是这种问题。它强制编译器永远不要优化任何针对 volatile 类型的变量的读写操作，同时禁止相关的指令重排。然而，这种限制只会针对一个单独的变量，无法保证写入不同的 volatile 变量的顺序。例如，在前面的代码中，即使把 x 和 y 都换成 volatile 变量，也只能保证单独一个变量的赋值操作顺序不被交换，但不能阻止我们按下面的顺序把指令进行交换：
 
 ```
 volatile int x, y;
@@ -19,7 +19,7 @@ x = 3;
 y = 2;
 ```
 
-Or like this:
+或者像这样：
 
 ```
 volatile int x, y;
@@ -28,25 +28,20 @@ x = 1;
 x = 3;
 ```
 
-Obviously, these guarantees are not sufficient for multithreaded applications. You cannot usevolatilevariables to organize an access to the shared data, because these accesses can be moved around freely enough.
+显然，这种保障对于多线程程序来说并不足够。你不能使用 volatile 变量来组织对共享数据的访问，因为访问操作还是可能被随意的交换顺序。
 
-To safely access shared data, we need two guarantees.
+想要安全地访问数据，至少需要下面两个保证：
 
-The read or write actually takes place. The compiler could have just cached the value in the register and never write it back to memory.
+* 读或写确实地被执行，不能只是将值缓存在寄存器中，不写回到内存。
+  这也是 volatile 这个关键字本身可以保证的。这个特性对于进行内存映射的 I/O 已经足够了，不过对于多线程程序来说还不够。
 
-* This is the guaranteevolatileprovides. It is enough to perform memory-mapped I/O \(input/output\), but not for multithreaded applications.
+* 内存重排不能出现。我们假设使用 volatile 变量作为了程序的一个 flag，来标识数据是否已经对读取就绪。代码准备好数据，然后再设置 flag 的值，但重排序会导致 flag 的设置跳到了数据准备之前。
+  硬件重排和编译器重排都是有可能的。volatile 没有办法提供这种保证。
 
-* No memory reordering should take place. Let us imagine we usevolatilevariable as a flag, which indicates that some data is ready to be read. The code prepares data and then sets the flag; however, reordering can place this assignment before the data is prepared.
+本章中我们会学习两种能够提供上述保证的手段：
 
-  Both hardware and compiler reorderings matter here. This guarantee is not provided byvolatilevariables.
+* 内存屏障
+* C11 引入的原子变量
 
-In this chapter, we study two mechanisms that provide both of the following guarantees:
-
-* Memory barriers.
-
-* Atomic variables, introduced in C11.
-
-Volatile variables are used extremely rarely. They suppress optimization, which is usually not something we want to do.
-
-
+直接使用 volatile 变量的场合比较罕见。因为 volatile 会阻止编译器对代码进行优化，不符合我们的意图。
 
