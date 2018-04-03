@@ -170,7 +170,7 @@
     * [强弱内存模型](part3/multithreading/strong-and-weak-memory-models.md)
     * [重排样例](part3/multithreading/reordering-example.md)
     * [volatile 变量](part3/multithreading/what-is-volatile-and-what-is-not.md)
-    * [Memory Barriers](part3/multithreading/memory-barriers.md)
+    * [内存屏障](part3/multithreading/memory-barriers.md)
     * [pthreads 入门](part3/multithreading/introduction-to-pthreads.md)
       * [什么时候使用多线程](part3/multithreading/introduction-to-pthreads/when-to-use-multithreading.md)
       * [Creating Threads](part3/multithreading/introduction-to-pthreads/creating-threads.md)

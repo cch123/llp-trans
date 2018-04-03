@@ -1,66 +1,64 @@
-17.7 Memory Barriers
+17.7 内存屏障
 
-Memory barrieris a special instruction or statement that imposes constraints on how the reorderings can be done. As we have seen in the Chapter16, compilers or hardware can use many tricks to improve performance in the average case, including reordering, deferred memory operations, speculative loads or branch prediction, caching variables in registers, etc. Controlling them is vital to ensure that certain operations are already performed, because the other thread’s logic depends on it.
+内存屏障是一种特殊的指令或语句，能够对重排行为进行强约束。如 16 章所述，编译器和硬件有很多在平均情况下提升性能的小手段，包括重排，延迟内存操作，投机加载和分支预测，寄存器缓存变量等等。控制这些行为对于确保代码的执行顺序非常重要，因为其它线程的逻辑依赖于此。
 
-In this section, we want to introduce the different kinds of memory barriers and give us a general idea about their possible implementations on Intel 64.
+本节会介绍不同类型的内存屏障，让我们对 Intel 64 平台上可能的实现有一个大致了解。
 
-An example of the memory barrier preventing reorderingsby compileris the following GCC directive:
+下面是一个内存屏障的例子，这个例子是一条 GCC 伪指令，能够防止编译器重排：
 
 asm volatile\("" ::: "memory"\)
 
-Theasmdirective is used to include inline assembly code directly into C programs. Thevolatilekeyword together with the"memory"clobber argument describes that this \(empty\) piece of inline assembly cannot be optimized away or moved around and that it performs memory reads and/or writes. Because of that, the compiler is forced to emit the code to commit all operations to memory \(e.g., store the values of the local variables, cached in registers\). It does not prevent the processor from performing speculative reads past this statement, so it isnota memory barrier for the processor itself.
+这条汇编伪指令用来直接将汇编代码嵌入到 C 程序中。volatile 关键字组合上 "memory" 参数表示当前这段执行读、写的汇编代码\(这里是空的\)不能够被优化掉或者被移动到别处。这样会使编译器被强制将所有操作都在内存中执行\(e.g. 将寄存器中缓存的局部变量存储下来\)。这样做不能阻止处理器执行越过该语句的投机读取，所以对于处理器来说，这并不是一个内存屏障。
 
-Obviously, both compiler and CPU memory barriers arecostlybecause they prevent optimizations. That is why we do not want to use them after each instruction.
+显而易见，编译器和 CPU 内存屏障由于会阻止优化，所以成本都比较高。这也是为什么我们不想在每条指令之后都使用内存屏障。
 
-There are several kinds of memory barriers. We will speak about those that are defined in the Linux kernel documentation, but this classification is applicable in most situations.
+内存屏障有几种类型。我们会讲在 Linux 内核问题中定义过的那些类型，不过这已经能够满足大部分的场景需求了。
 
-1.Write memory barrier.  
- It guarantees that allstoreoperations specified in code before the barrier will
+1写内存屏障
 
-appear to happen before allstoreoperations specified after the barrier.
+该屏障会保证所有屏障前的 store 操作都发生在屏障后的 store 操作之前。
 
-GCC usesasm volatile\(""::: "memory"\)as a general memory barrier. Intel 64 uses the instructionsfence.
+GCC 使用 asm volatile\("":::"memory"\) 作为一个通用的内存屏障。Intel 64 使用 sfence 指令。
 
-2.Readmemorybarrier.
+2读内存屏障
 
-Similarly, it guarantees that allloadoperations specified in code before the barrier will appear to happen before allloadoperations specified after the barrier. It is a stronger form of data dependency barrier.
+类似的，该屏障保证屏障前的 load 操作发生在屏障后的 load 操作之前。是一种数据依赖屏障的较强形式。
 
-GCC usesasm volatile\(""::: "memory"\)as a general memory barrier. Intel 64 uses the instructionlfence.
+GCC 用 asm volatile\(""::: "memory"\) 作为通用内存屏障。Intel 64 使用 lfence 指令。
 
-3.Datadependencybarriers.
+3.数据依赖屏障
 
-Data dependency barrier considers the dependent reads, described in section 17.4. It can be thus considered a weaker form of read memory barrier. No guarantees about independent loads or any kinds of stores are provided.
+数据依赖屏障主要考虑读依赖，在 17.4 中已有描述。可以认为是一种读内存屏障的较弱形式。彼此独立读或者任何形式的写是没有任何顺序保证的。
 
-4.Generalmemorybarriers
+4.通用内存屏障
 
-This is the ultimate barrier, which forces every memory change specified in code before it is committed. It also prevents all following operations to be reordered in a way they appear to be executed before the barrier.
+这是一个终极屏障，会强制该屏障提交前所有内存修改都被执行。且会阻止所有屏障之后的指令被重排到该屏障之前。
 
-GCC usesasm volatile\(""::: "memory"\)as a general memory barrier. Intel 64 uses the instructionmfence.
+GCC 使用 asm volatile\(""::: "memory"\) 作通用内存屏障。Intel 64 使用 mfence 指令。
 
-5.Acquireoperations.
+5.acquire 操作
 
-This is a class of operations, united by a property calledAcquire semantics. If  
- an operation performsreadsfrom shared memory and is guaranteed to not be reordered with thefollowing reads and writesin the source code, it is said to have this property.
+指一类操作，用 acquire 的语义组织起来。如果一种操作是从共享内存中读取，且不会与之后的读和写顺序交换，那么就认为其拥有这种特性。
 
-In other words, it is similar to a general memory barrier, but the code that follows will not be reordered in a way to be executed before this barrier.
+换句话说很类似通用内存屏障，不过之后的代码都不会在这个屏障之前被执行。
 
-6.Release operations.
+6.release 操作
 
-Release semanticsis a property of such operations. If an operation performswritesto shared memory and is guaranteed to not be reordered with theprevious reads and writesin the source code, it is said to have this property.
+release 语义代表有这种属性的一类操作：如果一个操作对共享内存进行了写操作，那么就保证不会与源代码之前的读或者写发生重排。
 
-In other words, it is similar to a general memory barrier but stillallowsthe more recent operations to be reordered in a position before the release operation.
+换句话说和通用内存屏障类似，只是允许 release 之前的操作被重排。
 
-Acquire and release operations, thus, are one-way barriers for reorderings in a way. Following is an example of a single assembly commandmfence, inlined by GCC:
+acquire 和 release 操作都是某种形式的单向屏障。下面是一个被 GCC 内联的，单条汇编命令 mfence 例子：
 
-asm \("mfence" \)
+```
+asm ("mfence" )
+```
 
-By combining it with the compiler barrier, we get a line that both prevents compiler reordering and also acts as a full memory barrier.
+将其与编译器汇编进行组合，我们既可以阻止编译器重排，又能够得到一个完整的内存屏障。
 
 ```
 asm volatile("mfence" ::: "memory")
 ```
 
-Any function callwhose definition is not available in the current translation unitand that isnot an intrinsic\(a cross-platform substitute of a specific assembly instruction\) is acompiler memory barrier.
-
-
+当前翻译单元的任意不可达函数调用都是一个编译器内存屏障。
 
