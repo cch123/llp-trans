@@ -181,7 +181,7 @@
       * [Livelocks](part3/multithreading/introduction-to-pthreads/livelocks.md)
       * [Condition Variables](part3/multithreading/introduction-to-pthreads/condition-variables.md)
       * [Spinlocks](part3/multithreading/introduction-to-pthreads/spinlocks.md)
-    * [Semaphores](part3/multithreading/semaphores.md)
+    * [信号量](part3/multithreading/semaphores.md)
     * [How Strong Is Intel 64?](part3/multithreading/how-strong-is-intel-64.md)
     * [What Is Lock-Free Programming?](part3/multithreading/what-is-lock-free-programming.md)
     * [C11 内存模型](part3/multithreading/c11-memory-model.md)
